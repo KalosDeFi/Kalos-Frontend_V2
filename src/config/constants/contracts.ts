@@ -1,7 +1,7 @@
 export default {
   masterChef: {
     97: '',
-    56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
+    56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
   },
   masterChefV1: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
@@ -16,7 +16,7 @@ export default {
     56: '0x5aF6D33DE2ccEC94efb1bDF8f92Bd58085432d2c',
   },
   multiCall: {
-    56: '0xfF6FD90A470Aaa0c1B8A54681746b07AcdFedc9B',
+    56: '0xa03AFDFB0773f78b25Db214Ea720355F7fcF4B15',
     97: '0x8F3273Fb89B075b1645095ABaC6ed17B2d4Bc576',
   },
   pancakeProfile: {

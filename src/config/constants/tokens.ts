@@ -30,6 +30,14 @@ export const mainnetTokens = defineTokens({
     'PancakeSwap Token',
     'https://pancakeswap.finance/',
   ),
+  xalo: new Token(
+    MAINNET,
+    '0xE9E9b8001d86C36F971d046D64983738599C7385',
+    18,
+    'XALO',
+    'Kalosdefi Token',
+    'https://kalosdefi.com/',
+  ),
   gmi: new Token(MAINNET, '0x93D8d25E3C9A847a5Da79F79ecaC89461FEcA846', 18, 'GMI', 'Gamifi', 'https://gamifi.gg/'),
   tlos: new Token(MAINNET, '0xb6C53431608E626AC81a9776ac3e999c5556717c', 18, 'TLOS', 'Telos', 'https://www.telos.net/'),
   beta: new Token(
@@ -218,6 +226,14 @@ export const mainnetTokens = defineTokens({
     'SYRUP',
     'SyrupBar Token',
     'https://pancakeswap.finance/',
+  ),
+  xkalo: new Token(
+    MAINNET,
+    '0xbA0211e8263d250661f9671F6f786C243C66ec6D',
+    18,
+    'XKALO',
+    'Xkalos Token',
+    'https://kalosdefi.com/',
   ),
   pha: new Token(
     MAINNET,
