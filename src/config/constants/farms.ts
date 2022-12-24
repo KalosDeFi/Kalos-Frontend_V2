@@ -11,12 +11,12 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 0,
     v1pid: 0,
-    lpSymbol: 'CAKE',
+    lpSymbol: 'XALO',
     lpAddresses: {
       97: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      56: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
+      56: '0xE9E9b8001d86C36F971d046D64983738599C7385',
     },
-    token: serializedTokens.syrup,
+    token: serializedTokens.xkalo,
     quoteToken: serializedTokens.wbnb,
   },
   {
