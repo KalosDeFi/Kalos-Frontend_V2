@@ -12,11 +12,11 @@ const Logo: React.FC<LogoProps> = ({ isDark, ...props }) => {
     <svg
     xmlns="http://www.w3.org/2000/svg"
     xmlnsXlink="http://www.w3.org/1999/xlink"
-    width={150}
+    width={200}
     
     viewBox="0 0 224.87999 74.999997"
     height={100}
-    preserveAspectRatio="xMidYMid meet"
+    
     {...props}
   >
     <defs>
