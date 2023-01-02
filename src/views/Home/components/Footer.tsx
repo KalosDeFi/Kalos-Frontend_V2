@@ -4,7 +4,7 @@ import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import Container from 'components/Layout/Container'
 import { useWeb3React } from '@web3-react/core'
-import SunburstSvg from './SunburstSvg'
+// import SunburstSvg from './SunburstSvg'
 import CompositeImage from './CompositeImage'
 
 const BgWrapper = styled.div`
@@ -16,14 +16,14 @@ const BgWrapper = styled.div`
   left: 0px;
 `
 
-const StyledSunburst = styled(SunburstSvg)`
+/* const StyledSunburst = styled(SunburstSvg)`
   height: 350%;
-  width: 350%;
+  width: 350%; 
 
   ${({ theme }) => theme.mediaQueries.xl} {
     height: 400%;
     width: 400%;
-  }
+  } 
 `
 
 const Wrapper = styled(Flex)`
@@ -78,7 +78,7 @@ const bottomRightImage = {
     { src: '2-top', alt: 'Pancake flying on the top' },
     { src: '2-right', alt: 'Pancake flying on the right' },
   ],
-}
+} */
 
 const Footer = () => {
   const { t } = useTranslation()
@@ -113,7 +113,7 @@ const Footer = () => {
           {t('No registration needed.')}
         </Text>
 
-        <Link external href="https://docs.pancakeswap.finance/">
+        <Link external href="*">
           {t('Learn how to start')}
         </Link>
         {!account && <ConnectWalletButton mt="24px" />}
