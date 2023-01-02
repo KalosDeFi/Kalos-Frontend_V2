@@ -12,10 +12,10 @@ const Logo: React.FC<LogoProps> = ({ isDark, ...props }) => {
     <svg
     xmlns="http://www.w3.org/2000/svg"
     
-    width={120}
+    width={100}
     
     viewBox="0 0 224.87999 74.999997"
-    height={80}
+    height={60}
     
     {...props}
   >
