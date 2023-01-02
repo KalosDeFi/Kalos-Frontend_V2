@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { Flex, Heading, Text, Link, useMatchBreakpointsContext } from '@pancakeswap/uikit'
+import { /* Flex, */ Heading, Text, Link, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
-import Container from 'components/Layout/Container'
+// import Container from 'components/Layout/Container'
 import { useWeb3React } from '@web3-react/core'
 // import SunburstSvg from './SunburstSvg'
-import CompositeImage from './CompositeImage'
+// import CompositeImage from './CompositeImage'
 
 const BgWrapper = styled.div`
   overflow: hidden;
@@ -88,16 +88,7 @@ const Footer = () => {
   return (
     <>
       
-      {(isTablet || isDesktop) && (
-        <FloatingPancakesWrapper>
-          <TopLeftImgWrapper>
-            <CompositeImage {...topLeftImage} maxHeight="256px" />
-          </TopLeftImgWrapper>
-          <BottomRightImgWrapper>
-            <CompositeImage {...bottomRightImage} maxHeight="256px" />
-          </BottomRightImgWrapper>
-        </FloatingPancakesWrapper>
-      )}
+      
       <Wrapper>
         <Heading mb="24px" scale="xl" color="white">
           {t('Start in seconds.')}
