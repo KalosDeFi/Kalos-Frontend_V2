@@ -87,11 +87,7 @@ const Footer = () => {
 
   return (
     <>
-      <BgWrapper>
-        <Flex alignItems="center" justifyContent="center" width="100%" height="100%">
-          <StyledSunburst />
-        </Flex>
-      </BgWrapper>
+      
       {(isTablet || isDesktop) && (
         <FloatingPancakesWrapper>
           <TopLeftImgWrapper>
