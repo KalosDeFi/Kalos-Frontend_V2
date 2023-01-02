@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+//import styled from 'styled-components'
 import { /* Flex, */ Heading, Text, Link, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -7,7 +7,7 @@ import { useWeb3React } from '@web3-react/core'
 // import SunburstSvg from './SunburstSvg'
 // import CompositeImage from './CompositeImage'
 
-const BgWrapper = styled.div`
+/* const BgWrapper = styled.div`
   overflow: hidden;
   position: absolute;
   width: 100%;
@@ -16,7 +16,7 @@ const BgWrapper = styled.div`
   left: 0px;
 `
 
-/* const StyledSunburst = styled(SunburstSvg)`
+ const StyledSunburst = styled(SunburstSvg)`
   height: 350%;
   width: 350%; 
 
@@ -83,7 +83,7 @@ const bottomRightImage = {
 const Footer = () => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { isTablet, isDesktop } = useMatchBreakpointsContext()
+  // const { isTablet, isDesktop } = useMatchBreakpointsContext()
 
   return (
     <>
