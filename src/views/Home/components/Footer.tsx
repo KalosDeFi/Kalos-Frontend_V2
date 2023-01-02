@@ -24,7 +24,7 @@ import { useWeb3React } from '@web3-react/core'
     height: 400%;
     width: 400%;
   } 
-`
+` */
 
 const Wrapper = styled(Flex)`
   z-index: 1;
@@ -35,7 +35,7 @@ const Wrapper = styled(Flex)`
   overflow: hidden;
 `
 
-const FloatingPancakesWrapper = styled(Container)`
+/* const FloatingPancakesWrapper = styled(Container)`
   overflow: hidden;
   position: absolute;
   width: 100%;
