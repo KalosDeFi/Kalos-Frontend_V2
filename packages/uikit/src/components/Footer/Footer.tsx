@@ -91,7 +91,7 @@ const MenuItem: React.FC<FooterProps> = ({
             </Box>
             <Button
               as="a"
-              href="https://pancakeswap.finance/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385"
+              href="https://kalosdefi.finance/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385"
               target="_blank"
               scale="sm"
               endIcon={<ArrowForwardIcon color={lightColors.backgroundAlt} />}
