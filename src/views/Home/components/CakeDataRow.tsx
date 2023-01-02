@@ -62,7 +62,7 @@ const Grid = styled.div`
   }
 `
 
-const emissionsPerBlock = 13.75
+const emissionsPerBlock = 30
 
 /**
  * User (Planet Finance) built a contract on top of our original manual CAKE pool,
@@ -80,17 +80,17 @@ const CakeDataRow = () => {
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const [loadData, setLoadData] = useState(false)
   const {
-    data: { cakeSupply, burnedBalance, circulatingSupply } = {
-      cakeSupply: 0,
+    data: { xaloSupply, burnedBalance, circulatingSupply } = {
+      xaloSupply: 0,
       burnedBalance: 0,
       circulatingSupply: 0,
     },
   } = useSWR(
     loadData ? ['cakeDataRow'] : null,
     async () => {
-      const totalSupplyCall = { address: tokens.cake.address, name: 'totalSupply' }
+      const totalSupplyCall = { address: tokens.xalo.address, name: 'totalSupply' }
       const burnedTokenCall = {
-        address: tokens.cake.address,
+        address: tokens.xalo.address,
         name: 'balanceOf',
         params: ['0x000000000000000000000000000000000000dEaD'],
       }
@@ -106,7 +106,7 @@ const CakeDataRow = () => {
       const circulating = totalSupply.sub(totalBurned.add(totalLockedAmount))
 
       return {
-        cakeSupply: totalSupply && burned ? +formatBigNumber(totalSupply.sub(totalBurned)) : 0,
+        xaloSupply: totalSupply && burned ? +formatBigNumber(totalSupply.sub(totalBurned)) : 0,
         burnedBalance: burned ? +formatBigNumber(totalBurned) : 0,
         circulatingSupply: circulating ? +formatBigNumber(circulating) : 0,
       }
@@ -137,8 +137,8 @@ const CakeDataRow = () => {
       </Flex>
       <StyledColumn noMobileBorder style={{ gridArea: 'b' }}>
         <Text color="textSubtle">{t('Total supply')}</Text>
-        {cakeSupply ? (
-          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={cakeSupply} />
+        {xaloSupply ? (
+          <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={xaloSupply} />
         ) : (
           <>
             <div ref={observerRef} />
@@ -149,7 +149,7 @@ const CakeDataRow = () => {
       <StyledColumn noMobileBorder style={{ gridArea: 'c' }}>
         <Text color="textSubtle">{t('Max Supply')}</Text>
 
-        <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={750000000} />
+        <Balance decimals={0} lineHeight="1.1" fontSize="24px" bold value={850000000} />
       </StyledColumn>
       <StyledColumn noDesktopBorder style={{ gridArea: 'd' }}>
         <Text color="textSubtle">{t('Market cap')}</Text>
