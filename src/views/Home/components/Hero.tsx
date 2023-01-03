@@ -8,7 +8,7 @@ import Image from 'next/image'
 import styled, { keyframes } from 'styled-components'
 import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
 import CompositeImage, { CompositeImageProps } from './CompositeImage'
-import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
+// import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 
 const flyingAnim = () => keyframes`
   from {
@@ -96,9 +96,7 @@ const Hero = () => {
 
   return (
     <>
-      <BgWrapper>
-        <InnerWrapper>{theme.isDark ? <SlideSvgDark width="100%" /> : <SlideSvgLight width="100%" />}</InnerWrapper>
-      </BgWrapper>
+      
       <Flex
         position="relative"
         flexDirection={['column-reverse', null, null, 'row']}
