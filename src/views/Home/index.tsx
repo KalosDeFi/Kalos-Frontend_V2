@@ -13,7 +13,7 @@ import SalesSection from './components/SalesSection'
 import FarmsPoolsRow from './components/FarmsPoolsRow'
 import Footer from './components/Footer'
 import CakeDataRow from './components/CakeDataRow'
-import { WedgeTopLeft, InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
+import { /* WedgeTopLeft, */ InnerWedgeWrapper, OuterWedgeWrapper, WedgeTopRight } from './components/WedgeSvgs'
 import UserBanner from './components/UserBanner'
 // import MultipleBanner from './components/Banners/MultipleBanner'
 
@@ -77,11 +77,7 @@ const Home: React.FC = () => {
         index={2}
         hasCurvedDivider={false}
       >
-        <OuterWedgeWrapper>
-          <InnerWedgeWrapper top fill={theme.isDark ? '#201335' : '#D8CBED'}>
-            <WedgeTopLeft />
-          </InnerWedgeWrapper>
-        </OuterWedgeWrapper>
+        
         <SalesSection {...swapSectionData(t)} />
       </PageSection>
       <PageSection
