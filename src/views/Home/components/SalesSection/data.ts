@@ -2,7 +2,8 @@ import { TranslateFunction } from 'contexts/Localization/types'
 import { SalesSectionProps } from '.'
 
 export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
-  headingText: t('Trade anything. No registration, no hassle.'),
+  headingText: t('Trade anything. No registration no KYC no hassle.'),
+  
   bodyText: t('Trade any token on BNB Smart Chain in seconds, just by connecting your wallet.'),
   reverse: false,
   primaryButton: {
@@ -11,7 +12,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.pancakeswap.finance/',
+    to: '*',
     text: t('Learn'),
     external: true,
   },
@@ -27,7 +28,7 @@ export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
 
 export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Earn passive income with crypto.'),
-  bodyText: t('PancakeSwap makes it easy to make your crypto work for you.'),
+  bodyText: t('KalosDeFi makes it easy to make your crypto work for you.'),
   reverse: true,
   primaryButton: {
     to: '/farms',
@@ -35,7 +36,7 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.pancakeswap.finance/products/yield-farming',
+    to: '*',
     text: t('Learn'),
     external: true,
   },
@@ -50,18 +51,18 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
 })
 
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
-  headingText: t('CAKE makes our world go round.'),
+  headingText: t('KALOS DEFI.'),
   bodyText: t(
-    'CAKE token is at the heart of the PancakeSwap ecosystem. Buy it, win it, farm it, spend it, stake it... heck, you can even vote with it!',
+    'XALO token is at the heart of the Kalos ecosystem. Buy it, farm it, spend it, stake it... heck, you can even vote with it!',
   ),
   reverse: false,
   primaryButton: {
-    to: '/swap?outputCurrency=0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82',
-    text: t('Buy CAKE'),
+    to: '/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385',
+    text: t('Buy XALO'),
     external: false,
   },
   secondaryButton: {
-    to: 'https://docs.pancakeswap.finance/tokenomics/cake',
+    to: '*',
     text: t('Learn'),
     external: true,
   },
