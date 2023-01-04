@@ -4,13 +4,13 @@ import ConnectWalletButton from 'components/ConnectWalletButton'
 import { NextLinkFromReactRouter } from 'components/NextLink'
 import { useTranslation } from 'contexts/Localization'
 import useTheme from 'hooks/useTheme'
-import Image from 'next/image'
-import styled, { keyframes } from 'styled-components'
-import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
-import CompositeImage, { CompositeImageProps } from './CompositeImage'
+// import Image from 'next/image'
+// import styled, { keyframes } from 'styled-components'
+// import bunnyImage from '../../../../public/images/home/lunar-bunny/bunny@2x.png'
+// import CompositeImage, { CompositeImageProps } from './CompositeImage'
 // import { SlideSvgDark, SlideSvgLight } from './SlideSvg'
 
-const flyingAnim = () => keyframes`
+/* const flyingAnim = () => keyframes`
   from {
     transform: translate(0,  0px);
   }
@@ -20,9 +20,9 @@ const flyingAnim = () => keyframes`
   to {
     transform: translate(0, 0px);
   }
-`
+` */
 
-const fading = () => keyframes`
+/* const fading = () => keyframes`
   from {
     opacity: 0.9;
   }
@@ -32,9 +32,9 @@ const fading = () => keyframes`
   to {
     opacity: 0.9;
   }
-`
+` */
 
-const BgWrapper = styled.div`
+/* const BgWrapper = styled.div`
   z-index: -1;
   overflow: hidden;
   position: absolute;
@@ -48,18 +48,18 @@ const InnerWrapper = styled.div`
   position: absolute;
   width: 100%;
   bottom: -3px;
-`
+` */
 
-const BunnyWrapper = styled.div`
+/* const BunnyWrapper = styled.div`
   width: 100%;
   animation: ${flyingAnim} 3.5s ease-in-out infinite;
   will-change: transform;
   > span {
     overflow: visible !important; // make sure the next-image pre-build blur image not be cropped
   }
-`
+` */
 
-const StarsWrapper = styled.div`
+/* const StarsWrapper = styled.div`
   position: absolute;
   top: 0;
   left: 0;
@@ -78,16 +78,16 @@ const StarsWrapper = styled.div`
     animation: ${fading} 2.5s ease-in-out infinite;
     animation-delay: 0.33s;
   }
-`
+` */
 
-const starsImage: CompositeImageProps = {
+/* const starsImage: CompositeImageProps = {
   path: '/images/home/lunar-bunny/',
   attributes: [
     { src: 'star-l', alt: '3D Star' },
     { src: 'star-r', alt: '3D Star' },
     { src: 'star-top-r', alt: '3D Star' },
   ],
-}
+} */
 
 const Hero = () => {
   const { t } = useTranslation()
@@ -119,20 +119,7 @@ const Hero = () => {
             </NextLinkFromReactRouter>
           </Flex>
         </Flex>
-        <Flex
-          height={['192px', null, null, '100%']}
-          width={['192px', null, null, '100%']}
-          flex={[null, null, null, '1']}
-          mb={['24px', null, null, '0']}
-          position="relative"
-        >
-          <BunnyWrapper>
-            <Image src={bunnyImage} priority placeholder="blur" alt={t('Lunar bunny')} />
-          </BunnyWrapper>
-          <StarsWrapper>
-            <CompositeImage {...starsImage} />
-          </StarsWrapper>
-        </Flex>
+        
       </Flex>
     </>
   )
