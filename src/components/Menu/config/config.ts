@@ -146,12 +146,12 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       },
       {
         label: t('Blog'),
-        href: 'https://medium.com/pancakeswap',
+        href: 'https://medium.com/kalosdefi',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
       {
         label: t('Docs'),
-        href: 'https://docs.pancakeswap.finance',
+        href: '*',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
     ],
