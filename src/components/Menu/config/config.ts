@@ -24,8 +24,8 @@ export type ConfigMenuItemsType = Omit<MenuItemsType, 'items'> & { hideSubNav?: 
 
 const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => ConfigMenuItemsType[] = (
   t,
-  isDark,
-  languageCode,
+  // isDark,
+  // languageCode,
 ) => [
   {
     label: t('Trade'),
