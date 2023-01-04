@@ -1,4 +1,4 @@
-import { FACTORY_ADDRESS } from 'config/constants/exchange'
+import { FACTORY_ADDRESS } from '@kalosdefi/sdk'
 import { getUnixTime, sub } from 'date-fns'
 import { gql } from 'graphql-request'
 import { GetStaticProps } from 'next'
@@ -35,7 +35,7 @@ const tvl = 6082955532.115718
 export const getStaticProps: GetStaticProps = async () => {
   const totalTxQuery = gql`
     query TotalTransactions($id: ID!, $block: Block_height) {
-      pancakeFactory(id: $id, block: $block) {
+      kalosFactory(id: $id, block: $block) {
         totalTransactions
       }
     }
@@ -68,13 +68,12 @@ export const getStaticProps: GetStaticProps = async () => {
       })
 
       if (
-        totalTx?.pancakeFactory?.totalTransactions &&
-        totalTx30DaysAgo?.pancakeFactory?.totalTransactions &&
-        parseInt(totalTx.pancakeFactory.totalTransactions) > parseInt(totalTx30DaysAgo.pancakeFactory.totalTransactions)
+        totalTx?.kalosFactory?.totalTransactions &&
+        totalTx30DaysAgo?.kalosFactory?.totalTransactions &&
+        parseInt(totalTx.kalosFactory.totalTransactions) > parseInt(totalTx30DaysAgo.kalosFactory.totalTransactions)
       ) {
         results.totalTx30Days =
-          parseInt(totalTx.pancakeFactory.totalTransactions) -
-          parseInt(totalTx30DaysAgo.pancakeFactory.totalTransactions)
+          parseInt(totalTx.kalosFactory.totalTransactions) - parseInt(totalTx30DaysAgo.kalosFactory.totalTransactions)
       }
     } catch (error) {
       if (process.env.NODE_ENV === 'production') {
