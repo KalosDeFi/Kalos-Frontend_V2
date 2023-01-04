@@ -9,7 +9,17 @@ export const ROUTER_ADDRESS = {
 }
 
 export const FACTORY_ADDRESS = '0x530564f665ae5e6E0205b1De7d46Ab2FFE1c91aC'
+
+export const FACTORY_ADDRESS_MAP = {
+  [ChainId.MAINNET]: FACTORY_ADDRESS,
+  [ChainId.TESTNET]: '0x6725f303b657a9451d8ba641348b6761a6cc7a17'
+}
 export const INIT_CODE_HASH = '0x44de96325be8964ba32a3ddd092af38e198ba77403217a3273967f8aeaf3c5c2'
+
+export const INIT_CODE_HASH_MAP = {
+  [ChainId.MAINNET]: INIT_CODE_HASH,
+  [ChainId.TESTNET]: '0xd0d4c4cd0848c93cb4fd1f498d7013ee6bfb25783ea21593d5834f5d250ece66'
+}
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
