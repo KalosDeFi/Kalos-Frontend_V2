@@ -1,4 +1,4 @@
-import { Currency } from '@kalosdefi/sdk'
+import { Currency } from '@pancakeswap/sdk'
 import styled from 'styled-components'
 import CurrencyLogo from './CurrencyLogo'
 
