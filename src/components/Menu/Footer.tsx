@@ -59,14 +59,7 @@ const Footer: React.FC<{ variant?: FooterVariant; helpUrl?: string }> = ({
         </LinkExternal>
       </Flex>
       {isSide && <Flex flexGrow={1} />}
-      <Flex
-        flexGrow={isSide ? 0 : 1}
-        alignItems="center"
-        width={['100%', '100%', '100%', isSide ? '100%' : 'auto']}
-        justifyContent={['center', 'center', 'center', 'flex-end']}
-      >
-        
-      </Flex>
+      
     </Wrapper>
   )
 }
