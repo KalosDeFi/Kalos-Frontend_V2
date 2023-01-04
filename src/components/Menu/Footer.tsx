@@ -19,7 +19,7 @@ const Wrapper = memo(styled.div<{ $isSide: boolean }>`
   }
 `)
 
-const BubbleWrapper = styled(Flex)`
+/* const BubbleWrapper = styled(Flex)`
   svg {
     fill: ${({ theme }) => theme.colors.textSubtle};
     transition: background-color 0.2s, opacity 0.2s;
@@ -34,7 +34,7 @@ const BubbleWrapper = styled(Flex)`
       opacity: 0.85;
     }
   }
-`
+` */
 
 type FooterVariant = 'default' | 'side'
 
