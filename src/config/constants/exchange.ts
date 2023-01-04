@@ -8,6 +8,9 @@ export const ROUTER_ADDRESS = {
   [ChainId.TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
 }
 
+export const FACTORY_ADDRESS = '0x530564f665ae5e6E0205b1De7d46Ab2FFE1c91aC'
+export const INIT_CODE_HASH = '0x44de96325be8964ba32a3ddd092af38e198ba77403217a3273967f8aeaf3c5c2'
+
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   [ChainId.MAINNET]: [
