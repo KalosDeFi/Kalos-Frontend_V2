@@ -46,7 +46,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('Liquidity'),
         href: '/liquidity',
       },
-      {
+      /* {
         label: t('Perpetual'),
         href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
           isDark,
@@ -58,7 +58,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       //   href: '/transfer',
       // },
     ],
-  },
+  }, */
   {
     label: t('Earn'),
     href: '/farms',
@@ -81,11 +81,11 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
     icon: TrophyIcon,
     fillIcon: TrophyFillIcon,
     items: [
-      {
+      /* {
         label: t('Trading Competition'),
         href: '/competition',
         hideSubNav: true,
-      },
+      }, */
       {
         label: t('Prediction (BETA)'),
         href: '/prediction',
@@ -130,17 +130,17 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('IFO'),
         href: '/ifo',
       },
-      {
+      /* {
         label: t('Voting'),
         href: '/voting',
-      },
-      {
+      }, */
+      /* {
         type: DropdownMenuItemType.DIVIDER,
       },
       {
         label: t('Leaderboard'),
         href: '/teams',
-      },
+      }, */
       {
         type: DropdownMenuItemType.DIVIDER,
       },
