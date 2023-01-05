@@ -11,6 +11,15 @@ const tokens = {
     decimals: 18,
     projectLink: "https://pancakeswap.finance/",
   },
+  xalo: {
+    symbol: "XALO",
+    address: {
+      56: "0xE9E9b8001d86C36F971d046D64983738599C7385",
+      97: "0xa35062141Fa33BCA92Ce69FeD37D0E8908868AAe",
+    },
+    decimals: 18,
+    projectLink: "https://kalosdefi.finance/",
+  },
   txl: {
     symbol: "TXL",
     address: {

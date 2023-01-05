@@ -94,8 +94,8 @@ const defaultProps = {
   userMenu: <UserMenuComponent account="0xbdda50183d817c3289f895a4472eb475967dc980" />,
   globalMenu: <GlobalMenuComponent />,
   activeItem: "/swap",
-  activeSubItem: "https://exchange.pancakeswap.finance",
-  buyCakeLabel: "Buy CAKE",
+  activeSubItem: "https://kalosdefi.finance",
+  buyCakeLabel: "Buy XALO",
 };
 
 const ConnectedTemplate: React.FC<NavProps> = (args) => {
@@ -198,8 +198,8 @@ export const NotConnected: React.FC = () => {
         subLinks={links[0].items as SubMenuItemsType[]}
         footerLinks={footerLinks}
         activeItem="/swap"
-        activeSubItem="https://exchange.pancakeswap.finance"
-        buyCakeLabel="Buy CAKE"
+        activeSubItem="https://kalosdefi.finance"
+        buyCakeLabel="Buy XALO"
       >
         <div>
           <h1>Page body</h1>
@@ -231,8 +231,8 @@ export const WithoutConnectButton: React.FC = () => {
         footerLinks={footerLinks}
         subLinks={links[0].items as SubMenuItemsType[]}
         activeItem="/swap"
-        activeSubItem="https://exchange.pancakeswap.finance"
-        buyCakeLabel="Buy CAKE"
+        activeSubItem="https://kalosdefi.finance"
+        buyCakeLabel="Buy XALO"
       >
         <div>
           <h1>No connect button on top</h1>
@@ -257,8 +257,8 @@ export const WithSubmenuSelected: React.FC = () => {
         subLinks={links[0].items as SubMenuItemsType[]}
         footerLinks={footerLinks}
         activeItem="/swap"
-        activeSubItem="https://exchange.pancakeswap.finance"
-        buyCakeLabel="Buy CAKE"
+        activeSubItem="https://kalosdefi.finance"
+        buyCakeLabel="Buy XALO"
       >
         <div>
           <Heading as="h1" mb="8px">
