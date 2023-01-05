@@ -15,42 +15,42 @@ export const DURATION_FACTOR = BigNumber.from('31536000')
 
 export const vaultPoolConfig = {
   [VaultKey.CakeVaultV1]: {
-    name: <Trans>Auto CAKE</Trans>,
+    name: <Trans>Auto XALO</Trans>,
     description: <Trans>Automatic restaking</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 380000,
     tokenImage: {
-      primarySrc: `/images/tokens/${tokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${tokens.xalo.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
   [VaultKey.CakeVault]: {
-    name: <Trans>Stake CAKE</Trans>,
+    name: <Trans>Stake XALO</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${tokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${tokens.xalo.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
   [VaultKey.CakeFlexibleSideVault]: {
-    name: <Trans>Flexible CAKE</Trans>,
+    name: <Trans>Flexible XALO</Trans>,
     description: <Trans>Flexible staking on the side.</Trans>,
     autoCompoundFrequency: 5000,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${tokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${tokens.xalo.address}.svg`,
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
   [VaultKey.IfoPool]: {
     name: 'IFO CAKE',
-    description: <Trans>Stake CAKE to participate in IFOs</Trans>,
+    description: <Trans>Stake XALO to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,
     tokenImage: {
-      primarySrc: `/images/tokens/${tokens.cake.address}.svg`,
+      primarySrc: `/images/tokens/${tokens.xalo.address}.svg`,
       secondarySrc: `/images/tokens/ifo-pool-icon.svg`,
     },
   },
@@ -59,11 +59,11 @@ export const vaultPoolConfig = {
 export const livePools: SerializedPoolConfig[] = [
   {
     sousId: 0,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.cake,
+    stakingToken: serializedTokens.xalo,
+    earningToken: serializedTokens.xalo,
     contractAddress: {
       97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
-      56: '0xa5f8C5Dbd5F286960b9d90548680aE5ebFf07652',
+      56: '0xE9E9b8001d86C36F971d046D64983738599C7385',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',
