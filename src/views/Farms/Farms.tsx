@@ -348,7 +348,7 @@ const Farms: React.FC = ({ children }) => {
           </Flex>
         )}
         <div ref={observerRef} />
-        <StyledImage src="/images/decorations/3dpan.png" alt="Pancake illustration" width={100} height={100} />
+        <StyledImage src="/images/decorations/3dkalos.png" alt="Pancake illustration" width={100} height={100} />
       </Page>
     </FarmsContext.Provider>
   )
