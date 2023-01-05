@@ -2337,14 +2337,14 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@kalosdefi/sdk@^0.0.5":
-  version "0.0.5"
-  resolved "https://registry.yarnpkg.com/@kalosdefi/sdk/-/sdk-0.0.5.tgz#6dcb3f69e5b7f97dad57ed0f6f0ab216672b1d6a"
-  integrity sha512-Osft54NQ8/ieeSS7bcekZkY5MNCntdmqdFclr6IeFlXi3+EeoZt3FXyvzOkbeoEN7zFl5knF2LBw/LoAVKn26Q==
+"@kalosdefi/sdk@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@kalosdefi/sdk/-/sdk-0.0.7.tgz#1af728c7de098d57c5f173781e76010fab25ad3e"
+  integrity sha512-1G1G4vdSljKbuA6VEWU67M7rZcgRZFqZ0ZHOHz8JNpLrgNMdbxrsZOkg/tvPXT4chWpr6zlbeM3Qp+JVdpOHdA==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
-    jsbi "^4.3.0"
+    jsbi "^3.1.4"
     tiny-invariant "^1.1.0"
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
@@ -13582,11 +13582,6 @@ jsbi@^3.1.4:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-3.2.5.tgz#b37bb90e0e5c2814c1c2a1bcd8c729888a2e37d6"
   integrity sha512-aBE4n43IPvjaddScbvWRA2YlTzKEynHzu7MqOyTipdHucf/VxS63ViCjxYRg86M8Rxwbt/GfzHl1kKERkt45fQ==
-
-jsbi@^4.3.0:
-  version "4.3.0"
-  resolved "https://registry.yarnpkg.com/jsbi/-/jsbi-4.3.0.tgz#b54ee074fb6fcbc00619559305c8f7e912b04741"
-  integrity sha512-SnZNcinB4RIcnEyZqFPdGPVgrg2AcnykiBy0sHVJQKHYeaLUvi3Exj+iaPpLnFVkDPZIV4U0yvgC9/R4uEAZ9g==
 
 jsbn@~0.1.0:
   version "0.1.1"
