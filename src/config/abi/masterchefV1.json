@@ -2,13 +2,13 @@
   {
     "inputs": [
       {
-        "internalType": "contract CakeToken",
-        "name": "_cake",
+        "internalType": "contract KalosToken",
+        "name": "_xalo",
         "type": "address"
       },
       {
-        "internalType": "contract SyrupBar",
-        "name": "_syrup",
+        "internalType": "contract Xkalos",
+        "name": "_xkalo",
         "type": "address"
       },
       {
@@ -18,7 +18,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "_cakePerBlock",
+        "name": "_xaloPerBlock",
         "type": "uint256"
       },
       {
@@ -158,32 +158,6 @@
     "name": "add",
     "outputs": [],
     "stateMutability": "nonpayable",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "cake",
-    "outputs": [
-      {
-        "internalType": "contract CakeToken",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "cakePerBlock",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
     "type": "function"
   },
   {
@@ -352,7 +326,7 @@
         "type": "address"
       }
     ],
-    "name": "pendingCake",
+    "name": "pendingXalo",
     "outputs": [
       {
         "internalType": "uint256",
@@ -390,7 +364,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "accCakePerShare",
+        "name": "accXaloPerShare",
         "type": "uint256"
       }
     ],
@@ -461,19 +435,6 @@
         "internalType": "uint256",
         "name": "",
         "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [],
-    "name": "syrup",
-    "outputs": [
-      {
-        "internalType": "contract SyrupBar",
-        "name": "",
-        "type": "address"
       }
     ],
     "stateMutability": "view",
@@ -576,6 +537,45 @@
     "name": "withdraw",
     "outputs": [],
     "stateMutability": "nonpayable",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "xalo",
+    "outputs": [
+      {
+        "internalType": "contract KalosToken",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "xaloPerBlock",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  },
+  {
+    "inputs": [],
+    "name": "xkalo",
+    "outputs": [
+      {
+        "internalType": "contract Xkalos",
+        "name": "",
+        "type": "address"
+      }
+    ],
+    "stateMutability": "view",
     "type": "function"
   }
 ]
