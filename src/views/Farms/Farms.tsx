@@ -333,7 +333,7 @@ const Farms: React.FC = ({ children }) => {
         {isInactive && (
           <FinishedTextContainer>
             <Text fontSize={['16px', null, '20px']} color="failure" pr="4px">
-              {t("Don't see the farm you are staking? (try to reload page or ricconnect wallet)")}
+              {t("Don't see the farm you are staking? (try to reload page or reconnect wallet)")}
             </Text>
           </FinishedTextContainer>
         )}
