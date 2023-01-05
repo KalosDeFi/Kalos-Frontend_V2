@@ -1,4 +1,4 @@
-import { BunnyPlaceholderIcon, Flex, Text } from '@pancakeswap/uikit'
+import { BlockIcon, Flex, Text } from '@pancakeswap/uikit'
 import React from 'react'
 import { useTranslation } from 'contexts/Localization'
 import { ORDER_CATEGORY } from '../../types'
@@ -8,7 +8,7 @@ const NoOrdersMessage: React.FC<{ orderCategory: ORDER_CATEGORY }> = ({ orderCat
 
   return (
     <Flex p="24px" justifyContent="center" alignItems="center" flexDirection="column">
-      <BunnyPlaceholderIcon width={64} />
+      <BlockIcon width={64} />
       <Text color="textDisabled">
         {orderCategory === ORDER_CATEGORY.Open ? t('No Open Orders') : t('No Order History')}
       </Text>
