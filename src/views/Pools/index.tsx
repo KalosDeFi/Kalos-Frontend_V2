@@ -343,8 +343,8 @@ const Pools: React.FC = () => {
           mt="12px"
           src="/images/decorations/3d-kalos.png"
           alt="Pancake illustration"
-          width={192}
-          height={184.5}
+          width={100}
+          height={100}
         />
       </Page>
     </>
