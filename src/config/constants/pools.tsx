@@ -63,7 +63,7 @@ export const livePools: SerializedPoolConfig[] = [
     earningToken: serializedTokens.xalo,
     contractAddress: {
       97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
-      56: '0xE9E9b8001d86C36F971d046D64983738599C7385',
+      56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',
