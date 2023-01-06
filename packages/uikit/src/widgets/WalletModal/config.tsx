@@ -18,7 +18,7 @@ const connectors: Config[] = [
     icon: Metamask,
     connectorId: ConnectorNames.Injected,
     priority: 1,
-    href: "https://metamask.app.link/dapp/pancakeswap.finance/",
+    href: "https://metamask.app.link/dapp/kalosdefi.finance/",
   },
   {
     title: "Binance Wallet",
@@ -37,7 +37,7 @@ const connectors: Config[] = [
     icon: TrustWallet,
     connectorId: ConnectorNames.Injected,
     priority: 4,
-    href: "https://link.trustwallet.com/open_url?coin_id=20000714&url=https://pancakeswap.finance/",
+    href: "https://link.trustwallet.com/open_url?coin_id=20000714&url=https://kalosdefi.finance/",
   },
   {
     title: "WalletConnect",

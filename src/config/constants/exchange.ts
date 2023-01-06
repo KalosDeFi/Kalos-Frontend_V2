@@ -95,4 +95,4 @@ export const DEFAULT_OUTPUT_CURRENCY = '0xE9E9b8001d86C36F971d046D64983738599C73
 export const GELATO_HANDLER = 'pancakeswap'
 export const GENERIC_GAS_LIMIT_ORDER_EXECUTION = BigNumber.from(500000)
 
-export const LIMIT_ORDERS_DOCS_URL = 'https://docs.pancakeswap.finance/products/pancakeswap-exchange/limit-orders'
+export const LIMIT_ORDERS_DOCS_URL = 'https://docs.kalosdefi.finance/products/pancakeswap-exchange/limit-orders'

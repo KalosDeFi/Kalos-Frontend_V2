@@ -48,7 +48,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       },
       /* {
         label: t('Perpetual'),
-        href: `https://perp.pancakeswap.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
+        href: `https://perp.kalosdefi.finance/${perpLangMap(languageCode)}/futures/BTCUSDT?theme=${perpTheme(
           isDark,
         )}`,
         type: DropdownMenuItemType.EXTERNAL_LINK,
@@ -58,7 +58,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       //   href: '/transfer',
       // }, */
     ],
-  }, 
+  },
   {
     label: t('Earn'),
     href: '/farms',
