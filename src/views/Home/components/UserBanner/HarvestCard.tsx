@@ -6,7 +6,7 @@ import BigNumber from 'bignumber.js'
 import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import useToast from 'hooks/useToast'
-import { useMasterchefV1 } from 'hooks/useContract'
+import { useMasterchef } from 'hooks/useContract'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { harvestFarm } from 'utils/calls'
 import Balance from 'components/Balance'
@@ -25,7 +25,7 @@ const HarvestCard = () => {
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { farmsWithStakedBalance, earningsSum: farmEarningsSum } = useFarmsWithBalance()
 
-  const masterChefContract = useMasterchefV1()
+  const masterChefContract = useMasterchef()
   const cakePriceBusd = usePriceCakeBusd()
   const earningsBusd = new BigNumber(farmEarningsSum).multipliedBy(cakePriceBusd)
   const numTotalToCollect = farmsWithStakedBalance.length
