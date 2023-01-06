@@ -49,7 +49,7 @@ import bunnySpecialAbi from 'config/abi/bunnySpecial.json'
 import bep20Abi from 'config/abi/erc20.json'
 import erc721Abi from 'config/abi/erc721.json'
 import lpTokenAbi from 'config/abi/lpToken.json'
-import cakeAbi from 'config/abi/cake.json'
+import xaloAbi from 'config/abi/xalo.json'
 import ifoV1Abi from 'config/abi/ifoV1.json'
 import ifoV2Abi from 'config/abi/ifoV2.json'
 import pointCenterIfo from 'config/abi/pointCenterIfo.json'
@@ -97,7 +97,7 @@ import type {
   IfoV2,
   Erc20,
   Erc721,
-  Cake,
+  Xalo,
   BunnyFactory,
   PancakeBunnies,
   PancakeProfile,
@@ -167,8 +167,8 @@ export const getSouschefV2Contract = (id: number, signer?: Signer | Provider) =>
 export const getPointCenterIfoContract = (signer?: Signer | Provider) => {
   return getContract(pointCenterIfo, getPointCenterIfoAddress(), signer) as PointCenterIfo
 }
-export const getCakeContract = (signer?: Signer | Provider) => {
-  return getContract(cakeAbi, tokens.xalo.address, signer) as Cake
+export const getXaloContract = (signer?: Signer | Provider) => {
+  return getContract(xaloAbi, tokens.xalo.address, signer) as Xalo
 }
 export const getProfileContract = (signer?: Signer | Provider) => {
   return getContract(profileABI, getPancakeProfileAddress(), signer) as PancakeProfile

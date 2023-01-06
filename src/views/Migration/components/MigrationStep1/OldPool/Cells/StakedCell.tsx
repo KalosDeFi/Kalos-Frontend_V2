@@ -45,8 +45,8 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool }) => {
 
   let cakeAsNumberBalance = 0
   if (pricePerFullShare) {
-    const { cakeAsNumberBalance: cakeBalance } = convertSharesToCake(userShares, pricePerFullShare)
-    cakeAsNumberBalance = cakeBalance
+    const { cakeAsNumberBalance: xaloBalance } = convertSharesToCake(userShares, pricePerFullShare)
+    cakeAsNumberBalance = xaloBalance
   }
 
   // pool

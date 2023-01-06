@@ -4,8 +4,8 @@ import { useWeb3React } from '@web3-react/core'
 import { Button, Flex, Text, InjectedModalProps } from '@pancakeswap/uikit'
 import { formatBigNumber } from 'utils/formatBalance'
 import { getPancakeProfileAddress } from 'utils/addressHelpers'
-import { useCake } from 'hooks/useContract'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useXalo } from 'hooks/useContract'
+import { useGetXaloBalance } from 'hooks/useTokenBalance'
 import { useTranslation } from 'contexts/Localization'
 import useGetProfileCosts from 'views/Nft/market/Profile/hooks/useGetProfileCosts'
 import { FetchStatus } from 'config/constants/types'
@@ -44,16 +44,16 @@ const AvatarWrapper = styled.div`
 const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemove, onDismiss }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
-  const { reader: cakeContract } = useCake()
+  const { reader: xaloContract } = useXalo()
   const { profile } = useProfile()
-  const { balance: cakeBalance, fetchStatus } = useGetCakeBalance()
+  const { balance: xaloBalance, fetchStatus } = useGetXaloBalance()
   const {
     costs: { numberCakeToUpdate, numberCakeToReactivate },
     isLoading: isProfileCostsLoading,
   } = useGetProfileCosts()
   const [needsApproval, setNeedsApproval] = useState(null)
-  const minimumCakeRequired = profile?.isActive ? numberCakeToUpdate : numberCakeToReactivate
-  const hasMinimumCakeRequired = fetchStatus === FetchStatus.Fetched && cakeBalance.gte(minimumCakeRequired)
+  const minimumXaloRequired = profile?.isActive ? numberCakeToUpdate : numberCakeToReactivate
+  const hasMinimumXaloRequired = fetchStatus === FetchStatus.Fetched && xaloBalance.gte(minimumXaloRequired)
 
   /**
    * Check if the wallet has the required CAKE allowance to change their profile pic or reactivate
@@ -62,10 +62,10 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
   useEffect(() => {
     const checkApprovalStatus = async () => {
       const approvalNeeded = await requiresApproval(
-        cakeContract,
+        xaloContract,
         account,
         getPancakeProfileAddress(),
-        minimumCakeRequired,
+        minimumXaloRequired,
       )
       setNeedsApproval(approvalNeeded)
     }
@@ -73,7 +73,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
     if (account && !isProfileCostsLoading) {
       checkApprovalStatus()
     }
-  }, [account, minimumCakeRequired, setNeedsApproval, cakeContract, isProfileCostsLoading])
+  }, [account, minimumXaloRequired, setNeedsApproval, xaloContract, isProfileCostsLoading])
 
   if (!profile) {
     return null
@@ -87,8 +87,8 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
       <Flex alignItems="center" style={{ height: '48px' }} justifyContent="center">
         <Text as="p" color="failure">
           {!isProfileCostsLoading &&
-            !hasMinimumCakeRequired &&
-            t('%minimum% CAKE required to change profile pic', { minimum: formatBigNumber(minimumCakeRequired) })}
+            !hasMinimumXaloRequired &&
+            t('%minimum% XALO required to change profile pic', { minimum: formatBigNumber(minimumXaloRequired) })}
         </Text>
       </Flex>
       {profile.isActive ? (
@@ -97,7 +97,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
             width="100%"
             mb="8px"
             onClick={needsApproval === true ? goToApprove : goToChange}
-            disabled={isProfileCostsLoading || !hasMinimumCakeRequired || needsApproval === null}
+            disabled={isProfileCostsLoading || !hasMinimumXaloRequired || needsApproval === null}
           >
             {t('Change Profile Pic')}
           </Button>
@@ -110,7 +110,7 @@ const StartPage: React.FC<StartPageProps> = ({ goToApprove, goToChange, goToRemo
           width="100%"
           mb="8px"
           onClick={needsApproval === true ? goToApprove : goToChange}
-          disabled={isProfileCostsLoading || !hasMinimumCakeRequired || needsApproval === null}
+          disabled={isProfileCostsLoading || !hasMinimumXaloRequired || needsApproval === null}
         >
           {t('Reactivate Profile')}
         </Button>

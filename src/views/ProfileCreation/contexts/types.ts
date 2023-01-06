@@ -16,7 +16,7 @@ export interface State {
     collectionAddress: string
   }
   userName: string
-  minimumCakeRequired: BigNumber
+  minimumXaloRequired: BigNumber
   allowance: BigNumber
 }
 

@@ -3,7 +3,7 @@ const votePowerAddress = {
   v1: '0x67Dfbb197602FDB9A9D305cC7A43b95fB63a0A56',
 }
 
-export const cakeBalanceStrategy = (version: 'v0' | 'v1') => ({
+export const xaloBalanceStrategy = (version: 'v0' | 'v1') => ({
   name: 'contract-call',
   params: {
     address: votePowerAddress[version],
@@ -16,7 +16,7 @@ export const cakeBalanceStrategy = (version: 'v0' | 'v1') => ({
           type: 'address',
         },
       ],
-      name: 'getCakeBalance',
+      name: 'getXaloBalance',
       outputs: [
         {
           internalType: 'uint256',

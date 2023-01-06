@@ -15,9 +15,9 @@ const StyledLinkExternal = styled(LinkExternal)`
 
 interface DetailsViewProps {
   total: number
-  cakeBalance?: number
+  xaloBalance?: number
   cakeVaultBalance?: number
-  cakePoolBalance?: number
+  xaloPoolBalance?: number
   poolsBalance?: number
   cakeBnbLpBalance?: number
   ifoPoolBalance?: number
@@ -26,9 +26,9 @@ interface DetailsViewProps {
 
 const DetailsView: React.FC<DetailsViewProps> = ({
   total,
-  cakeBalance,
+  xaloBalance,
   cakeVaultBalance,
-  cakePoolBalance,
+  xaloPoolBalance,
   poolsBalance,
   cakeBnbLpBalance,
   ifoPoolBalance,
@@ -40,7 +40,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
     <ModalInner mb="0">
       <Text as="p" mb="24px" fontSize="14px" color="textSubtle">
         {t(
-          'Your voting power is determined by the amount of CAKE you held at the block detailed below. CAKE held in other places does not contribute to your voting power.',
+          'Your voting power is determined by the amount of XALO you held at the block detailed below. XALO held in other places does not contribute to your voting power.',
         )}
       </Text>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
@@ -53,25 +53,25 @@ const DetailsView: React.FC<DetailsViewProps> = ({
         </Text>
       </VotingBox>
       <Text color="secondary" textTransform="uppercase" mb="4px" bold fontSize="14px">
-        {t('Your CAKE held at block')}
+        {t('Your XALO held at block')}
         <StyledLinkExternal href={getBscScanLink(block, 'block')} ml="8px">
           {block}
         </StyledLinkExternal>
       </Text>
-      {Number.isFinite(cakeBalance) && (
+      {Number.isFinite(xaloBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
             {t('Wallet')}
           </Text>
-          <Text textAlign="right">{formatNumber(cakeBalance, 0, 3)}</Text>
+          <Text textAlign="right">{formatNumber(xaloBalance, 0, 3)}</Text>
         </Flex>
       )}
-      {Number.isFinite(cakePoolBalance) && (
+      {Number.isFinite(xaloPoolBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
-            {t('CAKE Pool')}
+            {t('XALO Pool')}
           </Text>
-          <Text textAlign="right">{formatNumber(cakePoolBalance, 0, 3)}</Text>
+          <Text textAlign="right">{formatNumber(xaloPoolBalance, 0, 3)}</Text>
         </Flex>
       )}
       {Number.isFinite(cakeVaultBalance) && (
@@ -93,7 +93,7 @@ const DetailsView: React.FC<DetailsViewProps> = ({
       {Number.isFinite(poolsBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
-            {t('Other Syrup Pools')}
+            {t('Other Kalos Pools')}
           </Text>
           <Text textAlign="right">{formatNumber(poolsBalance, 0, 3)}</Text>
         </Flex>

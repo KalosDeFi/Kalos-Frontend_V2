@@ -2,7 +2,7 @@ import { useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import {
   getBep20Contract,
-  getCakeContract,
+  getXaloContract,
   getBunnyFactoryContract,
   getBunnySpecialContract,
   getPancakeBunniesContract,
@@ -47,7 +47,7 @@ import {
   Erc20Bytes32,
   Multicall,
   Weth,
-  Cake,
+  Xalo,
   Erc721collection,
   CakeVaultV2,
   CakeFlexibleSideVaultV2,
@@ -106,12 +106,12 @@ export const useERC721 = (address: string, withSignerIfPossible = true) => {
   return useMemo(() => getErc721Contract(address, signer), [address, signer])
 }
 
-export const useCake = (): { reader: Cake; signer: Cake } => {
+export const useXalo = (): { reader: Xalo; signer: Xalo } => {
   const { account, library } = useActiveWeb3React()
   return useMemo(
     () => ({
-      reader: getCakeContract(null),
-      signer: getCakeContract(getProviderOrSigner(library, account)),
+      reader: getXaloContract(null),
+      signer: getXaloContract(getProviderOrSigner(library, account)),
     }),
     [account, library],
   )

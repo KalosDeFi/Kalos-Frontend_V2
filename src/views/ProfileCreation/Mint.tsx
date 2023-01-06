@@ -4,8 +4,8 @@ import { Card, CardBody, Heading, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import { useTranslation } from 'contexts/Localization'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
-import { useCake, useBunnyFactory } from 'hooks/useContract'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useXalo, useBunnyFactory } from 'hooks/useContract'
+import { useGetXaloBalance } from 'hooks/useTokenBalance'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import ApproveConfirmButtons from 'components/ApproveConfirmButtons'
 import useToast from 'hooks/useToast'
@@ -26,15 +26,15 @@ interface MintNftData extends ApiSingleTokenData {
 const Mint: React.FC = () => {
   const [selectedBunnyId, setSelectedBunnyId] = useState<string>('')
   const [starterNfts, setStarterNfts] = useState<MintNftData[]>([])
-  const { actions, minimumCakeRequired, allowance } = useProfileCreation()
+  const { actions, minimumXaloRequired, allowance } = useProfileCreation()
   const { toastSuccess } = useToast()
 
   const { account } = useWeb3React()
-  const { reader: cakeContractReader, signer: cakeContractApprover } = useCake()
+  const { reader: xaloContractReader, signer: xaloContractApprover } = useXalo()
   const bunnyFactoryContract = useBunnyFactory()
   const { t } = useTranslation()
-  const { balance: cakeBalance, fetchStatus } = useGetCakeBalance()
-  const hasMinimumCakeRequired = fetchStatus === FetchStatus.Fetched && cakeBalance.gte(MINT_COST)
+  const { balance: xaloBalance, fetchStatus } = useGetXaloBalance()
+  const hasMinimumXaloRequired = fetchStatus === FetchStatus.Fetched && xaloBalance.gte(MINT_COST)
   const { callWithGasPrice } = useCallWithGasPrice()
 
   useEffect(() => {
@@ -58,10 +58,10 @@ const Mint: React.FC = () => {
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
-        return requiresApproval(cakeContractReader, account, bunnyFactoryContract.address, minimumCakeRequired)
+        return requiresApproval(xaloContractReader, account, bunnyFactoryContract.address, minimumXaloRequired)
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContractApprover, 'approve', [bunnyFactoryContract.address, allowance.toString()])
+        return callWithGasPrice(xaloContractApprover, 'approve', [bunnyFactoryContract.address, allowance.toString()])
       },
       onConfirm: () => {
         return callWithGasPrice(bunnyFactoryContract, 'mintNFT', [selectedBunnyId])
@@ -86,7 +86,7 @@ const Mint: React.FC = () => {
       <Text as="p">{t('Every profile starts by making a “starter” collectible (NFT).')}</Text>
       <Text as="p">{t('This starter will also become your first profile picture.')}</Text>
       <Text as="p" mb="24px">
-        {t('You can change your profile pic later if you get another approved Pancake Collectible.')}
+        {t('You can change your profile pic later if you get another approved Kalos Collectible.')}
       </Text>
       <Card mb="24px">
         <CardBody>
@@ -97,7 +97,7 @@ const Mint: React.FC = () => {
             {t('Choose wisely: you can only ever make one starter collectible!')}
           </Text>
           <Text as="p" mb="24px" color="textSubtle">
-            {t('Cost: %num% CAKE', { num: formatUnits(MINT_COST) })}
+            {t('Cost: %num% XALO', { num: formatUnits(MINT_COST) })}
           </Text>
           {starterNfts.map((nft) => {
             const handleChange = (value: string) => setSelectedBunnyId(value)
@@ -110,21 +110,21 @@ const Mint: React.FC = () => {
                 image={nft?.image.thumbnail}
                 isChecked={selectedBunnyId === nft?.bunnyId}
                 onChange={handleChange}
-                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumCakeRequired}
+                disabled={isApproving || isConfirming || isConfirmed || !hasMinimumXaloRequired}
               >
                 <Text bold>{nft?.name}</Text>
               </SelectionCard>
             )
           })}
-          {!hasMinimumCakeRequired && (
+          {!hasMinimumXaloRequired && (
             <Text color="failure" mb="16px">
-              {t('A minimum of %num% CAKE is required', { num: formatUnits(MINT_COST) })}
+              {t('A minimum of %num% XALO is required', { num: formatUnits(MINT_COST) })}
             </Text>
           )}
           <ApproveConfirmButtons
             isApproveDisabled={selectedBunnyId === null || isConfirmed || isConfirming || isApproved}
             isApproving={isApproving}
-            isConfirmDisabled={!isApproved || isConfirmed || !hasMinimumCakeRequired}
+            isConfirmDisabled={!isApproved || isConfirmed || !hasMinimumXaloRequired}
             isConfirming={isConfirming}
             onApprove={handleApprove}
             onConfirm={handleConfirm}

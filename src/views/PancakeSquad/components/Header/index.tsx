@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { Box, Flex, lightColors, Spinner, Text, Timeline } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
-import { useGetCakeBalance } from 'hooks/useTokenBalance'
+import { useGetXaloBalance } from 'hooks/useTokenBalance'
 import useTheme from 'hooks/useTheme'
 import { StyledWaveContainer } from 'views/PancakeSquad/styles'
 import { UserStatusEnum } from 'views/PancakeSquad/types'
@@ -32,7 +32,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
 }) => {
   const { t } = useTranslation()
   const { theme, isDark } = useTheme()
-  const { balance: cakeBalance } = useGetCakeBalance()
+  const { balance: xaloBalance } = useGetXaloBalance()
   const displayEventBlock = !!eventInfos || isLoading
   const {
     ticketsOfUser,
@@ -76,7 +76,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
         {`${t('Public Sale:')} 08:00 UTC, Oct. 7`}
       </Text>
       <Text color={lightColors.warning} textAlign="center" bold>
-        {t('Mint Cost: %minCost% CAKE each', {
+        {t('Mint Cost: %minCost% XALO each', {
           minCost: DEFAULT_CAKE_COST,
         })}
       </Text>
@@ -140,7 +140,7 @@ const PancakeSquadHeader: React.FC<PancakeSquadHeaderType> = ({
                         numberTicketsOfUser={numberTicketsOfUser}
                         numberTicketsUsedForGen0={numberTicketsUsedForGen0}
                         totalSupplyMinted={totalSupplyMinted}
-                        cakeBalance={cakeBalance}
+                        xaloBalance={xaloBalance}
                         maxPerTransaction={maxPerTransaction}
                         numberTicketsForGen0={numberTicketsForGen0}
                         pricePerTicket={pricePerTicket}

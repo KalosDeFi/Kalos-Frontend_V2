@@ -2,7 +2,7 @@ import { Modal, Flex, Text } from '@pancakeswap/uikit'
 import { BigNumber } from '@ethersproject/bignumber'
 import { formatUnits } from '@ethersproject/units'
 import { useTranslation } from 'contexts/Localization'
-import { useCake, useProfileContract } from 'hooks/useContract'
+import { useXalo, useProfileContract } from 'hooks/useContract'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useProfile } from 'state/profile/hooks'
 import useToast from 'hooks/useToast'
@@ -18,7 +18,7 @@ interface Props {
   selectedNft: State['selectedNft']
   account: string
   teamId: number
-  minimumCakeRequired: BigNumber
+  minimumXaloRequired: BigNumber
   allowance: BigNumber
   onDismiss?: () => void
 }
@@ -27,7 +27,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   account,
   teamId,
   selectedNft,
-  minimumCakeRequired,
+  minimumXaloRequired,
   allowance,
   onDismiss,
 }) => {
@@ -35,16 +35,16 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
   const profileContract = useProfileContract()
   const { refresh: refreshProfile } = useProfile()
   const { toastSuccess } = useToast()
-  const { reader: cakeContractReader, signer: cakeContractApprover } = useCake()
+  const { reader: xaloContractReader, signer: xaloContractApprover } = useXalo()
   const { callWithGasPrice } = useCallWithGasPrice()
 
   const { isApproving, isApproved, isConfirmed, isConfirming, handleApprove, handleConfirm } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
-        return requiresApproval(cakeContractReader, account, profileContract.address, minimumCakeRequired)
+        return requiresApproval(xaloContractReader, account, profileContract.address, minimumXaloRequired)
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContractApprover, 'approve', [profileContract.address, allowance.toJSON()])
+        return callWithGasPrice(xaloContractApprover, 'approve', [profileContract.address, allowance.toJSON()])
       },
       onConfirm: () => {
         return callWithGasPrice(profileContract, 'createProfile', [
@@ -67,7 +67,7 @@ const ConfirmProfileCreationModal: React.FC<Props> = ({
       </Text>
       <Flex justifyContent="space-between" mb="16px">
         <Text>{t('Cost')}</Text>
-        <Text>{t('%num% CAKE', { num: formatUnits(REGISTER_COST) })}</Text>
+        <Text>{t('%num% XALO', { num: formatUnits(REGISTER_COST) })}</Text>
       </Flex>
       <ApproveConfirmButtons
         isApproveDisabled={isConfirmed || isConfirming || isApproved}

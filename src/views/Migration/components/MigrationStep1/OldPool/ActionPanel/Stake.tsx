@@ -39,12 +39,12 @@ const Staked: React.FC<StackedActionProps> = ({ pool }) => {
   let cakeAsBigNumber = new BigNumber(0)
   let cakeAsNumberBalance = 0
   if (pricePerFullShare) {
-    const { cakeAsBigNumber: cakeBigBumber, cakeAsNumberBalance: cakeBalance } = convertSharesToCake(
+    const { cakeAsBigNumber: cakeBigBumber, cakeAsNumberBalance: xaloBalance } = convertSharesToCake(
       userShares,
       pricePerFullShare,
     )
     cakeAsBigNumber = cakeBigBumber
-    cakeAsNumberBalance = cakeBalance
+    cakeAsNumberBalance = xaloBalance
   }
 
   const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)

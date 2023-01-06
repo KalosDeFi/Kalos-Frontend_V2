@@ -7,7 +7,7 @@ import { simpleRpcProvider } from 'utils/providers'
 import { getVotingPower } from '../helpers'
 
 interface State {
-  cakeBalance?: number
+  xaloBalance?: number
   cakeVaultBalance?: number
   cakePoolBalance?: number
   poolsBalance?: number
@@ -24,10 +24,10 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
       const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
       const eligiblePools = await getActivePools(blockNumber)
       const poolAddresses = eligiblePools.map(({ contractAddress }) => getAddress(contractAddress))
-      const { cakeBalance, cakeBnbLpBalance, cakePoolBalance, total, poolsBalance, cakeVaultBalance, ifoPoolBalance } =
+      const { xaloBalance, cakeBnbLpBalance, cakePoolBalance, total, poolsBalance, cakeVaultBalance, ifoPoolBalance } =
         await getVotingPower(account, poolAddresses, blockNumber)
       return {
-        cakeBalance,
+        xaloBalance,
         cakeBnbLpBalance,
         cakePoolBalance,
         poolsBalance,

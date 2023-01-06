@@ -5,7 +5,7 @@ import { GetStaticProps } from 'next'
 import { SWRConfig } from 'swr'
 import { bitQueryServerClient, infoServerClient } from 'utils/graphql'
 import { getCakeVaultAddress } from 'utils/addressHelpers'
-import { getCakeContract } from 'utils/contractHelpers'
+import { getXaloContract } from 'utils/contractHelpers'
 import { getBlocksFromTimestamps } from 'utils/getBlocksFromTimestamps'
 import { formatEther } from '@ethersproject/units'
 import Home from '../views/Home'
@@ -121,8 +121,8 @@ export const getStaticProps: GetStaticProps = async () => {
     `)
     const { totalLiquidityUSD } = result.pancakeFactories[0]
     const cakeVaultV2 = getCakeVaultAddress()
-    const cakeContract = getCakeContract()
-    const totalCakeInVault = await cakeContract.balanceOf(cakeVaultV2)
+    const xaloContract = getXaloContract()
+    const totalCakeInVault = await xaloContract.balanceOf(cakeVaultV2)
     results.tvl = parseFloat(formatEther(totalCakeInVault)) * result.token.derivedUSD + parseFloat(totalLiquidityUSD)
   } catch (error) {
     if (process.env.NODE_ENV === 'production') {

@@ -35,7 +35,7 @@ export interface Message {
   sig: string
 }
 
-const STRATEGIES = [{ name: 'cake', params: { symbol: 'CAKE', address: tokens.cake.address, decimals: 18, max: 300 } }]
+const STRATEGIES = [{ name: 'xalo', params: { symbol: 'XALO', address: tokens.xalo.address, decimals: 18, max: 300 } }]
 const NETWORK = '56'
 
 /**
@@ -92,10 +92,10 @@ export const VOTING_POWER_BLOCK = {
  */
 export const getVotingPower = async (account: string, poolAddresses: string[], blockNumber?: number) => {
   if (blockNumber && blockNumber >= VOTING_POWER_BLOCK.v1) {
-    const [cakeBalance, cakeBnbLpBalance, cakePoolBalance, poolsBalance, total] = await getScores(
+    const [xaloBalance, cakeBnbLpBalance, xaloPoolBalance, poolsBalance, total] = await getScores(
       PANCAKE_SPACE,
       [
-        strategies.cakeBalanceStrategy('v1'),
+        strategies.xaloBalanceStrategy('v1'),
         strategies.cakeBnbLpBalanceStrategy('v1'),
         strategies.cakePoolBalanceStrategy('v1'),
         strategies.creatPoolsBalanceStrategy(poolAddresses, 'v1'),
@@ -109,19 +109,19 @@ export const getVotingPower = async (account: string, poolAddresses: string[], b
     return {
       poolsBalance: poolsBalance[account] ? poolsBalance[account] : 0,
       total: total[account] ? total[account] : 0,
-      cakeBalance: cakeBalance[account] ? cakeBalance[account] : 0,
-      cakePoolBalance: cakePoolBalance[account] ? cakePoolBalance[account] : 0,
+      xaloBalance: xaloBalance[account] ? xaloBalance[account] : 0,
+      xaloPoolBalance: xaloPoolBalance[account] ? xaloPoolBalance[account] : 0,
       cakeBnbLpBalance: cakeBnbLpBalance[account] ? cakeBnbLpBalance[account] : 0,
       voter: account,
     }
   }
 
   if (blockNumber && blockNumber >= VOTING_POWER_BLOCK.v0) {
-    const [cakeBalance, cakeBnbLpBalance, cakePoolBalance, cakeVaultBalance, ifoPoolBalance, poolsBalance, total] =
+    const [xaloBalance, cakeBnbLpBalance, cakePoolBalance, cakeVaultBalance, ifoPoolBalance, poolsBalance, total] =
       await getScores(
         PANCAKE_SPACE,
         [
-          strategies.cakeBalanceStrategy('v0'),
+          strategies.xaloBalanceStrategy('v0'),
           strategies.cakeBnbLpBalanceStrategy('v0'),
           strategies.cakePoolBalanceStrategy('v0'),
           strategies.cakeVaultBalanceStrategy,
@@ -137,7 +137,7 @@ export const getVotingPower = async (account: string, poolAddresses: string[], b
     return {
       poolsBalance: poolsBalance[account] ? poolsBalance[account] : 0,
       total: total[account] ? total[account] : 0,
-      cakeBalance: cakeBalance[account] ? cakeBalance[account] : 0,
+      xaloBalance: xaloBalance[account] ? xaloBalance[account] : 0,
       cakeVaultBalance: cakeVaultBalance[account] ? cakeVaultBalance[account] : 0,
       ifoPoolBalance: ifoPoolBalance[account] ? ifoPoolBalance[account] : 0,
       cakePoolBalance: cakePoolBalance[account] ? cakePoolBalance[account] : 0,

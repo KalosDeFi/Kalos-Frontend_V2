@@ -3,7 +3,7 @@ import BigNumber from 'bignumber.js'
 import { useFastRefreshEffect } from 'hooks/useRefreshEffect'
 import { SerializedPool } from 'state/types'
 import { transformPool } from 'state/pools/helpers'
-import { getCakeContract } from 'utils/contractHelpers'
+import { getXaloContract } from 'utils/contractHelpers'
 import { CHAIN_ID } from 'config/constants/networks'
 import { PoolCategory } from 'config/constants/types'
 import { serializeTokens } from 'config/constants/tokens'
@@ -15,16 +15,16 @@ export interface PoolsState {
 }
 
 const serializedTokens = serializeTokens()
-const cakeContract = getCakeContract()
+const xaloContract = getXaloContract()
 
 const initialData = {
   data: {
     sousId: 0,
-    stakingToken: serializedTokens.cake,
-    earningToken: serializedTokens.cake,
+    stakingToken: serializedTokens.xalo,
+    earningToken: serializedTokens.xalo,
     contractAddress: {
       97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-      56: '0x73feaa1eE314F8c655E354234017bE2193C9E24E',
+      56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',
@@ -44,7 +44,7 @@ export const useFetchUserPools = (account) => {
           const [stakedBalances, pendingRewards, totalStaking] = await Promise.all([
             fetchUserStakeBalances(account),
             fetchUserPendingRewards(account),
-            cakeContract.balanceOf(initialData.data.contractAddress[CHAIN_ID]),
+            xaloContract.balanceOf(initialData.data.contractAddress[CHAIN_ID]),
           ])
 
           const userData = {

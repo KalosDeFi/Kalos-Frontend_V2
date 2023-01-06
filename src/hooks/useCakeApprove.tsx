@@ -1,21 +1,21 @@
 import { MaxUint256 } from '@ethersproject/constants'
 import { useTranslation } from 'contexts/Localization'
-import { useCake } from 'hooks/useContract'
+import { useXalo } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { ToastDescriptionWithTx } from 'components/Toast'
 
-const useCakeApprove = (setLastUpdated: () => void, spender, successMsg) => {
+const useXaloApprove = (setLastUpdated: () => void, spender, successMsg) => {
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
   const { callWithGasPrice } = useCallWithGasPrice()
-  const { signer: cakeContract } = useCake()
+  const { signer: xaloContract } = useXalo()
 
   const handleApprove = async () => {
     const receipt = await fetchWithCatchTxError(() => {
-      return callWithGasPrice(cakeContract, 'approve', [spender, MaxUint256])
+      return callWithGasPrice(xaloContract, 'approve', [spender, MaxUint256])
     })
     if (receipt?.status) {
       toastSuccess(
@@ -29,4 +29,4 @@ const useCakeApprove = (setLastUpdated: () => void, spender, successMsg) => {
   return { handleApprove, pendingTx }
 }
 
-export default useCakeApprove
+export default useXaloApprove

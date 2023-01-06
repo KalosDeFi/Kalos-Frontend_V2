@@ -1,24 +1,24 @@
 import { useMemo } from 'react'
 import { useWeb3React } from '@web3-react/core'
-import { useCake } from 'hooks/useContract'
+import { useXalo } from 'hooks/useContract'
 import { useSWRContract, UseSWRContractKey } from 'hooks/useSWRContract'
 
 // TODO: refactor as useTokenApprovalStatus for generic use
 
-export const useCakeApprovalStatus = (spender) => {
+export const useXaloApprovalStatus = (spender) => {
   const { account } = useWeb3React()
-  const { reader: cakeContract } = useCake()
+  const { reader: xaloContract } = useXalo()
 
   const key = useMemo<UseSWRContractKey>(
     () =>
       account && spender
         ? {
-            contract: cakeContract,
+            contract: xaloContract,
             methodName: 'allowance',
             params: [account, spender],
           }
         : null,
-    [account, cakeContract, spender],
+    [account, xaloContract, spender],
   )
 
   const { data, mutate } = useSWRContract(key)
@@ -26,4 +26,4 @@ export const useCakeApprovalStatus = (spender) => {
   return { isVaultApproved: data ? data.gt(0) : false, setLastUpdated: mutate }
 }
 
-export default useCakeApprovalStatus
+export default useXaloApprovalStatus

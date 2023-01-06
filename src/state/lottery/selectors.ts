@@ -21,14 +21,14 @@ export const maxNumberTicketsPerBuyOrClaimSelector = createSelector(
 
 export const currentRoundSelector = createSelector([selectCurrentRound], (currentRound) => {
   const {
-    priceTicketInCake: priceTicketInCakeAsString,
+    priceTicketInXalo: priceTicketInXaloAsString,
     discountDivisor: discountDivisorAsString,
     amountCollectedInCake: amountCollectedInCakeAsString,
   } = currentRound
 
   return {
     ...currentRound,
-    priceTicketInCake: new BigNumber(priceTicketInCakeAsString),
+    priceTicketInXalo: new BigNumber(priceTicketInXaloAsString),
     discountDivisor: new BigNumber(discountDivisorAsString),
     amountCollectedInCake: new BigNumber(amountCollectedInCakeAsString),
   }

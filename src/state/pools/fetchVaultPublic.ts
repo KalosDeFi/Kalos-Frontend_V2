@@ -3,11 +3,11 @@ import { multicallv2 } from 'utils/multicall'
 import cakeVaultAbi from 'config/abi/cakeVaultV2.json'
 import { getCakeVaultAddress, getCakeFlexibleSideVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getCakeContract } from 'utils/contractHelpers'
+import { getXaloContract } from 'utils/contractHelpers'
 
 const cakeVaultV2 = getCakeVaultAddress()
 const cakeFlexibleSideVaultV2 = getCakeFlexibleSideVaultAddress()
-const cakeContract = getCakeContract()
+const xaloContract = getXaloContract()
 export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
   try {
     const calls = ['getPricePerFullShare', 'totalShares', 'totalLockedAmount'].map((method) => ({
@@ -19,7 +19,7 @@ export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
       multicallv2(cakeVaultAbi, calls, {
         requireSuccess: false,
       }),
-      cakeContract.balanceOf(cakeVaultV2),
+      xaloContract.balanceOf(cakeVaultV2),
     ])
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
@@ -52,7 +52,7 @@ export const fetchPublicFlexibleSideVaultData = async (cakeVaultAddress = cakeFl
       multicallv2(cakeVaultAbi, calls, {
         requireSuccess: false,
       }),
-      cakeContract.balanceOf(cakeVaultAddress),
+      xaloContract.balanceOf(cakeVaultAddress),
     ])
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO

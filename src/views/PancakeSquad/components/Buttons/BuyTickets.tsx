@@ -7,7 +7,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { MaxUint256 } from '@ethersproject/constants'
 import useApproveConfirmTransaction from 'hooks/useApproveConfirmTransaction'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
-import { useCake, useNftSaleContract } from 'hooks/useContract'
+import { useXalo, useNftSaleContract } from 'hooks/useContract'
 import useToast from 'hooks/useToast'
 import { DefaultTheme } from 'styled-components'
 import { requiresApproval } from 'utils/requiresApproval'
@@ -31,7 +31,7 @@ type BuyTicketsProps = {
   numberTicketsOfUser: number
   numberTicketsForGen0: number
   numberTicketsUsedForGen0: number
-  cakeBalance: BigNumber
+  xaloBalance: BigNumber
   pricePerTicket: BigNumber
   startTimestamp: number
 }
@@ -48,7 +48,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
   numberTicketsOfUser,
   numberTicketsForGen0,
   numberTicketsUsedForGen0,
-  cakeBalance,
+  xaloBalance,
   pricePerTicket,
   startTimestamp,
 }) => {
@@ -57,7 +57,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
   const { callWithGasPrice } = useCallWithGasPrice()
   const nftSaleContract = useNftSaleContract()
   const { toastSuccess } = useToast()
-  const { reader: cakeContractReader, signer: cakeContractApprover } = useCake()
+  const { reader: xaloContractReader, signer: xaloContractApprover } = useXalo()
   const { isUserEnabled, setIsUserEnabled } = useContext(PancakeSquadContext)
 
   const canBuySaleTicket =
@@ -71,10 +71,10 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
   const { isApproving, isApproved, isConfirming, handleApprove, handleConfirm, hasApproveFailed, hasConfirmFailed } =
     useApproveConfirmTransaction({
       onRequiresApproval: async () => {
-        return requiresApproval(cakeContractReader, account, nftSaleContract.address)
+        return requiresApproval(xaloContractReader, account, nftSaleContract.address)
       },
       onApprove: () => {
-        return callWithGasPrice(cakeContractApprover, 'approve', [nftSaleContract.address, MaxUint256])
+        return callWithGasPrice(xaloContractApprover, 'approve', [nftSaleContract.address, MaxUint256])
       },
       onApproveSuccess: async ({ receipt }) => {
         toastSuccess(t('Transaction has succeeded!'), <ToastDescriptionWithTx txHash={receipt.transactionHash} />)
@@ -116,7 +116,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
       isLoading={isApproving}
       headerBackground={theme.colors.gradients.cardHeader}
       txHash={txHashEnablingResult}
-      loadingText={t('Please enable CAKE spending in your wallet')}
+      loadingText={t('Please enable XALO spending in your wallet')}
       loadingButtonLabel={t('Enabling...')}
       successButtonLabel={t('Close')}
       onConfirmClose={onConfirmClose}
@@ -129,7 +129,7 @@ const BuyTicketsButtons: React.FC<BuyTicketsProps> = ({
       title={t('Buy Minting Tickets')}
       buyTicketCallBack={handleConfirm}
       headerBackground={theme.colors.gradients.cardHeader}
-      cakeBalance={cakeBalance}
+      xaloBalance={xaloBalance}
       maxPerAddress={maxPerAddress}
       maxPerTransaction={maxPerTransaction}
       numberTicketsForGen0={numberTicketsForGen0}
