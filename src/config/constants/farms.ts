@@ -44,6 +44,17 @@ const farms: SerializedFarmConfig[] = [
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
 
   {
+    pid: 3,
+    v1pid: 3,
+    lpSymbol: 'USDT-BUSD LP',
+    lpAddresses: {
+      97: '',
+      56: '0x436e40801083B254f0e9c4b1116F97585d0a24d5',
+    },
+    token: serializedTokens.usdt,
+    quoteToken: serializedTokens.busd,
+  },
+  {
     pid: 99,
     lpSymbol: 'XCN-BNB LP',
     lpAddresses: {
@@ -231,17 +242,7 @@ const farms: SerializedFarmConfig[] = [
     token: serializedTokens.twt,
     quoteToken: serializedTokens.wbnb,
   },
-  {
-    pid: 7,
-    v1pid: 258,
-    lpSymbol: 'USDT-BUSD LP',
-    lpAddresses: {
-      97: '',
-      56: '0x7EFaEf62fDdCCa950418312c6C91Aef321375A00',
-    },
-    token: serializedTokens.usdt,
-    quoteToken: serializedTokens.busd,
-  },
+
   {
     pid: 6,
     v1pid: 257,
