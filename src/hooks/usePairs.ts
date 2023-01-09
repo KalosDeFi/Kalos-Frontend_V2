@@ -1,4 +1,4 @@
-import { TokenAmount, Pair, Currency } from '@pancakeswap/sdk'
+import { TokenAmount, Pair, Currency } from '@kalosdefi/sdk'
 import { useMemo } from 'react'
 import IKalosPairABI from 'config/abi/IKalosPair.json'
 import { Interface } from '@ethersproject/abi'
