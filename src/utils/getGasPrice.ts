@@ -1,4 +1,4 @@
-import { ChainId } from '@kalosdefi/sdk'
+import { ChainId } from '@pancakeswap/sdk'
 import { CHAIN_ID } from 'config/constants/networks'
 import store from 'state'
 import { GAS_PRICE_GWEI } from 'state/types'

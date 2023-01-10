@@ -1,4 +1,4 @@
-import { Currency } from '@kalosdefi/sdk'
+import { Currency } from '@pancakeswap/sdk'
 import {
   ArrowDownIcon,
   Button,
