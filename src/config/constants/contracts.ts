@@ -64,7 +64,7 @@ export default {
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
   cakeVault: {
-    56: '0x45c54210128a065de780C4B0Df3d16664f7f859e',
+    56: '0x394D2aD99ba0173184DEC82877eeFAaC36c9663a',
     97: '',
   },
   cakeFlexibleSideVault: {
