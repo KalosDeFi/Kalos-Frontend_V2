@@ -92,8 +92,8 @@ export const makeUserFarmFromPidSelector = (pid: number) =>
   })
 
 export const priceCakeFromPidSelector = createSelector([selectCakeFarm], (cakeBnbFarm) => {
-  const cakePriceBusdAsString = cakeBnbFarm.tokenPriceBusd
-  return new BigNumber(cakePriceBusdAsString)
+  const xaloPriceBusdAsString = cakeBnbFarm.tokenPriceBusd
+  return new BigNumber(xaloPriceBusdAsString)
 })
 
 export const farmFromLpSymbolSelector = (lpSymbol: string) =>

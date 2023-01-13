@@ -12,7 +12,7 @@ import { DesktopColumnSchema, FarmWithStakedValue } from '../types'
 export interface ITableProps {
   farms: FarmWithStakedValue[]
   userDataReady: boolean
-  cakePrice: BigNumber
+  xaloPrice: BigNumber
   sortColumn?: string
 }
 
@@ -62,7 +62,7 @@ const ScrollButtonContainer = styled.div`
   padding-bottom: 5px;
 `
 
-const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) => {
+const FarmTable: React.FC<ITableProps> = ({ farms, xaloPrice, userDataReady }) => {
   const tableWrapperEl = useRef<HTMLDivElement>(null)
   const { t } = useTranslation()
 
@@ -115,7 +115,7 @@ const FarmTable: React.FC<ITableProps> = ({ farms, cakePrice, userDataReady }) =
         lpSymbol: farm.lpSymbol,
         tokenAddress,
         quoteTokenAddress,
-        cakePrice,
+        xaloPrice,
         originalValue: farm.apr,
       },
       farm: {

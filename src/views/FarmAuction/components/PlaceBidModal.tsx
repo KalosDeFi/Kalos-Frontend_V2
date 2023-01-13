@@ -69,7 +69,7 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({
   const { balance: userXalo, fetchStatus } = useTokenBalance(tokens.xalo.address)
   const userXaloBalance = getBalanceAmount(userXalo)
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const xaloPriceBusd = usePriceCakeBusd()
   const farmAuctionContract = useFarmAuctionContract()
   const { reader: xaloContractReader, signer: xaloContractApprover } = useXalo()
 
@@ -167,8 +167,8 @@ const PlaceBidModal: React.FC<PlaceBidModalProps> = ({
           value={bid}
           onUserInput={handleInputChange}
           currencyValue={
-            cakePriceBusd.gt(0) &&
-            `~${bid ? cakePriceBusd.times(new BigNumber(bid)).toNumber().toLocaleString() : '0.00'} USD`
+            xaloPriceBusd.gt(0) &&
+            `~${bid ? xaloPriceBusd.times(new BigNumber(bid)).toNumber().toLocaleString() : '0.00'} USD`
           }
         />
         <Flex justifyContent="flex-end" mt="8px">

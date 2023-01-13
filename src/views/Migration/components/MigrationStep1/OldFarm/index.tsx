@@ -16,7 +16,7 @@ import { DesktopColumnSchema } from '../../types'
 const OldFarmStep1: React.FC = () => {
   const { account } = useWeb3React()
   const { data: farmsLP, userDataLoaded } = useFarmsV1()
-  const cakePrice = usePriceCakeBusd()
+  const xaloPrice = usePriceCakeBusd()
 
   const userDataReady = !account || (!!account && userDataLoaded)
 
@@ -39,7 +39,7 @@ const OldFarmStep1: React.FC = () => {
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
         const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
           new BigNumber(farm.poolWeight),
-          cakePrice,
+          xaloPrice,
           totalLiquidity,
           farm.lpAddresses[ChainId.MAINNET],
           XALO_PER_YEAR,
@@ -49,7 +49,7 @@ const OldFarmStep1: React.FC = () => {
 
       return farmsToDisplayWithAPR
     },
-    [cakePrice],
+    [xaloPrice],
   )
 
   const chosenFarmsMemoized = useMemo(() => {

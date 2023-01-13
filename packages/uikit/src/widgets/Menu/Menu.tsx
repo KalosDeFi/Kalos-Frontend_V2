@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 import MenuItems from "../../components/MenuItems/MenuItems";
 import { SubMenuItems } from "../../components/SubMenuItems";
 import { useMatchBreakpoints } from "../../hooks";
-import CakePrice from "../../components/XaloPrice/XaloPrice";
+import XaloPrice from "../../components/XaloPrice/XaloPrice";
 import Logo from "./components/Logo";
 import { MENU_HEIGHT, MOBILE_MENU_HEIGHT, TOP_BANNER_HEIGHT, TOP_BANNER_HEIGHT_MOBILE } from "./config";
 import { NavProps } from "./types";
@@ -72,7 +72,7 @@ const Menu: React.FC<NavProps> = ({
   toggleTheme,
   currentLang,
   setLang,
-  cakePriceUsd,
+  xaloPriceUsd,
   links,
   subLinks,
   footerLinks,
@@ -138,7 +138,7 @@ const Menu: React.FC<NavProps> = ({
             <Flex alignItems="center" height="100%">
               {!isMobile && !isMd && (
                 <Box mr="12px">
-                  <CakePrice showSkeleton={false} cakePriceUsd={cakePriceUsd} />
+                  <XaloPrice showSkeleton={false} xaloPriceUsd={xaloPriceUsd} />
                 </Box>
               )}
               <Box mt="4px">
@@ -179,7 +179,7 @@ const Menu: React.FC<NavProps> = ({
               langs={langs}
               setLang={setLang}
               currentLang={currentLang}
-              cakePriceUsd={cakePriceUsd}
+              xaloPriceUsd={xaloPriceUsd}
               buyCakeLabel={buyCakeLabel}
               mb={[`${MOBILE_MENU_HEIGHT}px`, null, "0px"]}
             />

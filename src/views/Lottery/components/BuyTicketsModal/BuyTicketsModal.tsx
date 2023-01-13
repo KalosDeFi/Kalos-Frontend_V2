@@ -90,7 +90,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
   const stringifiedUserXalo = userXalo.toJSON()
   const memoisedUserXalo = useMemo(() => new BigNumber(stringifiedUserXalo), [stringifiedUserXalo])
 
-  const cakePriceBusd = usePriceCakeBusd()
+  const xaloPriceBusd = usePriceCakeBusd()
   const dispatch = useAppDispatch()
   const hasFetchedBalance = fetchStatus === FetchStatus.Fetched
   const userXaloDisplayBalance = getFullDisplayBalance(userXalo, 18, 3)
@@ -322,7 +322,7 @@ const BuyTicketsModal: React.FC<BuyTicketsModalProps> = ({ onDismiss }) => {
         value={ticketsToBuy}
         onUserInput={handleInputChange}
         currencyValue={
-          cakePriceBusd.gt(0) &&
+          xaloPriceBusd.gt(0) &&
           `~${ticketsToBuy ? getFullDisplayBalance(priceTicketInXalo.times(new BigNumber(ticketsToBuy))) : '0.00'} XALO`
         }
       />
