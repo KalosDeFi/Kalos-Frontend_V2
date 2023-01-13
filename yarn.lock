@@ -2337,10 +2337,10 @@
     "@json-rpc-tools/types" "^1.7.6"
     "@pedrouid/environment" "^1.0.1"
 
-"@kalosdefi/sdk@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@kalosdefi/sdk/-/sdk-0.0.7.tgz#1af728c7de098d57c5f173781e76010fab25ad3e"
-  integrity sha512-1G1G4vdSljKbuA6VEWU67M7rZcgRZFqZ0ZHOHz8JNpLrgNMdbxrsZOkg/tvPXT4chWpr6zlbeM3Qp+JVdpOHdA==
+"@kalosdefi/sdk@^0.0.11":
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@kalosdefi/sdk/-/sdk-0.0.11.tgz#68a15698b2b04959964ba4cca0658268be8a60e3"
+  integrity sha512-N2Xw1qrH4+YZ99rkdLOj6SVWR4VmMFbmHAe+VZVZV9OoCnf6Dpomz3RK/L3KyXsDwjrHPaGM8DDNs8pGfJ39fw==
   dependencies:
     big.js "^5.2.2"
     decimal.js-light "^2.5.0"
