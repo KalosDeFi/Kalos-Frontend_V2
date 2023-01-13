@@ -7,7 +7,7 @@ import { Colors } from "../../theme";
 
 export interface Props {
   color?: keyof Colors;
-  cakePriceUsd?: number;
+  xaloPriceUsd?: number;
   showSkeleton?: boolean;
 }
 
@@ -24,18 +24,18 @@ const PriceLink = styled.a`
   }
 `;
 
-const CakePrice: React.FC<Props> = ({ cakePriceUsd, color = "textSubtle", showSkeleton = true }) => {
-  return cakePriceUsd ? (
+const XaloPrice: React.FC<Props> = ({ xaloPriceUsd, color = "textSubtle", showSkeleton = true }) => {
+  return xaloPriceUsd ? (
     <PriceLink
       href="https://kalosdefi.finance/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385"
       target="_blank"
     >
       <LogoRound width="24px" mr="8px" />
-      <Text color={color} bold>{`$${cakePriceUsd.toFixed(3)}`}</Text>
+      <Text color={color} bold>{`$${xaloPriceUsd.toFixed(3)}`}</Text>
     </PriceLink>
   ) : showSkeleton ? (
     <Skeleton width={80} height={24} />
   ) : null;
 };
 
-export default React.memo(CakePrice);
+export default React.memo(XaloPrice);
