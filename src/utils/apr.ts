@@ -35,18 +35,18 @@ export const getFarmApr = (
   xaloPriceUsd: BigNumber,
   poolLiquidityUsd: BigNumber,
   farmAddress: string,
-  regularCakePerBlock: number,
-): { cakeRewardsApr: number; lpRewardsApr: number } => {
-  const yearlyCakeRewardAllocation = poolWeight
-    ? poolWeight.times(BLOCKS_PER_YEAR * regularCakePerBlock)
+  regularXaloPerBlock: number,
+): { xaloRewardsApr: number; lpRewardsApr: number } => {
+  const yearlyXaloRewardAllocation = poolWeight
+    ? poolWeight.times(BLOCKS_PER_YEAR * regularXaloPerBlock)
     : new BigNumber(NaN)
-  const cakeRewardsApr = yearlyCakeRewardAllocation.times(xaloPriceUsd).div(poolLiquidityUsd).times(100)
-  let cakeRewardsAprAsNumber = null
-  if (!cakeRewardsApr.isNaN() && cakeRewardsApr.isFinite()) {
-    cakeRewardsAprAsNumber = cakeRewardsApr.toNumber()
+  const xaloRewardsApr = yearlyXaloRewardAllocation.times(xaloPriceUsd).div(poolLiquidityUsd).times(100)
+  let xaloRewardsAprAsNumber = null
+  if (!xaloRewardsApr.isNaN() && xaloRewardsApr.isFinite()) {
+    xaloRewardsAprAsNumber = xaloRewardsApr.toNumber()
   }
   const lpRewardsApr = lpAprs[farmAddress?.toLocaleLowerCase()] ?? 0
-  return { cakeRewardsApr: cakeRewardsAprAsNumber, lpRewardsApr }
+  return { xaloRewardsApr: xaloRewardsAprAsNumber, lpRewardsApr }
 }
 
 export default null

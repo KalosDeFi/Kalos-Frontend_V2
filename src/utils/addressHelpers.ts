@@ -67,12 +67,12 @@ export const getVaultPoolAddress = (vaultKey: VaultKey) => {
   return getAddress(addresses[vaultKey])
 }
 
-export const getCakeVaultAddress = () => {
-  return getAddress(addresses.cakeVault)
+export const getXaloVaultAddress = () => {
+  return getAddress(addresses.xaloVault)
 }
 
-export const getCakeFlexibleSideVaultAddress = () => {
-  return getAddress(addresses.cakeFlexibleSideVault)
+export const getXaloFlexibleSideVaultAddress = () => {
+  return getAddress(addresses.xaloFlexibleSideVault)
 }
 
 export const getBunnySpecialCakeVaultAddress = () => {

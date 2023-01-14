@@ -63,11 +63,11 @@ export default {
     56: '0x23c41D28A239dDCAABd1bb1deF8d057189510066',
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
-  cakeVault: {
+  xaloVault: {
     56: '0x394D2aD99ba0173184DEC82877eeFAaC36c9663a',
     97: '',
   },
-  cakeFlexibleSideVault: {
+  xaloFlexibleSideVault: {
     56: '0x615e896A8C2CA8470A2e9dc2E9552998f8658Ea0',
     97: '',
   },

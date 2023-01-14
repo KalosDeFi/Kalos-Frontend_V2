@@ -67,8 +67,8 @@ export const GAS_PRICE_GWEI = {
   testnet: parseUnits(GAS_PRICE.testnet, 'gwei').toString(),
 }
 
-export type DeserializedPoolVault = DeserializedPool & DeserializedCakeVault
-export type DeserializedPoolLockedVault = DeserializedPool & DeserializedLockedCakeVault
+export type DeserializedPoolVault = DeserializedPool & DeserializedXaloVault
+export type DeserializedPoolLockedVault = DeserializedPool & DeserializedLockedXaloVault
 
 export interface BigNumberToJson {
   type: 'BigNumber'
@@ -116,9 +116,9 @@ export interface DeserializedFarm extends DeserializedFarmConfig {
 }
 
 export enum VaultKey {
-  CakeVaultV1 = 'cakeVaultV1',
-  CakeVault = 'cakeVault',
-  CakeFlexibleSideVault = 'cakeFlexibleSideVault',
+  XaloVaultV1 = 'xaloVaultV1',
+  XaloVault = 'xaloVault',
+  XaloFlexibleSideVault = 'xaloFlexibleSideVault',
   IfoPool = 'ifoPool',
 }
 
@@ -186,7 +186,7 @@ export interface SerializedFarmsState {
   userDataLoaded: boolean
   loadingKeys: Record<string, boolean>
   poolLength?: number
-  regularCakePerBlock?: number
+  regularXaloPerBlock?: number
 }
 
 export interface DeserializedFarmsState {
@@ -194,7 +194,7 @@ export interface DeserializedFarmsState {
   loadArchivedFarmsData: boolean
   userDataLoaded: boolean
   poolLength?: number
-  regularCakePerBlock?: number
+  regularXaloPerBlock?: number
 }
 
 export interface SerializedVaultFees {
@@ -210,7 +210,7 @@ export interface DeserializedVaultFees extends SerializedVaultFees {
 export interface SerializedVaultUser {
   isLoading: boolean
   userShares: SerializedBigNumber
-  cakeAtLastUserAction: SerializedBigNumber
+  xaloAtLastUserAction: SerializedBigNumber
   lastDepositedTime: string
   lastUserActionTime: string
 }
@@ -228,13 +228,13 @@ export interface SerializedLockedVaultUser extends SerializedVaultUser {
 export interface DeserializedVaultUser {
   isLoading: boolean
   userShares: BigNumber
-  cakeAtLastUserAction: BigNumber
+  xaloAtLastUserAction: BigNumber
   lastDepositedTime: string
   lastUserActionTime: string
   balance: {
-    cakeAsNumberBalance: number
-    cakeAsBigNumber: BigNumber
-    cakeAsDisplayBalance: string
+    xaloAsNumberBalance: number
+    xaloAsBigNumber: BigNumber
+    xaloAsDisplayBalance: string
   }
 }
 
@@ -250,29 +250,29 @@ export interface DeserializedLockedVaultUser extends DeserializedVaultUser {
   currentOverdueFee: BigNumber
 }
 
-export interface DeserializedCakeVault {
+export interface DeserializedXaloVault {
   totalShares?: BigNumber
   totalLockedAmount?: BigNumber
   pricePerFullShare?: BigNumber
-  totalCakeInVault?: BigNumber
+  totalXaloInVault?: BigNumber
   fees?: DeserializedVaultFees
   userData?: DeserializedVaultUser
 }
 
-export interface DeserializedLockedCakeVault extends Omit<DeserializedCakeVault, 'userData'> {
+export interface DeserializedLockedXaloVault extends Omit<DeserializedXaloVault, 'userData'> {
   totalLockedAmount?: BigNumber
   userData?: DeserializedLockedVaultUser
 }
 
-export interface SerializedLockedCakeVault extends Omit<SerializedCakeVault, 'userData'> {
+export interface SerializedLockedXaloVault extends Omit<SerializedXaloVault, 'userData'> {
   totalLockedAmount?: SerializedBigNumber
   userData?: SerializedLockedVaultUser
 }
 
-export interface SerializedCakeVault {
+export interface SerializedXaloVault {
   totalShares?: SerializedBigNumber
   pricePerFullShare?: SerializedBigNumber
-  totalCakeInVault?: SerializedBigNumber
+  totalXaloInVault?: SerializedBigNumber
   fees?: SerializedVaultFees
   userData?: SerializedVaultUser
 }
@@ -289,8 +289,8 @@ export interface PublicIfoData {
 export interface PoolsState {
   data: SerializedPool[]
   ifo: IfoState
-  cakeVault: SerializedLockedCakeVault
-  cakeFlexibleSideVault: SerializedCakeVault
+  xaloVault: SerializedLockedXaloVault
+  xaloFlexibleSideVault: SerializedXaloVault
   userDataLoaded: boolean
 }
 
@@ -591,8 +591,8 @@ export interface LotteryRound extends LotteryRoundGenerics {
   userTickets?: LotteryRoundUserTickets
   priceTicketInXalo: BigNumber
   discountDivisor: BigNumber
-  amountCollectedInCake: BigNumber
-  cakePerBracket: string[]
+  amountCollectedInXalo: BigNumber
+  xaloPerBracket: string[]
   countWinnersPerBracket: string[]
   rewardsBreakdown: string[]
 }
@@ -600,8 +600,8 @@ export interface LotteryRound extends LotteryRoundGenerics {
 export interface LotteryResponse extends LotteryRoundGenerics {
   priceTicketInXalo: SerializedBigNumber
   discountDivisor: SerializedBigNumber
-  amountCollectedInCake: SerializedBigNumber
-  cakePerBracket: SerializedBigNumber[]
+  amountCollectedInXalo: SerializedBigNumber
+  xaloPerBracket: SerializedBigNumber[]
   countWinnersPerBracket: SerializedBigNumber[]
   rewardsBreakdown: SerializedBigNumber[]
 }
@@ -629,7 +629,7 @@ export interface LotteryRoundGraphEntity {
 
 export interface LotteryUserGraphEntity {
   account: string
-  totalCake: string
+  totalXalo: string
   totalTickets: string
   rounds: UserRound[]
 }
