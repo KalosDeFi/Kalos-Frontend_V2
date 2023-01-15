@@ -1,5 +1,5 @@
 import { useMemo, memo } from 'react'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 
 import { Flex, Text, Box, TooltipText, useTooltip } from '@pancakeswap/uikit'
 import { LightGreyCard } from 'components/Card'
@@ -40,8 +40,8 @@ const LockedStakingApy: React.FC<LockedStakingApyProps> = ({
   )
 
   const currentLockedAmountAsBigNumber = useMemo(() => {
-    return userData?.balance?.cakeAsBigNumber
-  }, [userData?.balance?.cakeAsBigNumber])
+    return userData?.balance?.xaloAsBigNumber
+  }, [userData?.balance?.xaloAsBigNumber])
 
   const currentLockedAmount = getBalanceNumber(currentLockedAmountAsBigNumber)
 
@@ -56,8 +56,8 @@ const LockedStakingApy: React.FC<LockedStakingApyProps> = ({
 
   // earningTokenBalance includes overdue fee if any
   const earningTokenBalance = useMemo(() => {
-    return getBalanceNumber(currentLockedAmountAsBigNumber.minus(userData?.cakeAtLastUserAction))
-  }, [currentLockedAmountAsBigNumber, userData?.cakeAtLastUserAction])
+    return getBalanceNumber(currentLockedAmountAsBigNumber.minus(userData?.xaloAtLastUserAction))
+  }, [currentLockedAmountAsBigNumber, userData?.xaloAtLastUserAction])
 
   const tooltipContent = t(
     'Calculated based on current rates and subject to change based on pool conditions. It is an estimate provided for your convenience only, and by no means represents guaranteed returns.',

@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import { FC, ReactNode } from 'react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { DeserializedPool, DeserializedVaultUser } from 'state/types'
-import { isLocked, isStaked } from 'utils/cakePool'
+import { isLocked, isStaked } from 'utils/xaloPool'
 import useAvgLockDuration from './LockedPool/hooks/useAvgLockDuration'
 import Apr from './Apr'
 

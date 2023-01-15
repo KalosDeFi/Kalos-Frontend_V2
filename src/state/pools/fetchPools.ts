@@ -41,10 +41,10 @@ export const fetchPoolsBlockLimits = async () => {
     return resultArray
   }, [])
 
-  return poolsWithEnd.map((cakePoolConfig, index) => {
+  return poolsWithEnd.map((xaloPoolConfig, index) => {
     const [[startBlock], [endBlock]] = startEndBlockResult[index]
     return {
-      sousId: cakePoolConfig.sousId,
+      sousId: xaloPoolConfig.sousId,
       startBlock: startBlock.toNumber(),
       endBlock: endBlock.toNumber(),
     }

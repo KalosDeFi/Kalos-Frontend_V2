@@ -7,7 +7,7 @@ import { useVaultApy } from 'hooks/useVaultApy'
 import { useVaultPoolByKey } from 'state/pools/hooks'
 import { DeserializedPool, DeserializedLockedVaultUser, VaultKey } from 'state/types'
 import { MAX_LOCK_DURATION } from 'config/constants/pools'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import { VaultRoiCalculatorModal } from '../../Vault/VaultRoiCalculatorModal'
 import BaseCell, { CellContent } from './BaseCell'
 
@@ -42,10 +42,10 @@ const AutoAprCell: React.FC<AprCellProps> = ({ pool }) => {
     <VaultRoiCalculatorModal pool={pool} initialView={1} />,
     true,
     true,
-    pool.vaultKey === VaultKey.CakeVault ? 'LockedVaultRoiCalculatorModal' : 'FlexibleSideVaultRoiCalculatorModal',
+    pool.vaultKey === VaultKey.XaloVault ? 'LockedVaultRoiCalculatorModal' : 'FlexibleSideVaultRoiCalculatorModal',
   )
 
-  if (pool.vaultKey === VaultKey.CakeVault && vaultPosition === VaultPosition.None) {
+  if (pool.vaultKey === VaultKey.XaloVault && vaultPosition === VaultPosition.None) {
     return (
       <>
         <BaseCell role="cell" flex={['1 0 50px', '4.5', '1 0 120px', null, '2 0 100px']}>

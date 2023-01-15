@@ -11,8 +11,8 @@ export const localiseTradingVolume = (value: number, decimals = 0) => {
 }
 
 export const useCompetitionCakeRewards = (userCakeReward: ReactText) => {
-  const cakeAsBigNumber = new BigNumber(userCakeReward as string)
-  const xaloBalance = getBalanceNumber(cakeAsBigNumber)
+  const xaloAsBigNumber = new BigNumber(userCakeReward as string)
+  const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const xaloPriceBusd = useCakeBusdPrice()
   return {
     cakeReward: xaloBalance,
@@ -34,11 +34,11 @@ export const useFanTokenCompetitionRewards = ({
   const lazioPriceBUSD = useBUSDPrice(tokens.lazio)
   const portoPriceBUSD = useBUSDPrice(tokens.porto)
   const santosPriceBUSD = useBUSDPrice(tokens.santos)
-  const cakeAsBigNumber = new BigNumber(userCakeRewards as string)
+  const xaloAsBigNumber = new BigNumber(userCakeRewards as string)
   const lazioAsBigNumber = new BigNumber(userLazioRewards as string)
   const portoAsBigNumber = new BigNumber(userPortoRewards as string)
   const santosAsBigNumber = new BigNumber(userSantosRewards as string)
-  const xaloBalance = getBalanceNumber(cakeAsBigNumber)
+  const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const lazioBalance = getBalanceNumber(lazioAsBigNumber, 8)
   const portoBalance = getBalanceNumber(portoAsBigNumber, 8)
   const santosBalance = getBalanceNumber(santosAsBigNumber, 8)
@@ -69,9 +69,9 @@ export const useMoboxCompetitionRewards = ({
   userMoboxRewards: ReactText
 }) => {
   const moboxPriceBUSD = useBUSDPrice(tokens.mbox)
-  const cakeAsBigNumber = new BigNumber(userCakeRewards as string)
+  const xaloAsBigNumber = new BigNumber(userCakeRewards as string)
   const moboxAsBigNumber = new BigNumber(userMoboxRewards as string)
-  const xaloBalance = getBalanceNumber(cakeAsBigNumber)
+  const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const moboxBalance = getBalanceNumber(moboxAsBigNumber)
   const xaloPriceBusd = useCakeBusdPrice()
 
@@ -95,9 +95,9 @@ export const useModCompetitionRewards = ({
   userDarRewards: ReactText
 }) => {
   const darPriceBUSD = useBUSDPrice(tokens.dar)
-  const cakeAsBigNumber = new BigNumber(userCakeRewards as string)
+  const xaloAsBigNumber = new BigNumber(userCakeRewards as string)
   const darAsBigNumber = new BigNumber(userDarRewards as string)
-  const xaloBalance = getBalanceNumber(cakeAsBigNumber)
+  const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const darBalance = getBalanceNumber(darAsBigNumber, tokens.dar.decimals)
   const xaloPriceBusd = useCakeBusdPrice()
 

@@ -16,7 +16,7 @@ const StyledLinkExternal = styled(LinkExternal)`
 interface DetailsViewProps {
   total: number
   xaloBalance?: number
-  cakeVaultBalance?: number
+  xaloVaultBalance?: number
   xaloPoolBalance?: number
   poolsBalance?: number
   cakeBnbLpBalance?: number
@@ -27,7 +27,7 @@ interface DetailsViewProps {
 const DetailsView: React.FC<DetailsViewProps> = ({
   total,
   xaloBalance,
-  cakeVaultBalance,
+  xaloVaultBalance,
   xaloPoolBalance,
   poolsBalance,
   cakeBnbLpBalance,
@@ -74,12 +74,12 @@ const DetailsView: React.FC<DetailsViewProps> = ({
           <Text textAlign="right">{formatNumber(xaloPoolBalance, 0, 3)}</Text>
         </Flex>
       )}
-      {Number.isFinite(cakeVaultBalance) && (
+      {Number.isFinite(xaloVaultBalance) && (
         <Flex alignItems="center" justifyContent="space-between" mb="4px">
           <Text color="textSubtle" fontSize="16px">
             {t('Auto CAKE Pool')}
           </Text>
-          <Text textAlign="right">{formatNumber(cakeVaultBalance, 0, 3)}</Text>
+          <Text textAlign="right">{formatNumber(xaloVaultBalance, 0, 3)}</Text>
         </Flex>
       )}
       {Number.isFinite(ifoPoolBalance) && (

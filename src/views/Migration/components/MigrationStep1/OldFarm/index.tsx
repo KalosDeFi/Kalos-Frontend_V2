@@ -37,14 +37,14 @@ const OldFarmStep1: React.FC = () => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
-        const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
+        const { xaloRewardsApr, lpRewardsApr } = getFarmApr(
           new BigNumber(farm.poolWeight),
           xaloPrice,
           totalLiquidity,
           farm.lpAddresses[ChainId.MAINNET],
           XALO_PER_YEAR,
         )
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
+        return { ...farm, apr: xaloRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
 
       return farmsToDisplayWithAPR

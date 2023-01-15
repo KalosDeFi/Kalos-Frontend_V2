@@ -19,11 +19,11 @@ const Containter = styled(Flex)`
 
 interface TotalStakedProps {
   pool: DeserializedPool
-  totalCakeInVault: BigNumber
-  cakeInVaults: BigNumber
+  totalXaloInVault: BigNumber
+  xaloInVaults: BigNumber
 }
 
-const TotalStaked: React.FC<TotalStakedProps> = ({ pool, totalCakeInVault, cakeInVaults }) => {
+const TotalStaked: React.FC<TotalStakedProps> = ({ pool, totalXaloInVault, xaloInVaults }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, vaultKey } = pool
 
@@ -31,14 +31,14 @@ const TotalStaked: React.FC<TotalStakedProps> = ({ pool, totalCakeInVault, cakeI
 
   const totalStakedBalance = useMemo(() => {
     if (vaultKey) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalXaloInVault, stakingToken.decimals)
     }
     if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(cakeInVaults)
+      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(xaloInVaults)
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
-  }, [vaultKey, totalCakeInVault, isManualCakePool, totalStaked, stakingToken.decimals, cakeInVaults])
+  }, [vaultKey, totalXaloInVault, isManualCakePool, totalStaked, stakingToken.decimals, xaloInVaults])
 
   return (
     <Containter justifyContent="space-between">

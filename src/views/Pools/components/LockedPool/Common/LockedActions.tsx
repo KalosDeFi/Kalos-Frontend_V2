@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import { Flex, Box } from '@pancakeswap/uikit'
 import BigNumber from 'bignumber.js'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { useTranslation } from 'contexts/Localization'
 import { getBalanceNumber } from 'utils/formatBalance'

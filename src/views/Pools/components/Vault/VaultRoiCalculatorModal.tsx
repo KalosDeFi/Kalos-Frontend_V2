@@ -18,14 +18,14 @@ export const VaultRoiCalculatorModal = ({
 }: { pool: DeserializedPool; initialView?: number } & Partial<RoiCalculatorModalProps>) => {
   const {
     userData: {
-      balance: { cakeAsBigNumber },
+      balance: { xaloAsBigNumber },
     },
   } = useVaultPoolByKey(pool.vaultKey)
 
   const { getLockedApy, flexibleApy } = useVaultApy()
   const { t } = useTranslation()
 
-  const [cakeVaultView, setCakeVaultView] = useState(initialView || 0)
+  const [xaloVaultView, setXaloVaultView] = useState(initialView || 0)
 
   const [duration, setDuration] = useState(() => weeksToSeconds(1))
 
@@ -38,8 +38,8 @@ export const VaultRoiCalculatorModal = ({
   )
 
   const apy = useMemo(() => {
-    return cakeVaultView === 0 ? flexibleApy : getLockedApy(duration)
-  }, [cakeVaultView, getLockedApy, flexibleApy, duration])
+    return xaloVaultView === 0 ? flexibleApy : getLockedApy(duration)
+  }, [xaloVaultView, getLockedApy, flexibleApy, duration])
 
   return (
     <RoiCalculatorModal
@@ -55,11 +55,11 @@ export const VaultRoiCalculatorModal = ({
       earningTokenPrice={pool.earningTokenPrice}
       stakingTokenPrice={pool.stakingTokenPrice}
       stakingTokenBalance={
-        pool.userData?.stakingTokenBalance ? cakeAsBigNumber.plus(pool.userData?.stakingTokenBalance) : cakeAsBigNumber
+        pool.userData?.stakingTokenBalance ? xaloAsBigNumber.plus(pool.userData?.stakingTokenBalance) : xaloAsBigNumber
       }
       autoCompoundFrequency={1}
       strategy={
-        cakeVaultView
+        xaloVaultView
           ? (state, dispatch) => (
               <LockedRoiStrategy
                 state={state}
@@ -72,14 +72,14 @@ export const VaultRoiCalculatorModal = ({
           : null
       }
       header={
-        pool.vaultKey === VaultKey.CakeVault ? (
+        pool.vaultKey === VaultKey.XaloVault ? (
           <ButtonMenu
             mb="24px"
             fullWidth
             scale="sm"
             variant="subtle"
-            activeIndex={cakeVaultView}
-            onItemClick={setCakeVaultView}
+            activeIndex={xaloVaultView}
+            onItemClick={setXaloVaultView}
           >
             {buttonMenuItems}
           </ButtonMenu>
@@ -89,7 +89,7 @@ export const VaultRoiCalculatorModal = ({
       }
       {...rest}
     >
-      {cakeVaultView && (
+      {xaloVaultView && (
         <Box mt="16px">
           <LockDurationField duration={duration} setDuration={setDuration} isOverMax={false} />
         </Box>

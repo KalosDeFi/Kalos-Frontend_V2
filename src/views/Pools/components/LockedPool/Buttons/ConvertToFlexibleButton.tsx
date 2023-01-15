@@ -3,7 +3,7 @@ import { Button, ButtonProps } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 
 import { useAppDispatch } from 'state'
-import { fetchCakeVaultUserData } from 'state/pools'
+import { fetchXaloVaultUserData } from 'state/pools'
 import useToast from 'hooks/useToast'
 import useCatchTxError from 'hooks/useCatchTxError'
 import { useCallWithGasPrice } from 'hooks/useCallWithGasPrice'
@@ -18,14 +18,14 @@ const ConvertToFlexibleButton: React.FC<ButtonProps> = (props) => {
 
   const { account } = useWeb3React()
   const { fetchWithCatchTxError, loading: pendingTx } = useCatchTxError()
-  const vaultPoolContract = useVaultPoolContract(VaultKey.CakeVault)
+  const vaultPoolContract = useVaultPoolContract(VaultKey.XaloVault)
   const { callWithGasPrice } = useCallWithGasPrice()
   const { t } = useTranslation()
   const { toastSuccess } = useToast()
 
   const handleUnlock = useCallback(async () => {
     const callOptions = {
-      gasLimit: vaultPoolConfig[VaultKey.CakeVault].gasLimit,
+      gasLimit: vaultPoolConfig[VaultKey.XaloVault].gasLimit,
     }
 
     const receipt = await fetchWithCatchTxError(() => {
@@ -40,7 +40,7 @@ const ConvertToFlexibleButton: React.FC<ButtonProps> = (props) => {
           {t('Your funds have been staked in the pool')}
         </ToastDescriptionWithTx>,
       )
-      dispatch(fetchCakeVaultUserData({ account }))
+      dispatch(fetchXaloVaultUserData({ account }))
     }
   }, [t, toastSuccess, account, callWithGasPrice, dispatch, fetchWithCatchTxError, vaultPoolContract])
 

@@ -214,12 +214,12 @@ const StarsDecorations = styled(Box)`
 const Hero = () => {
   const { t } = useTranslation()
   const {
-    currentRound: { amountCollectedInCake, status },
+    currentRound: { amountCollectedInXalo, status },
     isTransitioning,
   } = useLottery()
 
   const xaloPriceBusd = usePriceCakeBusd()
-  const prizeInBusd = amountCollectedInCake.times(xaloPriceBusd)
+  const prizeInBusd = amountCollectedInXalo.times(xaloPriceBusd)
   const prizeTotal = getBalanceNumber(prizeInBusd)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 

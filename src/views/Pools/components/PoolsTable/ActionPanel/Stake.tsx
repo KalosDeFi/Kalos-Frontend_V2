@@ -21,8 +21,8 @@ import { useTranslation } from 'contexts/Localization'
 import { useERC20 } from 'hooks/useContract'
 
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { DeserializedPool, VaultKey, DeserializedLockedCakeVault } from 'state/types'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault } from 'state/types'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceNumber, getFullDisplayBalance } from 'utils/formatBalance'
@@ -31,7 +31,7 @@ import isUndefinedOrNull from 'utils/isUndefinedOrNull'
 import useUserDataInVaultPresenter from 'views/Pools/components/LockedPool/hooks/useUserDataInVaultPresenter'
 
 import { useApprovePool, useCheckVaultApprovalStatus, useVaultApprove } from '../../../hooks/useApprove'
-import VaultStakeModal from '../../CakeVaultCard/VaultStakeModal'
+import VaultStakeModal from '../../XaloVaultCard/VaultStakeModal'
 import NotEnoughTokensModal from '../../PoolCard/Modals/NotEnoughTokensModal'
 import StakeModal from '../../PoolCard/Modals/StakeModal'
 import { ProfileRequirementWarning } from '../../ProfileRequirementWarning'
@@ -100,20 +100,20 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
   const {
     userData: {
       userShares,
-      balance: { cakeAsBigNumber, cakeAsNumberBalance },
+      balance: { xaloAsBigNumber, xaloAsNumberBalance },
     },
   } = vaultData
 
   const { lockEndDate, remainingTime } = useUserDataInVaultPresenter({
     lockStartTime:
-      vaultKey === VaultKey.CakeVault ? (vaultData as DeserializedLockedCakeVault).userData?.lockStartTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockStartTime ?? '0' : '0',
     lockEndTime:
-      vaultKey === VaultKey.CakeVault ? (vaultData as DeserializedLockedCakeVault).userData?.lockEndTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockEndTime ?? '0' : '0',
   })
 
   const hasSharesStaked = userShares.gt(0)
   const isVaultWithShares = vaultKey && hasSharesStaked
-  const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
+  const stakedAutoDollarValue = getBalanceNumber(xaloAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
 
   const needsApproval = vaultKey ? !isVaultApproved : !allowance.gt(0) && !isBnbPool
 
@@ -140,7 +140,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
     />,
   )
 
-  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />)
+  const [onPresentVaultUnstake] = useModal(<VaultStakeModal stakingMax={xaloAsBigNumber} pool={pool} isRemovingStake />)
 
   const [openPresentLockedStakeModal] = useModal(
     <LockedStakedModal
@@ -250,7 +250,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
                   {stakingToken.symbol}{' '}
                 </Text>
                 <Text fontSize="12px" bold color="textSubtle" as="span" textTransform="uppercase">
-                  {vaultKey === VaultKey.CakeVault && (vaultData as DeserializedLockedCakeVault).userData.locked
+                  {vaultKey === VaultKey.XaloVault && (vaultData as DeserializedLockedXaloVault).userData.locked
                     ? t('Locked')
                     : t('Staked')}
                 </Text>
@@ -262,7 +262,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
                     bold
                     fontSize="20px"
                     decimals={5}
-                    value={vaultKey ? cakeAsNumberBalance : stakedTokenBalance}
+                    value={vaultKey ? xaloAsNumberBalance : stakedTokenBalance}
                   />
                   <SkeletonV2
                     isDataReady={Number.isFinite(vaultKey ? stakedAutoDollarValue : stakedTokenDollarBalance)}
@@ -285,9 +285,9 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
               {vaultPosition === VaultPosition.Locked && (
                 <Box mt="16px">
                   <AddCakeButton
-                    lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime}
-                    lockStartTime={(vaultData as DeserializedLockedCakeVault).userData.lockStartTime}
-                    currentLockedAmount={cakeAsBigNumber}
+                    lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime}
+                    lockStartTime={(vaultData as DeserializedLockedXaloVault).userData.lockStartTime}
+                    currentLockedAmount={xaloAsBigNumber}
                     stakingToken={stakingToken}
                     currentBalance={stakingTokenBalance}
                     stakingTokenBalance={stakingTokenBalance}
@@ -320,10 +320,10 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
                 {vaultPosition === VaultPosition.Locked && (
                   <Box mt="16px">
                     <ExtendButton
-                      lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime}
-                      lockStartTime={(vaultData as DeserializedLockedCakeVault).userData.lockStartTime}
+                      lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime}
+                      lockStartTime={(vaultData as DeserializedLockedXaloVault).userData.lockStartTime}
                       stakingToken={stakingToken}
-                      currentLockedAmount={cakeAsNumberBalance}
+                      currentLockedAmount={xaloAsNumberBalance}
                     >
                       {t('Extend')}
                     </ExtendButton>
@@ -360,19 +360,19 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
                 </Text>
                 <Text lineHeight="1" mt="8px" bold fontSize="20px" color="failure">
                   {vaultPosition === VaultPosition.AfterBurning ? (
-                    isUndefinedOrNull((vaultData as DeserializedLockedCakeVault).userData.currentOverdueFee) ? (
+                    isUndefinedOrNull((vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee) ? (
                       '-'
                     ) : (
                       t('%amount% Burned', {
                         amount: getFullDisplayBalance(
-                          (vaultData as DeserializedLockedCakeVault).userData.currentOverdueFee,
+                          (vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee,
                           18,
                           5,
                         ),
                       })
                     )
                   ) : (
-                    <BurningCountDown lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime} />
+                    <BurningCountDown lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime} />
                   )}
                 </Text>
               </Flex>
@@ -387,19 +387,19 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
             </Text>
             <Text fontSize="14px" bold color="failure">
               {vaultPosition === VaultPosition.AfterBurning ? (
-                isUndefinedOrNull((vaultData as DeserializedLockedCakeVault).userData.currentOverdueFee) ? (
+                isUndefinedOrNull((vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee) ? (
                   '-'
                 ) : (
                   t('%amount% Burned', {
                     amount: getFullDisplayBalance(
-                      (vaultData as DeserializedLockedCakeVault).userData.currentOverdueFee,
+                      (vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee,
                       18,
                       5,
                     ),
                   })
                 )
               ) : (
-                <BurningCountDown lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime} />
+                <BurningCountDown lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime} />
               )}
             </Text>
           </Flex>
@@ -414,21 +414,21 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
             <AfterLockedActions
               isInline
               position={vaultPosition}
-              currentLockedAmount={cakeAsNumberBalance}
+              currentLockedAmount={xaloAsNumberBalance}
               stakingToken={stakingToken}
               lockEndTime="0"
               lockStartTime="0"
             />
           </Box>
         )}
-        {vaultKey === VaultKey.CakeVault && vaultPosition === VaultPosition.Flexible && (
+        {vaultKey === VaultKey.XaloVault && vaultPosition === VaultPosition.Flexible && (
           <Box
             width="100%"
             mt={['0', '0', '24px', '24px', '24px']}
             ml={['0', '0', '12px', '12px', '32px']}
             mr={['0', '0', '12px', '12px', '0']}
           >
-            <ConvertToLock stakingToken={stakingToken} currentStakedAmount={cakeAsNumberBalance} isInline />
+            <ConvertToLock stakingToken={stakingToken} currentStakedAmount={xaloAsNumberBalance} isInline />
           </Box>
         )}
       </>
@@ -449,7 +449,7 @@ const Staked: React.FunctionComponent<StackedActionProps> = ({ pool }) => {
         {vaultKey ? (
           <VaultStakeButtonGroup
             onFlexibleClick={stakingTokenBalance.gt(0) ? onStake : onPresentTokenRequired}
-            onLockedClick={vaultKey === VaultKey.CakeVault ? openPresentLockedStakeModal : null}
+            onLockedClick={vaultKey === VaultKey.XaloVault ? openPresentLockedStakeModal : null}
           />
         ) : (
           <Button

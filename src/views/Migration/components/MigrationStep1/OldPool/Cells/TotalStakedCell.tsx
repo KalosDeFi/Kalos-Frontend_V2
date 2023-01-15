@@ -10,8 +10,8 @@ import BaseCell, { CellContent } from 'views/Pools/components/PoolsTable/Cells/B
 
 interface TotalStakedCellProps {
   pool: DeserializedPool
-  totalCakeInVault: BigNumber
-  cakeInVaults: BigNumber
+  totalXaloInVault: BigNumber
+  xaloInVaults: BigNumber
 }
 
 const StyledCell = styled(BaseCell)`
@@ -22,7 +22,7 @@ const StyledCell = styled(BaseCell)`
   }
 `
 
-const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool, totalCakeInVault, cakeInVaults }) => {
+const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool, totalXaloInVault, xaloInVaults }) => {
   const { t } = useTranslation()
   const { sousId, stakingToken, totalStaked, vaultKey } = pool
 
@@ -30,14 +30,14 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool, totalCakeInVaul
 
   const totalStakedBalance = useMemo(() => {
     if (vaultKey) {
-      return getBalanceNumber(totalCakeInVault, stakingToken.decimals)
+      return getBalanceNumber(totalXaloInVault, stakingToken.decimals)
     }
     if (isManualCakePool) {
-      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(cakeInVaults)
+      const manualCakeTotalMinusAutoVault = new BigNumber(totalStaked).minus(xaloInVaults)
       return getBalanceNumber(manualCakeTotalMinusAutoVault, stakingToken.decimals)
     }
     return getBalanceNumber(totalStaked, stakingToken.decimals)
-  }, [vaultKey, totalCakeInVault, isManualCakePool, totalStaked, stakingToken.decimals, cakeInVaults])
+  }, [vaultKey, totalXaloInVault, isManualCakePool, totalStaked, stakingToken.decimals, xaloInVaults])
 
   return (
     <StyledCell role="cell">
@@ -46,7 +46,7 @@ const TotalStakedCell: React.FC<TotalStakedCellProps> = ({ pool, totalCakeInVaul
           {t('Total staked')}
         </Text>
         <Flex height="20px" alignItems="center">
-          {totalCakeInVault && totalCakeInVault.gte(0) ? (
+          {totalXaloInVault && totalXaloInVault.gte(0) ? (
             <Balance fontSize="16px" value={totalStakedBalance} decimals={0} unit={` ${stakingToken.symbol}`} />
           ) : (
             <Skeleton width="80px" height="16px" />

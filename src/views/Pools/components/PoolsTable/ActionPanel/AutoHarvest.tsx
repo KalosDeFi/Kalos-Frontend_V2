@@ -1,15 +1,15 @@
 import { Text, Flex, Skeleton, Heading, Box, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import { useTranslation } from 'contexts/Localization'
 import { BalanceWithLoading } from 'components/Balance'
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { DeserializedPool, VaultKey, DeserializedLockedCakeVault } from 'state/types'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault } from 'state/types'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import { useVaultApy } from 'hooks/useVaultApy'
 
 import { ActionContainer, ActionTitles, ActionContent, RowActionContainer } from './styles'
-import UnstakingFeeCountdownRow from '../../CakeVaultCard/UnstakingFeeCountdownRow'
+import UnstakingFeeCountdownRow from '../../XaloVaultCard/UnstakingFeeCountdownRow'
 import useUserDataInVaultPresenter from '../../LockedPool/hooks/useUserDataInVaultPresenter'
 
 const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
@@ -23,27 +23,27 @@ const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
 
   const vaultData = useVaultPoolByKey(vaultKey)
   const {
-    userData: { userShares, cakeAtLastUserAction },
+    userData: { userShares, xaloAtLastUserAction },
     pricePerFullShare,
   } = vaultData
-  const { hasAutoEarnings, autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  const { hasAutoEarnings, autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
     account,
-    cakeAtLastUserAction,
+    xaloAtLastUserAction,
     userShares,
     pricePerFullShare,
     earningTokenPrice,
-    vaultKey === VaultKey.CakeVault
-      ? (vaultData as DeserializedLockedCakeVault).userData.currentPerformanceFee
-          .plus((vaultData as DeserializedLockedCakeVault).userData.currentOverdueFee)
-          .plus((vaultData as DeserializedLockedCakeVault).userData.userBoostedShare)
+    vaultKey === VaultKey.XaloVault
+      ? (vaultData as DeserializedLockedXaloVault).userData.currentPerformanceFee
+          .plus((vaultData as DeserializedLockedXaloVault).userData.currentOverdueFee)
+          .plus((vaultData as DeserializedLockedXaloVault).userData.userBoostedShare)
       : null,
   )
 
   const { secondDuration, weekDuration } = useUserDataInVaultPresenter({
     lockStartTime:
-      vaultKey === VaultKey.CakeVault ? (vaultData as DeserializedLockedCakeVault).userData?.lockStartTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockStartTime ?? '0' : '0',
     lockEndTime:
-      vaultKey === VaultKey.CakeVault ? (vaultData as DeserializedLockedCakeVault).userData?.lockEndTime ?? '0' : '0',
+      vaultKey === VaultKey.XaloVault ? (vaultData as DeserializedLockedXaloVault).userData?.lockEndTime ?? '0' : '0',
   })
 
   const { boostFactor } = useVaultApy({ duration: secondDuration })
@@ -87,7 +87,7 @@ const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
             <>
               {hasAutoEarnings ? (
                 <>
-                  <BalanceWithLoading lineHeight="1" bold fontSize="20px" decimals={5} value={autoCakeToDisplay} />
+                  <BalanceWithLoading lineHeight="1" bold fontSize="20px" decimals={5} value={autoXaloToDisplay} />
                   {Number.isFinite(earningTokenPrice) && earningTokenPrice > 0 && (
                     <BalanceWithLoading
                       display="inline"
@@ -118,7 +118,7 @@ const AutoHarvestAction: React.FunctionComponent<DeserializedPool> = ({
           </Flex>
         </ActionContent>
       </Box>
-      {!isMobile && vaultKey === VaultKey.CakeVault && (vaultData as DeserializedLockedCakeVault).userData.locked && (
+      {!isMobile && vaultKey === VaultKey.XaloVault && (vaultData as DeserializedLockedXaloVault).userData.locked && (
         <Box minWidth="123px">
           <ActionTitles>
             <Text fontSize="12px" bold color="secondary" as="span" textTransform="uppercase">

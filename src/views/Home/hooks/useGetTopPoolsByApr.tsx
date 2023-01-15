@@ -3,7 +3,7 @@ import { useAppDispatch } from 'state'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { DeserializedPool, VaultKey } from 'state/types'
-import { fetchCakeVaultFees, fetchPoolsPublicDataAsync, fetchCakeVaultPublicData } from 'state/pools'
+import { fetchXaloVaultFees, fetchPoolsPublicDataAsync, fetchXaloVaultPublicData } from 'state/pools'
 import { usePoolsWithVault } from 'state/pools/hooks'
 import { useInitialBlock } from 'state/block/hooks'
 import { FetchStatus } from 'config/constants/types'
@@ -24,8 +24,8 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
       try {
         // It should all be blocking calls since data only fetched once
         await Promise.all([
-          dispatch(fetchCakeVaultFees()),
-          dispatch(fetchCakeVaultPublicData()),
+          dispatch(fetchXaloVaultFees()),
+          dispatch(fetchXaloVaultPublicData()),
           dispatch(fetchPoolsPublicDataAsync(initialBlock)),
         ])
         setFetchStatus(FetchStatus.Fetched)
@@ -41,8 +41,8 @@ const useGetTopPoolsByApr = (isIntersecting: boolean) => {
   }, [dispatch, setFetchStatus, fetchStatus, topPools, isIntersecting, initialBlock])
 
   useEffect(() => {
-    const [cakePools, otherPools] = partition(pools, (pool) => pool.sousId === 0)
-    const masterCakePool = cakePools.filter((cakePool) => cakePool.vaultKey === VaultKey.CakeVault)
+    const [xaloPools, otherPools] = partition(pools, (pool) => pool.sousId === 0)
+    const masterCakePool = xaloPools.filter((xaloPool) => xaloPool.vaultKey === VaultKey.XaloVault)
     const getTopPoolsByApr = (activePools: DeserializedPool[]) => {
       const sortedByApr = orderBy(activePools, (pool: DeserializedPool) => pool.apr || 0, 'desc')
       setTopPools([...masterCakePool, ...sortedByApr.slice(0, 4)])

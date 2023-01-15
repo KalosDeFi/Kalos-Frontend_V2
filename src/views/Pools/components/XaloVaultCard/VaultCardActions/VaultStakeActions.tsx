@@ -39,7 +39,7 @@ const VaultStakeActions: React.FC<VaultStakeActionsProps> = ({
     ) : (
       <VaultStakeButtonGroup
         onFlexibleClick={stakingTokenBalance.gt(0) ? onPresentStake : onPresentTokenRequired}
-        onLockedClick={pool.vaultKey === VaultKey.CakeVault ? openPresentLockedStakeModal : null}
+        onLockedClick={pool.vaultKey === VaultKey.XaloVault ? openPresentLockedStakeModal : null}
       />
     )
   }

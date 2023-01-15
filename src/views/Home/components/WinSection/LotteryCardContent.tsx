@@ -39,8 +39,8 @@ const LotteryCardContent = () => {
 
   const cakePrizesText = t('%cakePrizeInUsd% in CAKE prizes this round', { cakePrizeInUsd: xaloPriceBusd.toString() })
   const [pretext, prizesThisRound] = cakePrizesText.split(xaloPriceBusd.toString())
-  const amountCollectedInCake = currentLottery ? parseFloat(currentLottery.amountCollectedInCake) : null
-  const currentLotteryPrize = amountCollectedInCake ? xaloPriceBusd.times(amountCollectedInCake) : null
+  const amountCollectedInXalo = currentLottery ? parseFloat(currentLottery.amountCollectedInXalo) : null
+  const currentLotteryPrize = amountCollectedInXalo ? xaloPriceBusd.times(amountCollectedInXalo) : null
 
   useEffect(() => {
     if (isIntersecting) {

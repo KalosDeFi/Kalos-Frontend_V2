@@ -20,7 +20,7 @@ import {
   getClaimRefundAddress,
   getTradingCompetitionAddressEaster,
   getEasterNftAddress,
-  getCakeVaultAddress,
+  getXaloVaultAddress,
   getMulticallAddress,
   getBunnySpecialCakeVaultAddress,
   getBunnySpecialPredictionAddress,
@@ -37,7 +37,7 @@ import {
   getICakeAddress,
   getGalaxyNFTClaimingAddress,
   getZapAddress,
-  getCakeFlexibleSideVaultAddress,
+  getXaloFlexibleSideVaultAddress,
   getPredictionsV1Address,
 } from 'utils/addressHelpers'
 
@@ -65,8 +65,8 @@ import tradingCompetitionFanTokenAbi from 'config/abi/tradingCompetitionFanToken
 import tradingCompetitionMoboxAbi from 'config/abi/tradingCompetitionMobox.json'
 import tradingCompetitionMoDAbi from 'config/abi/tradingCompetitionMoD.json'
 import easterNftAbi from 'config/abi/easterNft.json'
-import cakeVaultV2Abi from 'config/abi/cakeVaultV2.json'
-import cakeFlexibleSideVaultV2Abi from 'config/abi/cakeFlexibleSideVaultV2.json'
+import xaloVaultV2Abi from 'config/abi/xaloVaultV2.json'
+import cakeFlexibleSideVaultV2Abi from 'config/abi/xaloFlexibleSideVaultV2.json'
 import predictionsAbi from 'config/abi/predictions.json'
 import predictionsV1Abi from 'config/abi/predictionsV1.json'
 import chainlinkOracleAbi from 'config/abi/chainlinkOracle.json'
@@ -122,8 +122,8 @@ import type {
   PancakeSquad,
   Erc721collection,
   PointCenterIfo,
-  CakeVaultV2,
-  CakeFlexibleSideVaultV2,
+  XaloVaultV2,
+  XaloFlexibleSideVaultV2,
   TradingCompetitionMobox,
   ICake,
   TradingCompetitionMoD,
@@ -220,12 +220,12 @@ export const getTradingCompetitionContractMoD = (signer?: Signer | Provider) => 
 export const getEasterNftContract = (signer?: Signer | Provider) => {
   return getContract(easterNftAbi, getEasterNftAddress(), signer) as EasterNft
 }
-export const getCakeVaultV2Contract = (signer?: Signer | Provider) => {
-  return getContract(cakeVaultV2Abi, getCakeVaultAddress(), signer) as CakeVaultV2
+export const getXaloVaultV2Contract = (signer?: Signer | Provider) => {
+  return getContract(xaloVaultV2Abi, getXaloVaultAddress(), signer) as XaloVaultV2
 }
 
-export const getCakeFlexibleSideVaultV2Contract = (signer?: Signer | Provider) => {
-  return getContract(cakeFlexibleSideVaultV2Abi, getCakeFlexibleSideVaultAddress(), signer) as CakeFlexibleSideVaultV2
+export const getXaloFlexibleSideVaultV2Contract = (signer?: Signer | Provider) => {
+  return getContract(cakeFlexibleSideVaultV2Abi, getXaloFlexibleSideVaultAddress(), signer) as XaloFlexibleSideVaultV2
 }
 
 export const getPredictionsContract = (address: string, signer?: Signer | Provider) => {

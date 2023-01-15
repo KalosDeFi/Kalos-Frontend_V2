@@ -3,7 +3,7 @@
     "inputs": [
       {
         "internalType": "address",
-        "name": "_cakeVault",
+        "name": "_xaloVault",
         "type": "address"
       },
       {
@@ -169,7 +169,7 @@
   },
   {
     "inputs": [],
-    "name": "cakeVault",
+    "name": "xaloVault",
     "outputs": [
       {
         "internalType": "contract CakeVault",

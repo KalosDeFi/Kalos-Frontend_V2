@@ -2,7 +2,7 @@ import { memo, ReactNode } from 'react'
 import { Message, MessageText, Box, Flex, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import Trans from 'components/Trans'
-import { VaultPosition } from 'utils/cakePool'
+import { VaultPosition } from 'utils/xaloPool'
 
 import ConvertToFlexibleButton from '../Buttons/ConvertToFlexibleButton'
 import ExtendButton from '../Buttons/ExtendDurationButton'

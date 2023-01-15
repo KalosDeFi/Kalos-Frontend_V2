@@ -9,7 +9,7 @@ import Balance from 'components/Balance'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToXalo } from 'views/Pools/helpers'
 import UnstakeButton from '../UnstakeButton'
 
 const Container = styled(ActionContainer)`
@@ -36,20 +36,20 @@ const Staked: React.FC<StackedActionProps> = ({ pool }) => {
   const { pricePerFullShare } = vaultPoolData
   const { userShares } = vaultPoolData.userData
 
-  let cakeAsBigNumber = new BigNumber(0)
-  let cakeAsNumberBalance = 0
+  let xaloAsBigNumber = new BigNumber(0)
+  let xaloAsNumberBalance = 0
   if (pricePerFullShare) {
-    const { cakeAsBigNumber: cakeBigBumber, cakeAsNumberBalance: xaloBalance } = convertSharesToCake(
+    const { xaloAsBigNumber: cakeBigBumber, xaloAsNumberBalance: xaloBalance } = convertSharesToXalo(
       userShares,
       pricePerFullShare,
     )
-    cakeAsBigNumber = cakeBigBumber
-    cakeAsNumberBalance = xaloBalance
+    xaloAsBigNumber = cakeBigBumber
+    xaloAsNumberBalance = xaloBalance
   }
 
-  const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
+  const stakedAutoDollarValue = getBalanceNumber(xaloAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
 
-  const balance = vaultKey ? (Number.isNaN(cakeAsNumberBalance) ? 0 : cakeAsNumberBalance) : stakedTokenBalance
+  const balance = vaultKey ? (Number.isNaN(xaloAsNumberBalance) ? 0 : xaloAsNumberBalance) : stakedTokenBalance
   const isBalanceZero = balance === 0
 
   return (

@@ -60,14 +60,14 @@ const NextDrawCard = () => {
   } = useTranslation()
   const { account } = useWeb3React()
   const { currentLotteryId, isTransitioning, currentRound } = useLottery()
-  const { endTime, amountCollectedInCake, userTickets, status } = currentRound
+  const { endTime, amountCollectedInXalo, userTickets, status } = currentRound
 
   const [onPresentViewTicketsModal] = useModal(<ViewTicketsModal roundId={currentLotteryId} roundStatus={status} />)
   const [isExpanded, setIsExpanded] = useState(false)
   const ticketBuyIsDisabled = status !== LotteryStatus.OPEN || isTransitioning
 
   const xaloPriceBusd = usePriceCakeBusd()
-  const prizeInBusd = amountCollectedInCake.times(xaloPriceBusd)
+  const prizeInBusd = amountCollectedInXalo.times(xaloPriceBusd)
   const endTimeMs = parseInt(endTime, 10) * 1000
   const endDate = new Date(endTimeMs)
   const isLotteryOpen = status === LotteryStatus.OPEN
@@ -105,7 +105,7 @@ const NextDrawCard = () => {
             color="textSubtle"
             textAlign={['center', null, null, 'left']}
             unit=" CAKE"
-            value={getBalanceNumber(amountCollectedInCake)}
+            value={getBalanceNumber(amountCollectedInXalo)}
             decimals={0}
           />
         )}

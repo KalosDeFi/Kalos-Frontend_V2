@@ -26,12 +26,12 @@ const MigrationPage: React.FC = () => {
     {
       stepId: ProgressStepsType.STEP1,
       canHover: true,
-      text: t('Unstake LP tokens and CAKE from the old MasterChef contract.'),
+      text: t('Unstake LP tokens and XALO from the old MasterChef contract.'),
     },
     {
       stepId: ProgressStepsType.STEP2,
       canHover: true,
-      text: t('Stake LP tokens and CAKE to the new MasterChef v2 contract.'),
+      text: t('Stake LP tokens and XALO to the new MasterChef v2 contract.'),
     },
   ]
 
@@ -40,15 +40,15 @@ const MigrationPage: React.FC = () => {
 
   // v1 Pools
   useFetchPublicPoolsData()
-  const { data: cakePool, userDataLoaded } = useFetchUserPools(account)
+  const { data: xaloPool, userDataLoaded } = useFetchUserPools(account)
 
   const v1Pools = useMemo(() => {
-    const ifoPoolVault = { ...cakePool, vaultKey: VaultKey.IfoPool }
-    const cakeAutoVault = { ...cakePool, vaultKey: VaultKey.CakeVaultV1 }
+    const ifoPoolVault = { ...xaloPool, vaultKey: VaultKey.IfoPool }
+    const xaloAutoVault = { ...xaloPool, vaultKey: VaultKey.XaloVaultV1 }
 
-    return [ifoPoolVault, cakeAutoVault, cakePool]
+    return [ifoPoolVault, xaloAutoVault, xaloPool]
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cakePool])
+  }, [xaloPool])
 
   const scrollToTop = (): void => {
     window.scrollTo({

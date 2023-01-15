@@ -1,28 +1,28 @@
 import BigNumber from 'bignumber.js'
 import { SerializedLockedVaultUser, SerializedVaultUser } from 'state/types'
-import { getCakeVaultAddress } from 'utils/addressHelpers'
-import cakeVaultAbi from 'config/abi/cakeVaultV2.json'
+import { getXaloVaultAddress } from 'utils/addressHelpers'
+import xaloVaultAbi from 'config/abi/xaloVaultV2.json'
 import { multicallv2 } from 'utils/multicall'
-import { getCakeFlexibleSideVaultV2Contract } from '../../utils/contractHelpers'
+import { getXaloFlexibleSideVaultV2Contract } from '../../utils/contractHelpers'
 
-const cakeVaultAddress = getCakeVaultAddress()
-const flexibleSideVaultContract = getCakeFlexibleSideVaultV2Contract()
+const xaloVaultAddress = getXaloVaultAddress()
+const flexibleSideVaultContract = getXaloFlexibleSideVaultV2Contract()
 
 export const fetchVaultUser = async (account: string): Promise<SerializedLockedVaultUser> => {
   try {
     const calls = ['userInfo', 'calculatePerformanceFee', 'calculateOverdueFee'].map((method) => ({
-      address: cakeVaultAddress,
+      address: xaloVaultAddress,
       name: method,
       params: [account],
     }))
 
-    const [userContractResponse, [currentPerformanceFee], [currentOverdueFee]] = await multicallv2(cakeVaultAbi, calls)
+    const [userContractResponse, [currentPerformanceFee], [currentOverdueFee]] = await multicallv2(xaloVaultAbi, calls)
     return {
       isLoading: false,
       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
       lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
       lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
-      cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
+      xaloAtLastUserAction: new BigNumber(userContractResponse.xaloAtLastUserAction.toString()).toJSON(),
       userBoostedShare: new BigNumber(userContractResponse.userBoostedShare.toString()).toJSON(),
       locked: userContractResponse.locked,
       lockEndTime: userContractResponse.lockEndTime.toString(),
@@ -37,7 +37,7 @@ export const fetchVaultUser = async (account: string): Promise<SerializedLockedV
       userShares: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
-      cakeAtLastUserAction: null,
+      xaloAtLastUserAction: null,
       userBoostedShare: null,
       lockEndTime: null,
       lockStartTime: null,
@@ -57,7 +57,7 @@ export const fetchFlexibleSideVaultUser = async (account: string): Promise<Seria
       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
       lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
       lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
-      cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
+      xaloAtLastUserAction: new BigNumber(userContractResponse.xaloAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
     return {
@@ -65,7 +65,7 @@ export const fetchFlexibleSideVaultUser = async (account: string): Promise<Seria
       userShares: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
-      cakeAtLastUserAction: null,
+      xaloAtLastUserAction: null,
     }
   }
 }

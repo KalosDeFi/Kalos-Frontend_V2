@@ -4,21 +4,21 @@ import { useTranslation } from 'contexts/Localization'
 import { usePriceCakeBusd } from 'state/farms/hooks'
 import { useVaultPoolByKey } from 'state/pools/hooks'
 import { DeserializedPool, VaultKey, DeserializedLockedVaultUser } from 'state/types'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
-import RecentCakeProfitBalance from './RecentCakeProfitBalance'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
+import RecentXaloProfitBalance from './RecentXaloProfitBalance'
 
-const RecentCakeProfitCountdownRow = ({ pool }: { pool: DeserializedPool }) => {
+const RecentXaloProfitCountdownRow = ({ pool }: { pool: DeserializedPool }) => {
   const { t } = useTranslation()
   const { account } = useWeb3React()
   const { pricePerFullShare, userData } = useVaultPoolByKey(pool.vaultKey)
   const xaloPriceBusd = usePriceCakeBusd()
-  const { hasAutoEarnings, autoCakeToDisplay } = getCakeVaultEarnings(
+  const { hasAutoEarnings, autoXaloToDisplay } = getXaloVaultEarnings(
     account,
-    userData.cakeAtLastUserAction,
+    userData.xaloAtLastUserAction,
     userData.userShares,
     pricePerFullShare,
     xaloPriceBusd.toNumber(),
-    pool.vaultKey === VaultKey.CakeVault
+    pool.vaultKey === VaultKey.XaloVault
       ? (userData as DeserializedLockedVaultUser).currentPerformanceFee.plus(
           (userData as DeserializedLockedVaultUser).currentOverdueFee,
         )
@@ -32,9 +32,9 @@ const RecentCakeProfitCountdownRow = ({ pool }: { pool: DeserializedPool }) => {
   return (
     <Flex alignItems="center" justifyContent="space-between">
       <Text fontSize="14px">{`${t('Recent XALO profit')}:`}</Text>
-      {hasAutoEarnings && <RecentCakeProfitBalance cakeToDisplay={autoCakeToDisplay} pool={pool} account={account} />}
+      {hasAutoEarnings && <RecentXaloProfitBalance cakeToDisplay={autoXaloToDisplay} pool={pool} account={account} />}
     </Flex>
   )
 }
 
-export default RecentCakeProfitCountdownRow
+export default RecentXaloProfitCountdownRow

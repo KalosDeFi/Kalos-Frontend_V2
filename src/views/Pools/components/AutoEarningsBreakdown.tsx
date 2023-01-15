@@ -3,7 +3,7 @@ import { useTranslation } from 'contexts/Localization'
 import { differenceInHours } from 'date-fns'
 import { useVaultPoolByKey } from 'state/pools/hooks'
 import { DeserializedPool, VaultKey, DeserializedLockedVaultUser } from 'state/types'
-import { getCakeVaultEarnings } from '../helpers'
+import { getXaloVaultEarnings } from '../helpers'
 
 interface AutoEarningsBreakdownProps {
   pool: DeserializedPool
@@ -15,13 +15,13 @@ const AutoEarningsBreakdown: React.FC<AutoEarningsBreakdownProps> = ({ pool, acc
 
   const { earningTokenPrice } = pool
   const { pricePerFullShare, userData } = useVaultPoolByKey(pool.vaultKey)
-  const { autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+  const { autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
     account,
-    userData.cakeAtLastUserAction,
+    userData.xaloAtLastUserAction,
     userData.userShares,
     pricePerFullShare,
     earningTokenPrice,
-    pool.vaultKey === VaultKey.CakeVault
+    pool.vaultKey === VaultKey.XaloVault
       ? (userData as DeserializedLockedVaultUser).currentPerformanceFee
           .plus((userData as DeserializedLockedVaultUser).currentOverdueFee)
           .plus((userData as DeserializedLockedVaultUser).userBoostedShare)
@@ -30,14 +30,14 @@ const AutoEarningsBreakdown: React.FC<AutoEarningsBreakdownProps> = ({ pool, acc
 
   const lastActionInMs = userData.lastUserActionTime ? parseInt(userData.lastUserActionTime) * 1000 : 0
   const hourDiffSinceLastAction = differenceInHours(Date.now(), lastActionInMs)
-  const earnedCakePerHour = hourDiffSinceLastAction ? autoCakeToDisplay / hourDiffSinceLastAction : 0
+  const earnedXaloPerHour = hourDiffSinceLastAction ? autoXaloToDisplay / hourDiffSinceLastAction : 0
   const earnedUsdPerHour = hourDiffSinceLastAction ? autoUsdToDisplay / hourDiffSinceLastAction : 0
 
   return (
     <>
       <Text bold>
-        {autoCakeToDisplay.toFixed(3)}
-        {' CAKE'}
+        {autoXaloToDisplay.toFixed(3)}
+        {' XALO'}
       </Text>
       <Text bold>~${autoUsdToDisplay.toFixed(2)}</Text>
       <Text>{t('Earned since your last action')}:</Text>
@@ -45,7 +45,7 @@ const AutoEarningsBreakdown: React.FC<AutoEarningsBreakdownProps> = ({ pool, acc
       {hourDiffSinceLastAction ? (
         <>
           <Text>{t('Your average per hour')}:</Text>
-          <Text bold>{t('CAKE per hour: %amount%', { amount: earnedCakePerHour.toFixed(2) })}</Text>
+          <Text bold>{t('XALO per hour: %amount%', { amount: earnedXaloPerHour.toFixed(2) })}</Text>
           <Text bold>{t('per hour: ~$%amount%', { amount: earnedUsdPerHour.toFixed(2) })}</Text>
         </>
       ) : null}

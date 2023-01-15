@@ -3,13 +3,13 @@ import { DeserializedPool } from 'state/types'
 import Balance from 'components/Balance'
 import AutoEarningsBreakdown from '../AutoEarningsBreakdown'
 
-interface RecentCakeProfitBalanceProps {
+interface RecentXaloProfitBalanceProps {
   cakeToDisplay: number
   pool: DeserializedPool
   account: string
 }
 
-const RecentCakeProfitBalance: React.FC<RecentCakeProfitBalanceProps> = ({ cakeToDisplay, pool, account }) => {
+const RecentXaloProfitBalance: React.FC<RecentXaloProfitBalanceProps> = ({ cakeToDisplay, pool, account }) => {
   const { targetRef, tooltip, tooltipVisible } = useTooltip(<AutoEarningsBreakdown pool={pool} account={account} />, {
     placement: 'bottom-end',
   })
@@ -24,4 +24,4 @@ const RecentCakeProfitBalance: React.FC<RecentCakeProfitBalanceProps> = ({ cakeT
   )
 }
 
-export default RecentCakeProfitBalance
+export default RecentXaloProfitBalance

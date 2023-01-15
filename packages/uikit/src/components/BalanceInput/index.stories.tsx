@@ -58,40 +58,40 @@ export const Default: React.FC = () => {
 };
 
 export const UnitDisplay: React.FC = () => {
-  const CAKE_PRICE = 69;
-  const [cakeValue, setCakeValue] = useState("1006.086956");
+  const XALO_PRICE = 69;
+  const [xaloValue, setXaloValue] = useState("1006.086956");
 
-  const cakeToUSD = (input: string) => {
-    const convertedToUSD = parseFloat(input) * CAKE_PRICE;
+  const xaloToUSD = (input: string) => {
+    const convertedToUSD = parseFloat(input) * XALO_PRICE;
     return `~${convertedToUSD.toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2,
     })} USD`;
   };
 
-  const handleCakeChange = (input: string) => {
-    setCakeValue(input);
+  const handleXaloChange = (input: string) => {
+    setXaloValue(input);
   };
 
   return (
     <>
       <Box width="300px" mb="24px">
         <BalanceInput
-          onUserInput={handleCakeChange}
-          value={cakeValue}
-          currencyValue={cakeToUSD(cakeValue)}
+          onUserInput={handleXaloChange}
+          value={xaloValue}
+          currencyValue={xaloToUSD(xaloValue)}
           placeholder="0.0"
-          unit="CAKE"
+          unit="XALO"
         />
       </Box>
       {/* Long token names with spaces */}
       <Box width="300px">
         <BalanceInput
-          onUserInput={handleCakeChange}
-          value={cakeValue}
+          onUserInput={handleXaloChange}
+          value={xaloValue}
           currencyValue="2854.66 BADGER-HOTCROSS LP"
           placeholder="0.0"
-          unit="CAKE-BNB LP"
+          unit="XALO-BNB LP"
         />
       </Box>
     </>
@@ -99,12 +99,12 @@ export const UnitDisplay: React.FC = () => {
 };
 
 export const SiwtchUnits: React.FC = () => {
-  const CAKE_PRICE = 69;
-  const [editingUnit, setEditingUnit] = useState<"CAKE" | "USD">("CAKE");
-  const conversionUnit = editingUnit === "CAKE" ? "USD" : "CAKE";
+  const XALO_PRICE = 69;
+  const [editingUnit, setEditingUnit] = useState<"XALO" | "USD">("XALO");
+  const conversionUnit = editingUnit === "XALO" ? "USD" : "XALO";
   const [values, setValues] = useState({
-    CAKE: "1006.086957",
-    USD: `${1006.086957 * CAKE_PRICE}`,
+    XALO: "1006.086957",
+    USD: `${1006.086957 * XALO_PRICE}`,
   });
 
   const currencyValue = !Number.isNaN(parseFloat(values[conversionUnit]))
@@ -115,7 +115,7 @@ export const SiwtchUnits: React.FC = () => {
     : "0.00";
 
   const switchEditingUnits = () => {
-    const editingUnitAfterChange = editingUnit === "CAKE" ? "USD" : "CAKE";
+    const editingUnitAfterChange = editingUnit === "XALO" ? "USD" : "XALO";
     // This is needed to persist same value as shown for currencyValue after switching
     // otherwise user will see lots of decimals
     const valuesAfterChange = { ...values };
@@ -126,16 +126,16 @@ export const SiwtchUnits: React.FC = () => {
     setEditingUnit(editingUnitAfterChange);
   };
 
-  const handleCakeChange = (input: string) => {
+  const handleXaloChange = (input: string) => {
     const inputAsFloat = parseFloat(input);
-    if (editingUnit === "CAKE") {
+    if (editingUnit === "XALO") {
       setValues({
-        CAKE: input,
-        USD: Number.isNaN(inputAsFloat) ? "" : `${inputAsFloat * CAKE_PRICE}`,
+        XALO: input,
+        USD: Number.isNaN(inputAsFloat) ? "" : `${inputAsFloat * XALO_PRICE}`,
       });
     } else {
       setValues({
-        CAKE: Number.isNaN(inputAsFloat) ? "" : `${inputAsFloat / CAKE_PRICE}`,
+        XALO: Number.isNaN(inputAsFloat) ? "" : `${inputAsFloat / XALO_PRICE}`,
         USD: input,
       });
     }
@@ -144,7 +144,7 @@ export const SiwtchUnits: React.FC = () => {
   return (
     <Box width="300px">
       <BalanceInput
-        onUserInput={handleCakeChange}
+        onUserInput={handleXaloChange}
         value={values[editingUnit]}
         currencyValue={`~${currencyValue} ${conversionUnit}`}
         placeholder="0.0"

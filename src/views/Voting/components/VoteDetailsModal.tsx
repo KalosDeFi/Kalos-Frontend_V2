@@ -16,8 +16,8 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
     isLoading,
     total,
     xaloBalance,
-    cakeVaultBalance,
-    cakePoolBalance,
+    xaloVaultBalance,
+    xaloPoolBalance,
     poolsBalance,
     cakeBnbLpBalance,
     ifoPoolBalance,
@@ -41,8 +41,8 @@ const VoteDetailsModal: React.FC<VoteDetailsModalProps> = ({ block, onDismiss })
             <DetailsView
               total={total}
               xaloBalance={xaloBalance}
-              cakeVaultBalance={cakeVaultBalance}
-              xaloPoolBalance={cakePoolBalance}
+              xaloVaultBalance={xaloVaultBalance}
+              xaloPoolBalance={xaloPoolBalance}
               poolsBalance={poolsBalance}
               ifoPoolBalance={ifoPoolBalance}
               cakeBnbLpBalance={cakeBnbLpBalance}

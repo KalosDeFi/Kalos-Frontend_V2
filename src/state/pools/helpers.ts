@@ -3,14 +3,14 @@ import {
   SerializedFarm,
   DeserializedPool,
   SerializedPool,
-  SerializedCakeVault,
-  DeserializedCakeVault,
-  SerializedLockedCakeVault,
+  SerializedXaloVault,
+  DeserializedXaloVault,
+  SerializedLockedXaloVault,
   VaultKey,
 } from 'state/types'
 import { deserializeToken } from 'state/user/hooks/helpers'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToXalo } from 'views/Pools/helpers'
 
 type UserData =
   | DeserializedPool['userData']
@@ -67,7 +67,7 @@ export const transformPool = (pool: SerializedPool): DeserializedPool => {
   }
 }
 
-export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): DeserializedCakeVault => {
+export const transformVault = (vaultKey: VaultKey, vault: SerializedXaloVault): DeserializedXaloVault => {
   const {
     totalShares: totalSharesAsString,
     pricePerFullShare: pricePerFullShareAsString,
@@ -75,7 +75,7 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
     userData: {
       isLoading,
       userShares: userSharesAsString,
-      cakeAtLastUserAction: cakeAtLastUserActionAsString,
+      xaloAtLastUserAction: xaloAtLastUserActionAsString,
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -84,12 +84,12 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
   const totalShares = totalSharesAsString ? new BigNumber(totalSharesAsString) : BIG_ZERO
   const pricePerFullShare = pricePerFullShareAsString ? new BigNumber(pricePerFullShareAsString) : BIG_ZERO
   const userShares = new BigNumber(userSharesAsString)
-  const cakeAtLastUserAction = new BigNumber(cakeAtLastUserActionAsString)
+  const xaloAtLastUserAction = new BigNumber(xaloAtLastUserActionAsString)
   let userDataExtra
   let publicDataExtra
-  if (vaultKey === VaultKey.CakeVault) {
+  if (vaultKey === VaultKey.XaloVault) {
     const {
-      totalCakeInVault: totalCakeInVaultAsString,
+      totalXaloInVault: totalXaloInVaultAsString,
       totalLockedAmount: totalLockedAmountAsString,
       userData: {
         userBoostedShare: userBoostedShareAsString,
@@ -100,9 +100,9 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
         currentOverdueFee: currentOverdueFeeAsString,
         currentPerformanceFee: currentPerformanceFeeAsString,
       },
-    } = vault as SerializedLockedCakeVault
+    } = vault as SerializedLockedXaloVault
 
-    const totalCakeInVault = new BigNumber(totalCakeInVaultAsString)
+    const totalXaloInVault = new BigNumber(totalXaloInVaultAsString)
     const totalLockedAmount = new BigNumber(totalLockedAmountAsString)
     const lockedAmount = new BigNumber(lockedAmountAsString)
     const userBoostedShare = new BigNumber(userBoostedShareAsString)
@@ -111,7 +111,7 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
       ? new BigNumber(currentPerformanceFeeAsString)
       : BIG_ZERO
 
-    const balance = convertSharesToCake(
+    const balance = convertSharesToXalo(
       userShares,
       pricePerFullShare,
       undefined,
@@ -128,12 +128,12 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
       currentPerformanceFee,
       balance,
     }
-    publicDataExtra = { totalLockedAmount, totalCakeInVault }
+    publicDataExtra = { totalLockedAmount, totalXaloInVault }
   } else {
-    const balance = convertSharesToCake(userShares, pricePerFullShare)
-    const { cakeAsBigNumber } = convertSharesToCake(totalShares, pricePerFullShare)
+    const balance = convertSharesToXalo(userShares, pricePerFullShare)
+    const { xaloAsBigNumber } = convertSharesToXalo(totalShares, pricePerFullShare)
     userDataExtra = { balance }
-    publicDataExtra = { totalCakeInVault: cakeAsBigNumber }
+    publicDataExtra = { totalXaloInVault: xaloAsBigNumber }
   }
 
   const performanceFeeAsDecimal = performanceFee && performanceFee / 100
@@ -146,7 +146,7 @@ export const transformVault = (vaultKey: VaultKey, vault: SerializedCakeVault): 
     userData: {
       isLoading,
       userShares,
-      cakeAtLastUserAction,
+      xaloAtLastUserAction,
       lastDepositedTime,
       lastUserActionTime,
       ...userDataExtra,

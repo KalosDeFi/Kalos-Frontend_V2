@@ -29,7 +29,7 @@ import BigNumber from 'bignumber.js'
 import { getFullDisplayBalance, formatNumber, getDecimalAmount } from 'utils/formatBalance'
 import useToast from 'hooks/useToast'
 import useCatchTxError from 'hooks/useCatchTxError'
-import { fetchCakeVaultUserData } from 'state/pools'
+import { fetchXaloVaultUserData } from 'state/pools'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { getInterestBreakdown } from 'utils/compoundApyHelpers'
 import { ToastDescriptionWithTx } from 'components/Toast'
@@ -84,7 +84,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     userData: {
       lastDepositedTime,
       userShares,
-      balance: { cakeAsBigNumber, cakeAsNumberBalance },
+      balance: { xaloAsBigNumber, xaloAsNumberBalance },
     },
   } = useVaultPoolByKey(pool.vaultKey)
   const { t } = useTranslation()
@@ -160,7 +160,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         </ToastDescriptionWithTx>,
       )
       onDismiss?.()
-      dispatch(fetchCakeVaultUserData({ account }))
+      dispatch(fetchXaloVaultUserData({ account }))
     }
   }
 
@@ -168,7 +168,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
     const receipt = await fetchWithCatchTxError(() => {
       // .toString() being called to fix a BigNumber error in prod
       // as suggested here https://github.com/ChainSafe/web3.js/issues/2077
-      const extraArgs = pool.vaultKey === VaultKey.CakeVault ? [lockDuration.toString()] : []
+      const extraArgs = pool.vaultKey === VaultKey.XaloVault ? [lockDuration.toString()] : []
       const methodArgs = [convertedStakeAmount.toString(), ...extraArgs]
       return callWithGasPrice(vaultPoolContract, 'deposit', methodArgs, callOptions)
     })
@@ -181,7 +181,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         </ToastDescriptionWithTx>,
       )
       onDismiss?.()
-      dispatch(fetchCakeVaultUserData({ account }))
+      dispatch(fetchXaloVaultUserData({ account }))
     }
   }
 
@@ -201,7 +201,7 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
         pool={pool}
         linkLabel={t('Get %symbol%', { symbol: stakingToken.symbol })}
         linkHref={getTokenLink}
-        stakingTokenBalance={cakeAsBigNumber.plus(stakingMax)}
+        stakingTokenBalance={xaloAsBigNumber.plus(stakingMax)}
         onBack={() => setShowRoiCalculator(false)}
         initialValue={stakeAmount}
         performanceFee={performanceFee}
@@ -281,9 +281,9 @@ const VaultStakeModal: React.FC<VaultStakeModalProps> = ({
           )}
         </Flex>
       )}
-      {pool.vaultKey === VaultKey.CakeVault && cakeAsNumberBalance ? (
+      {pool.vaultKey === VaultKey.XaloVault && xaloAsNumberBalance ? (
         <Box mt="8px" maxWidth="370px">
-          <ConvertToLock stakingToken={stakingToken} currentStakedAmount={cakeAsNumberBalance} />
+          <ConvertToLock stakingToken={stakingToken} currentStakedAmount={xaloAsNumberBalance} />
         </Box>
       ) : null}
       <Button

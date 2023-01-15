@@ -4,7 +4,7 @@ import useDelayedUnmount from 'hooks/useDelayedUnmount'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import { useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import NameCell from './Cells/NameCell'
 import StakedCell from './Cells/StakedCell'
@@ -55,33 +55,33 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
   const isLargerScreen = isXl || isXxl
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
-  const isCakePool = pool.sousId === 0
+  const isXaloPool = pool.sousId === 0
 
   const { vaultPoolData } = useVaultPoolByKeyV1(pool.vaultKey)
-  const { totalCakeInVault, pricePerFullShare } = vaultPoolData
-  const { cakeAtLastUserAction, userShares } = vaultPoolData.userData
+  const { totalXaloInVault, pricePerFullShare } = vaultPoolData
+  const { xaloAtLastUserAction, userShares } = vaultPoolData.userData
 
   const vaultPools = {
-    [VaultKey.CakeVaultV1]: useVaultPoolByKeyV1(VaultKey.CakeVaultV1).vaultPoolData,
+    [VaultKey.XaloVaultV1]: useVaultPoolByKeyV1(VaultKey.XaloVaultV1).vaultPoolData,
     [VaultKey.IfoPool]: useVaultPoolByKeyV1(VaultKey.IfoPool).vaultPoolData,
   }
-  const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
-    return total.plus(vault.totalCakeInVault)
+  const xaloInVaults = Object.values(vaultPools).reduce((total, vault) => {
+    return total.plus(vault.totalXaloInVault)
   }, BIG_ZERO)
 
   // Auto Earning
   let earningTokenBalance = 0
   if (pricePerFullShare) {
-    const { autoCakeToDisplay } = getCakeVaultEarnings(
+    const { autoXaloToDisplay } = getXaloVaultEarnings(
       account,
-      cakeAtLastUserAction,
+      xaloAtLastUserAction,
       userShares,
       pricePerFullShare,
       pool.earningTokenPrice,
     )
-    earningTokenBalance = autoCakeToDisplay
+    earningTokenBalance = autoXaloToDisplay
   }
-  const hasEarnings = account && cakeAtLastUserAction?.gt(0) && userShares?.gt(0)
+  const hasEarnings = account && xaloAtLastUserAction?.gt(0) && userShares?.gt(0)
 
   const toggleExpanded = () => {
     if (!isLargerScreen) {
@@ -91,7 +91,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
 
   const EarningComponent = () => {
     if (isLargerScreen || !expanded) {
-      return pool.vaultKey === VaultKey.IfoPool || pool.vaultKey === VaultKey.CakeVaultV1 ? (
+      return pool.vaultKey === VaultKey.IfoPool || pool.vaultKey === VaultKey.XaloVaultV1 ? (
         <AutoEarningsCell hasEarnings={hasEarnings} earningTokenBalance={earningTokenBalance} />
       ) : (
         <EarningsCell pool={pool} account={account} />
@@ -107,8 +107,8 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
           <NameCell pool={pool} />
           {isLargerScreen || !expanded ? <StakedCell pool={pool} account={account} /> : null}
           {EarningComponent()}
-          {isLargerScreen && isCakePool && (
-            <TotalStakedCell pool={pool} totalCakeInVault={totalCakeInVault} cakeInVaults={cakeInVaults} />
+          {isLargerScreen && isXaloPool && (
+            <TotalStakedCell pool={pool} totalXaloInVault={totalXaloInVault} xaloInVaults={xaloInVaults} />
           )}
         </LeftContainer>
         <RightContainer>

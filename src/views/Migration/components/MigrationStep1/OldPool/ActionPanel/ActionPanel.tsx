@@ -3,7 +3,7 @@ import styled, { keyframes, css } from 'styled-components'
 import { DeserializedPool, VaultKey } from 'state/types'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getCakeVaultEarnings } from 'views/Pools/helpers'
+import { getXaloVaultEarnings } from 'views/Pools/helpers'
 import Staked from './Stake'
 import AutoEarning from './AutoEarning'
 import Earning from './Earning'
@@ -75,29 +75,29 @@ interface ActionPanelProps {
 
 const ActionPanel: React.FC<ActionPanelProps> = ({ pool, account, expanded }) => {
   const { vaultPoolData } = useVaultPoolByKeyV1(pool.vaultKey)
-  const { totalCakeInVault, pricePerFullShare } = vaultPoolData
-  const { cakeAtLastUserAction, userShares } = vaultPoolData.userData
+  const { totalXaloInVault, pricePerFullShare } = vaultPoolData
+  const { xaloAtLastUserAction, userShares } = vaultPoolData.userData
 
   const vaultPools = {
-    [VaultKey.CakeVaultV1]: useVaultPoolByKeyV1(VaultKey.CakeVaultV1).vaultPoolData,
+    [VaultKey.XaloVaultV1]: useVaultPoolByKeyV1(VaultKey.XaloVaultV1).vaultPoolData,
     [VaultKey.IfoPool]: useVaultPoolByKeyV1(VaultKey.IfoPool).vaultPoolData,
   }
-  const cakeInVaults = Object.values(vaultPools).reduce((total, vault) => {
-    return total.plus(vault.totalCakeInVault)
+  const xaloInVaults = Object.values(vaultPools).reduce((total, vault) => {
+    return total.plus(vault.totalXaloInVault)
   }, BIG_ZERO)
 
   // Auto Earning
   let earningTokenBalance = 0
   let earningTokenDollarBalance = 0
   if (pricePerFullShare) {
-    const { autoCakeToDisplay, autoUsdToDisplay } = getCakeVaultEarnings(
+    const { autoXaloToDisplay, autoUsdToDisplay } = getXaloVaultEarnings(
       account,
-      cakeAtLastUserAction,
+      xaloAtLastUserAction,
       userShares,
       pricePerFullShare,
       pool.earningTokenPrice,
     )
-    earningTokenBalance = autoCakeToDisplay
+    earningTokenBalance = autoXaloToDisplay
     earningTokenDollarBalance = autoUsdToDisplay
   }
 
@@ -115,7 +115,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ pool, account, expanded }) =>
         )}
         <Staked pool={pool} />
       </ActionContainer>
-      <TotalStaked pool={pool} totalCakeInVault={totalCakeInVault} cakeInVaults={cakeInVaults} />
+      <TotalStaked pool={pool} totalXaloInVault={totalXaloInVault} xaloInVaults={xaloInVaults} />
     </StyledActionPanel>
   )
 }

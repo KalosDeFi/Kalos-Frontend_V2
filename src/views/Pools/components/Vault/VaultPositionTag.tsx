@@ -4,7 +4,7 @@ import Trans from 'components/Trans'
 import { useTranslation } from 'contexts/Localization'
 import { FC, ReactNode, useMemo } from 'react'
 import { DeserializedLockedVaultUser } from 'state/types'
-import { VaultPosition, getVaultPosition } from 'utils/cakePool'
+import { VaultPosition, getVaultPosition } from 'utils/xaloPool'
 
 const tagConfig: Record<VaultPosition, TagProps> = {
   [VaultPosition.None]: {},

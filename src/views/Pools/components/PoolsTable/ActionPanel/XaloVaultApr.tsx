@@ -3,17 +3,17 @@ import Balance from 'components/Balance'
 import { useTranslation } from 'contexts/Localization'
 import { DeserializedPool, DeserializedLockedVaultUser, VaultKey, DeserializedVaultUser } from 'state/types'
 import { useVaultApy } from 'hooks/useVaultApy'
-import { VaultPosition } from 'utils/cakePool'
+import { VaultPosition } from 'utils/xaloPool'
 import { MAX_LOCK_DURATION } from 'config/constants/pools'
 import { VaultRoiCalculatorModal } from '../../Vault/VaultRoiCalculatorModal'
 
-interface CakeVaultAprProps {
+interface XaloVaultAprProps {
   pool: DeserializedPool
   userData: DeserializedVaultUser
   vaultPosition: VaultPosition
 }
 
-const CakeVaultApr: React.FC<CakeVaultAprProps> = ({ pool, userData, vaultPosition }) => {
+const XaloVaultApr: React.FC<XaloVaultAprProps> = ({ pool, userData, vaultPosition }) => {
   const { t } = useTranslation()
 
   const { flexibleApy, lockedApy } = useVaultApy({
@@ -56,7 +56,7 @@ const CakeVaultApr: React.FC<CakeVaultAprProps> = ({ pool, userData, vaultPositi
           )}
         </Flex>
       </Box>
-      {pool.vaultKey === VaultKey.CakeVault && (
+      {pool.vaultKey === VaultKey.XaloVault && (
         <Box marginX="8px" mb="8px">
           <Flex justifyContent="space-between">
             <Text fontSize="16px" color="textSubtle" textAlign="left">
@@ -99,4 +99,4 @@ const CakeVaultApr: React.FC<CakeVaultAprProps> = ({ pool, userData, vaultPositi
   )
 }
 
-export default CakeVaultApr
+export default XaloVaultApr

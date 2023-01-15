@@ -21,7 +21,7 @@ import {
   getTradingCompetitionContractMoD,
   getEasterNftContract,
   getErc721Contract,
-  getCakeVaultV2Contract,
+  getXaloVaultV2Contract,
   getPredictionsContract,
   getChainlinkOracleContract,
   getLotteryV2Contract,
@@ -37,7 +37,7 @@ import {
   getBunnySpecialXmasContract,
   getGalaxyNTFClaimingContract,
   getZapContract,
-  getCakeFlexibleSideVaultV2Contract,
+  getXaloFlexibleSideVaultV2Contract,
   getCakePredictionsContract,
   getPredictionsV1Contract,
 } from 'utils/contractHelpers'
@@ -49,8 +49,8 @@ import {
   Weth,
   Xalo,
   Erc721collection,
-  CakeVaultV2,
-  CakeFlexibleSideVaultV2,
+  XaloVaultV2,
+  XaloFlexibleSideVaultV2,
 } from 'config/abi/types'
 
 // Imports below migrated from Exchange useContract.ts
@@ -216,26 +216,26 @@ export const useEasterNftContract = () => {
   return useMemo(() => getEasterNftContract(library.getSigner()), [library])
 }
 
-export const useVaultPoolContract = (vaultKey: VaultKey): CakeVaultV2 | CakeFlexibleSideVaultV2 => {
+export const useVaultPoolContract = (vaultKey: VaultKey): XaloVaultV2 | XaloFlexibleSideVaultV2 => {
   const { library } = useActiveWeb3React()
   return useMemo(() => {
-    if (vaultKey === VaultKey.CakeVault) {
-      return getCakeVaultV2Contract(library.getSigner())
+    if (vaultKey === VaultKey.XaloVault) {
+      return getXaloVaultV2Contract(library.getSigner())
     }
-    if (vaultKey === VaultKey.CakeFlexibleSideVault) {
-      return getCakeFlexibleSideVaultV2Contract(library.getSigner())
+    if (vaultKey === VaultKey.XaloFlexibleSideVault) {
+      return getXaloFlexibleSideVaultV2Contract(library.getSigner())
     }
     return null
   }, [library, vaultKey])
 }
 
-export const useCakeVaultContract = (withSignerIfPossible = true) => {
+export const useXaloVaultContract = (withSignerIfPossible = true) => {
   const { library, account } = useActiveWeb3React()
   const signer = useMemo(
     () => (withSignerIfPossible ? getProviderOrSigner(library, account) : null),
     [withSignerIfPossible, library, account],
   )
-  return useMemo(() => getCakeVaultV2Contract(signer), [signer])
+  return useMemo(() => getXaloVaultV2Contract(signer), [signer])
 }
 
 export const usePredictionsContract = (address: string, tokenSymbol: string) => {
@@ -259,7 +259,7 @@ export const useChainlinkOracleContract = (address, withSignerIfPossible = true)
   return useMemo(() => getChainlinkOracleContract(address, signer), [signer, address])
 }
 
-export const useSpecialBunnyCakeVaultContract = () => {
+export const useSpecialBunnyXaloVaultContract = () => {
   const { library } = useActiveWeb3React()
   return useMemo(() => getBunnySpecialCakeVaultContract(library.getSigner()), [library])
 }

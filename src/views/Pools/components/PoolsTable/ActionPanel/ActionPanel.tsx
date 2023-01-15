@@ -1,9 +1,9 @@
 import styled, { keyframes, css } from 'styled-components'
 import { Box, Flex, HelpIcon, Text, useTooltip, useMatchBreakpointsContext } from '@pancakeswap/uikit'
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { getVaultPosition, VaultPosition } from 'utils/cakePool'
+import { getVaultPosition, VaultPosition } from 'utils/xaloPool'
 import BigNumber from 'bignumber.js'
-import { DeserializedPool, VaultKey, DeserializedLockedCakeVault, DeserializedLockedVaultUser } from 'state/types'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault, DeserializedLockedVaultUser } from 'state/types'
 import { useTranslation } from 'contexts/Localization'
 import { CompoundingPoolTag, ManualPoolTag } from 'components/Tags'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -14,7 +14,7 @@ import { VaultPositionTagWithLabel } from '../../Vault/VaultPositionTag'
 import YieldBoostRow from '../../LockedPool/Common/YieldBoostRow'
 import LockDurationRow from '../../LockedPool/Common/LockDurationRow'
 import useUserDataInVaultPresenter from '../../LockedPool/hooks/useUserDataInVaultPresenter'
-import CakeVaultApr from './CakeVaultApr'
+import XaloVaultApr from './XaloVaultApr'
 import PoolStatsInfo from '../../PoolStatsInfo'
 
 const expandAnimation = keyframes`
@@ -126,7 +126,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, expanded }) =>
   const vaultData = useVaultPoolByKey(vaultKey)
   const {
     userData: {
-      balance: { cakeAsBigNumber },
+      balance: { xaloAsBigNumber },
     },
   } = vaultData
 
@@ -136,7 +136,7 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, expanded }) =>
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
 
   const poolStakingTokenBalance = vaultKey
-    ? cakeAsBigNumber.plus(stakingTokenBalance)
+    ? xaloAsBigNumber.plus(stakingTokenBalance)
     : stakedBalance.plus(stakingTokenBalance)
 
   const manualTooltipText = t('You must harvest and compound your earnings from this pool manually.')
@@ -155,11 +155,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, expanded }) =>
   return (
     <StyledActionPanel expanded={expanded}>
       <InfoSection>
-        {isMobile && vaultKey === VaultKey.CakeVault && (vaultData as DeserializedLockedCakeVault).userData.locked && (
+        {isMobile && vaultKey === VaultKey.XaloVault && (vaultData as DeserializedLockedXaloVault).userData.locked && (
           <Box mb="16px">
             <YieldBoostDurationRow
-              lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime}
-              lockStartTime={(vaultData as DeserializedLockedCakeVault).userData.lockStartTime}
+              lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime}
+              lockStartTime={(vaultData as DeserializedLockedXaloVault).userData.lockStartTime}
             />
           </Box>
         )}
@@ -173,11 +173,11 @@ const ActionPanel: React.FC<ActionPanelProps> = ({ account, pool, expanded }) =>
         </span>
       </InfoSection>
       <ActionContainer>
-        {isMobile && vaultKey === VaultKey.CakeVault && vaultPosition === VaultPosition.None && (
-          <CakeVaultApr pool={pool} userData={vaultData.userData} vaultPosition={vaultPosition} />
+        {isMobile && vaultKey === VaultKey.XaloVault && vaultPosition === VaultPosition.None && (
+          <XaloVaultApr pool={pool} userData={vaultData.userData} vaultPosition={vaultPosition} />
         )}
         <Box width="100%">
-          {pool.vaultKey === VaultKey.CakeVault && (
+          {pool.vaultKey === VaultKey.XaloVault && (
             <VaultPositionTagWithLabel
               userData={vaultData.userData as DeserializedLockedVaultUser}
               width={['auto', , 'fit-content']}

@@ -9,15 +9,15 @@ import { livePools } from 'config/constants/pools'
 import {
   fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
-  fetchCakeVaultPublicData,
-  fetchCakeVaultUserData,
-  fetchCakeVaultFees,
+  fetchXaloVaultPublicData,
+  fetchXaloVaultUserData,
+  fetchXaloVaultFees,
   fetchPoolsStakingLimitsAsync,
   fetchUserIfoCreditDataAsync,
   fetchIfoPublicDataAsync,
-  fetchCakeFlexibleSideVaultPublicData,
-  fetchCakeFlexibleSideVaultUserData,
-  fetchCakeFlexibleSideVaultFees,
+  fetchXaloFlexibleSideVaultPublicData,
+  fetchXaloFlexibleSideVaultUserData,
+  fetchXaloFlexibleSideVaultFees,
 } from '.'
 import { DeserializedPool, VaultKey } from '../types'
 import { fetchFarmsPublicDataAsync } from '../farms'
@@ -84,21 +84,21 @@ export const usePoolsPageFetch = () => {
 
   useFastRefreshEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultPublicData())
-      dispatch(fetchCakeFlexibleSideVaultPublicData())
+      dispatch(fetchXaloVaultPublicData())
+      dispatch(fetchXaloFlexibleSideVaultPublicData())
       dispatch(fetchIfoPublicDataAsync())
       if (account) {
         dispatch(fetchPoolsUserDataAsync(account))
-        dispatch(fetchCakeVaultUserData({ account }))
-        dispatch(fetchCakeFlexibleSideVaultUserData({ account }))
+        dispatch(fetchXaloVaultUserData({ account }))
+        dispatch(fetchXaloFlexibleSideVaultUserData({ account }))
       }
     })
   }, [account, dispatch])
 
   useEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultFees())
-      dispatch(fetchCakeFlexibleSideVaultFees())
+      dispatch(fetchXaloVaultFees())
+      dispatch(fetchXaloFlexibleSideVaultFees())
     })
   }, [dispatch])
 }
@@ -109,23 +109,23 @@ export const useFetchIfo = () => {
 
   useFastRefreshEffect(() => {
     batch(() => {
-      dispatch(fetchCakeVaultPublicData())
+      dispatch(fetchXaloVaultPublicData())
       dispatch(fetchIfoPublicDataAsync())
       if (account) {
         dispatch(fetchPoolsUserDataAsync(account))
-        dispatch(fetchCakeVaultUserData({ account }))
+        dispatch(fetchXaloVaultUserData({ account }))
         dispatch(fetchUserIfoCreditDataAsync(account))
       }
     })
   }, [dispatch, account])
 
   useEffect(() => {
-    dispatch(fetchCakeVaultFees())
+    dispatch(fetchXaloVaultFees())
   }, [dispatch])
 }
 
-export const useCakeVault = () => {
-  return useVaultPoolByKey(VaultKey.CakeVault)
+export const useXaloVault = () => {
+  return useVaultPoolByKey(VaultKey.XaloVault)
 }
 
 export const useVaultPoolByKey = (key: VaultKey) => {

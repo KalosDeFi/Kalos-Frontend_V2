@@ -33,7 +33,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
   const [expanded, setExpanded] = useState(false)
   const shouldRenderActionPanel = useDelayedUnmount(expanded, 300)
 
-  const { totalCakeInVault } = useVaultPoolByKey(pool.vaultKey)
+  const { totalXaloInVault } = useVaultPoolByKey(pool.vaultKey)
 
   const toggleExpanded = () => {
     setExpanded((prev) => !prev)
@@ -50,7 +50,7 @@ const PoolRow: React.FC<PoolRowProps> = ({ pool, account }) => {
           <EarningsCell pool={pool} account={account} />
         )}
         {pool.vaultKey ? <AutoAprCell pool={pool} /> : <AprCell pool={pool} />}
-        {isLargerScreen && <TotalStakedCell pool={pool} totalCakeInVault={totalCakeInVault} cakeInVaults={BIG_ZERO} />}
+        {isLargerScreen && <TotalStakedCell pool={pool} totalXaloInVault={totalXaloInVault} xaloInVaults={BIG_ZERO} />}
         <ExpandActionCell expanded={expanded} isFullLayout={isTablet || isDesktop} />
       </StyledRow>
       {shouldRenderActionPanel && (

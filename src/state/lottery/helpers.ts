@@ -20,15 +20,15 @@ const processViewLotterySuccessResponse = (response, lotteryId: string): Lottery
     treasuryFee,
     firstTicketId,
     lastTicketId,
-    amountCollectedInCake,
+    amountCollectedInXalo,
     finalNumber,
-    cakePerBracket,
+    xaloPerBracket,
     countWinnersPerBracket,
     rewardsBreakdown,
   } = response
 
   const statusKey = Object.keys(LotteryStatus)[status]
-  const serializedCakePerBracket = cakePerBracket.map((cakeInBracket) => ethersToSerializedBigNumber(cakeInBracket))
+  const serializedXaloPerBracket = xaloPerBracket.map((xaloInBracket) => ethersToSerializedBigNumber(xaloInBracket))
   const serializedCountWinnersPerBracket = countWinnersPerBracket.map((winnersInBracket) =>
     ethersToSerializedBigNumber(winnersInBracket),
   )
@@ -45,9 +45,9 @@ const processViewLotterySuccessResponse = (response, lotteryId: string): Lottery
     treasuryFee: treasuryFee?.toString(),
     firstTicketId: firstTicketId?.toString(),
     lastTicketId: lastTicketId?.toString(),
-    amountCollectedInCake: ethersToSerializedBigNumber(amountCollectedInCake),
+    amountCollectedInXalo: ethersToSerializedBigNumber(amountCollectedInXalo),
     finalNumber,
-    cakePerBracket: serializedCakePerBracket,
+    xaloPerBracket: serializedXaloPerBracket,
     countWinnersPerBracket: serializedCountWinnersPerBracket,
     rewardsBreakdown: serializedRewardsBreakdown,
   }
@@ -65,9 +65,9 @@ const processViewLotteryErrorResponse = (lotteryId: string): LotteryResponse => 
     treasuryFee: '',
     firstTicketId: '',
     lastTicketId: '',
-    amountCollectedInCake: '',
+    amountCollectedInXalo: '',
     finalNumber: null,
-    cakePerBracket: [],
+    xaloPerBracket: [],
     countWinnersPerBracket: [],
     rewardsBreakdown: [],
   }

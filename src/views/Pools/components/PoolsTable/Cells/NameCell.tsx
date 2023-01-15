@@ -5,10 +5,10 @@ import { vaultPoolConfig } from 'config/constants/pools'
 import { useTranslation } from 'contexts/Localization'
 import { memo } from 'react'
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { DeserializedPool, VaultKey, DeserializedLockedCakeVault } from 'state/types'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault } from 'state/types'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
-import { getVaultPosition, VaultPosition, VaultPositionParams } from 'utils/cakePool'
+import { getVaultPosition, VaultPosition, VaultPositionParams } from 'utils/xaloPool'
 import BaseCell, { CellContent } from './BaseCell'
 
 interface NameCellProps {
@@ -61,11 +61,11 @@ const NameCell: React.FC<NameCellProps> = ({ pool }) => {
       )}
       <CellContent>
         {showStakedTag &&
-          (vaultKey === VaultKey.CakeVault ? (
+          (vaultKey === VaultKey.XaloVault ? (
             <StakedCakeStatus
               userShares={userShares}
-              locked={(vaultData as DeserializedLockedCakeVault).userData.locked}
-              lockEndTime={(vaultData as DeserializedLockedCakeVault).userData.lockEndTime}
+              locked={(vaultData as DeserializedLockedXaloVault).userData.locked}
+              lockEndTime={(vaultData as DeserializedLockedXaloVault).userData.lockEndTime}
             />
           ) : (
             <Text fontSize="12px" bold color={isFinished ? 'failure' : 'secondary'} textTransform="uppercase">

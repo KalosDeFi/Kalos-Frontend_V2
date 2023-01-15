@@ -30,7 +30,7 @@ export const xaloBalanceStrategy = (version: 'v0' | 'v1') => ({
   },
 })
 
-export const cakeVaultBalanceStrategy = {
+export const xaloVaultBalanceStrategy = {
   name: 'contract-call',
   params: {
     address: votePowerAddress.v0,
@@ -43,7 +43,7 @@ export const cakeVaultBalanceStrategy = {
           type: 'address',
         },
       ],
-      name: 'getCakeVaultBalance',
+      name: 'getXaloVaultBalance',
       outputs: [
         {
           internalType: 'uint256',
@@ -84,7 +84,7 @@ export const ifoPoolBalanceStrategy = {
   },
 }
 
-export const cakePoolBalanceStrategy = (version: 'v0' | 'v1') => ({
+export const xaloPoolBalanceStrategy = (version: 'v0' | 'v1') => ({
   name: 'contract-call',
   params: {
     address: votePowerAddress[version],

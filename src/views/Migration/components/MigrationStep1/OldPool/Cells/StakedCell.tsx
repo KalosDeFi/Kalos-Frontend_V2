@@ -7,7 +7,7 @@ import { DeserializedPool } from 'state/types'
 import styled from 'styled-components'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToXalo } from 'views/Pools/helpers'
 import BaseCell, { CellContent } from 'views/Pools/components/PoolsTable/Cells/BaseCell'
 import { useVaultPoolByKeyV1 } from 'views/Migration/hook/V1/Pool/useFetchIfoPool'
 
@@ -43,10 +43,10 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool }) => {
   const hasSharesStaked = userShares?.gt(0)
   const isVaultWithShares = pool.vaultKey && hasSharesStaked
 
-  let cakeAsNumberBalance = 0
+  let xaloAsNumberBalance = 0
   if (pricePerFullShare) {
-    const { cakeAsNumberBalance: xaloBalance } = convertSharesToCake(userShares, pricePerFullShare)
-    cakeAsNumberBalance = xaloBalance
+    const { xaloAsNumberBalance: xaloBalance } = convertSharesToXalo(userShares, pricePerFullShare)
+    xaloAsNumberBalance = xaloBalance
   }
 
   // pool
@@ -71,7 +71,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool }) => {
               fontSize={isMobile ? '14px' : '16px'}
               color={hasStaked ? 'text' : 'textDisabled'}
               decimals={hasStaked ? 5 : 1}
-              value={pool.vaultKey ? (Number.isNaN(cakeAsNumberBalance) ? 0 : cakeAsNumberBalance) : stakedTokenBalance}
+              value={pool.vaultKey ? (Number.isNaN(xaloAsNumberBalance) ? 0 : xaloAsNumberBalance) : stakedTokenBalance}
             />
           </Box>
         </Flex>

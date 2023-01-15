@@ -14,7 +14,7 @@ export const BOOST_WEIGHT = BigNumber.from('20000000000000')
 export const DURATION_FACTOR = BigNumber.from('31536000')
 
 export const vaultPoolConfig = {
-  [VaultKey.CakeVaultV1]: {
+  [VaultKey.XaloVaultV1]: {
     name: <Trans>Auto XALO</Trans>,
     description: <Trans>Automatic restaking</Trans>,
     autoCompoundFrequency: 5000,
@@ -24,7 +24,7 @@ export const vaultPoolConfig = {
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
-  [VaultKey.CakeVault]: {
+  [VaultKey.XaloVault]: {
     name: <Trans>Stake XALO</Trans>,
     description: <Trans>Stake, Earn – And more!</Trans>,
     autoCompoundFrequency: 5000,
@@ -34,7 +34,7 @@ export const vaultPoolConfig = {
       secondarySrc: '/images/tokens/autorenew.svg',
     },
   },
-  [VaultKey.CakeFlexibleSideVault]: {
+  [VaultKey.XaloFlexibleSideVault]: {
     name: <Trans>Flexible XALO</Trans>,
     description: <Trans>Flexible staking on the side.</Trans>,
     autoCompoundFrequency: 5000,
@@ -45,7 +45,7 @@ export const vaultPoolConfig = {
     },
   },
   [VaultKey.IfoPool]: {
-    name: 'IFO CAKE',
+    name: 'IFO XALO',
     description: <Trans>Stake XALO to participate in IFOs</Trans>,
     autoCompoundFrequency: 1,
     gasLimit: 500000,

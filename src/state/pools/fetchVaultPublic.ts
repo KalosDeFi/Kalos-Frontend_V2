@@ -1,25 +1,25 @@
 import BigNumber from 'bignumber.js'
 import { multicallv2 } from 'utils/multicall'
-import cakeVaultAbi from 'config/abi/cakeVaultV2.json'
-import { getCakeVaultAddress, getCakeFlexibleSideVaultAddress } from 'utils/addressHelpers'
+import xaloVaultAbi from 'config/abi/xaloVaultV2.json'
+import { getXaloVaultAddress, getXaloFlexibleSideVaultAddress } from 'utils/addressHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import { getXaloContract } from 'utils/contractHelpers'
 
-const cakeVaultV2 = getCakeVaultAddress()
-const cakeFlexibleSideVaultV2 = getCakeFlexibleSideVaultAddress()
+const xaloVaultV2 = getXaloVaultAddress()
+const cakeFlexibleSideVaultV2 = getXaloFlexibleSideVaultAddress()
 const xaloContract = getXaloContract()
-export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
+export const fetchPublicVaultData = async (xaloVaultAddress = xaloVaultV2) => {
   try {
     const calls = ['getPricePerFullShare', 'totalShares', 'totalLockedAmount'].map((method) => ({
-      address: cakeVaultAddress,
+      address: xaloVaultAddress,
       name: method,
     }))
 
-    const [[[sharePrice], [shares], totalLockedAmount], totalCakeInVault] = await Promise.all([
-      multicallv2(cakeVaultAbi, calls, {
+    const [[[sharePrice], [shares], totalLockedAmount], totalXaloInVault] = await Promise.all([
+      multicallv2(xaloVaultAbi, calls, {
         requireSuccess: false,
       }),
-      xaloContract.balanceOf(cakeVaultV2),
+      xaloContract.balanceOf(xaloVaultV2),
     ])
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
@@ -29,30 +29,30 @@ export const fetchPublicVaultData = async (cakeVaultAddress = cakeVaultV2) => {
       totalShares: totalSharesAsBigNumber.toJSON(),
       totalLockedAmount: totalLockedAmountAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalCakeInVault: new BigNumber(totalCakeInVault.toString()).toJSON(),
+      totalXaloInVault: new BigNumber(totalXaloInVault.toString()).toJSON(),
     }
   } catch (error) {
     return {
       totalShares: null,
       totalLockedAmount: null,
       pricePerFullShare: null,
-      totalCakeInVault: null,
+      totalXaloInVault: null,
     }
   }
 }
 
-export const fetchPublicFlexibleSideVaultData = async (cakeVaultAddress = cakeFlexibleSideVaultV2) => {
+export const fetchPublicFlexibleSideVaultData = async (xaloVaultAddress = cakeFlexibleSideVaultV2) => {
   try {
     const calls = ['getPricePerFullShare', 'totalShares'].map((method) => ({
-      address: cakeVaultAddress,
+      address: xaloVaultAddress,
       name: method,
     }))
 
-    const [[[sharePrice], [shares]], totalCakeInVault] = await Promise.all([
-      multicallv2(cakeVaultAbi, calls, {
+    const [[[sharePrice], [shares]], totalXaloInVault] = await Promise.all([
+      multicallv2(xaloVaultAbi, calls, {
         requireSuccess: false,
       }),
-      xaloContract.balanceOf(cakeVaultAddress),
+      xaloContract.balanceOf(xaloVaultAddress),
     ])
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
@@ -60,25 +60,25 @@ export const fetchPublicFlexibleSideVaultData = async (cakeVaultAddress = cakeFl
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalCakeInVault: new BigNumber(totalCakeInVault.toString()).toJSON(),
+      totalXaloInVault: new BigNumber(totalXaloInVault.toString()).toJSON(),
     }
   } catch (error) {
     return {
       totalShares: null,
       pricePerFullShare: null,
-      totalCakeInVault: null,
+      totalXaloInVault: null,
     }
   }
 }
 
-export const fetchVaultFees = async (cakeVaultAddress = cakeVaultV2) => {
+export const fetchVaultFees = async (xaloVaultAddress = xaloVaultV2) => {
   try {
     const calls = ['performanceFee', 'withdrawFee', 'withdrawFeePeriod'].map((method) => ({
-      address: cakeVaultAddress,
+      address: xaloVaultAddress,
       name: method,
     }))
 
-    const [[performanceFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(cakeVaultAbi, calls)
+    const [[performanceFee], [withdrawalFee], [withdrawalFeePeriod]] = await multicallv2(xaloVaultAbi, calls)
 
     return {
       performanceFee: performanceFee.toNumber(),

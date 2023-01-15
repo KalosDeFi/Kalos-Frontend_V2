@@ -4,7 +4,7 @@ import { BigNumber as EthersBigNumber } from '@ethersproject/bignumber'
 import { formatUnits } from '@ethersproject/units'
 import BigNumber from 'bignumber.js'
 import { useWeb3React } from '@web3-react/core'
-import { Heading, Flex, Image, Text, Link } from '@pancakeswap/uikit'
+import { Heading, Flex, Image, Text /* Link */ } from '@pancakeswap/uikit'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import { useTranslation } from 'contexts/Localization'
@@ -24,10 +24,10 @@ import Loading from 'components/Loading'
 import { useInitialBlock } from 'state/block/hooks'
 import { BSC_BLOCK_TIME } from 'config'
 import PoolCard from './components/PoolCard'
-import CakeVaultCard from './components/CakeVaultCard'
+import XaloVaultCard from './components/XaloVaultCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import PoolsTable from './components/PoolsTable/PoolsTable'
-import { getCakeVaultEarnings } from './helpers'
+import { getXaloVaultEarnings } from './helpers'
 
 const CardLayout = styled(FlexLayout)`
   justify-content: center;
@@ -83,11 +83,11 @@ const FinishedTextContainer = styled(Flex)`
   }
 `
 
-const FinishedTextLink = styled(Link)`
+/* const FinishedTextLink = styled(Link)`
   font-weight: 400;
   white-space: nowrap;
   text-decoration: underline;
-`
+` */
 
 const NUMBER_OF_POOLS_VISIBLE = 12
 
@@ -109,13 +109,13 @@ const sortPools = (account: string, sortOption: string, pools: DeserializedPool[
             if (!userData || !userData.userShares) {
               return 0
             }
-            return getCakeVaultEarnings(
+            return getXaloVaultEarnings(
               account,
-              userData.cakeAtLastUserAction,
+              userData.xaloAtLastUserAction,
               userData.userShares,
               pricePerFullShare,
               pool.earningTokenPrice,
-              pool.vaultKey === VaultKey.CakeVault
+              pool.vaultKey === VaultKey.XaloVault
                 ? (pool as DeserializedPoolLockedVault).userData.currentPerformanceFee.plus(
                     (pool as DeserializedPoolLockedVault).userData.currentOverdueFee,
                   )
@@ -133,9 +133,9 @@ const sortPools = (account: string, sortOption: string, pools: DeserializedPool[
           let totalStaked = Number.NaN
           if (pool.vaultKey) {
             const vault = pool as DeserializedPoolVault
-            if (pool.stakingTokenPrice && vault.totalCakeInVault.isFinite()) {
+            if (pool.stakingTokenPrice && vault.totalXaloInVault.isFinite()) {
               totalStaked =
-                +formatUnits(EthersBigNumber.from(vault.totalCakeInVault.toString()), pool.stakingToken.decimals) *
+                +formatUnits(EthersBigNumber.from(vault.totalXaloInVault.toString()), pool.stakingToken.decimals) *
                 pool.stakingTokenPrice
             }
           } else if (pool.totalStaked?.isFinite() && pool.stakingTokenPrice) {
@@ -247,7 +247,7 @@ const Pools: React.FC = () => {
     <CardLayout>
       {chosenPools.map((pool) =>
         pool.vaultKey ? (
-          <CakeVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
+          <XaloVaultCard key={pool.vaultKey} pool={pool} showStakedOnly={stakedOnly} />
         ) : (
           <PoolCard key={pool.sousId} pool={pool} account={account} />
         ),

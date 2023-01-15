@@ -12,7 +12,7 @@ import { FarmWithStakedValue } from '../../Farms/components/types'
 
 const useGetTopFarmsByApr = (isIntersecting: boolean) => {
   const dispatch = useAppDispatch()
-  const { data: farms, regularCakePerBlock } = useFarms()
+  const { data: farms, regularXaloPerBlock } = useFarms()
   const [fetchStatus, setFetchStatus] = useState(FetchStatus.Idle)
   const [topFarms, setTopFarms] = useState<FarmWithStakedValue[]>([null, null, null, null, null])
   const xaloPriceBusd = usePriceCakeBusd()
@@ -47,14 +47,14 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
       )
       const farmsWithApr: FarmWithStakedValue[] = farmsWithPrices.map((farm) => {
         const totalLiquidity = farm.lpTotalInQuoteToken.times(farm.quoteTokenPriceBusd)
-        const { cakeRewardsApr, lpRewardsApr } = getFarmApr(
+        const { xaloRewardsApr, lpRewardsApr } = getFarmApr(
           farm.poolWeight,
           xaloPriceBusd,
           totalLiquidity,
           farm.lpAddresses[ChainId.MAINNET],
-          regularCakePerBlock,
+          regularXaloPerBlock,
         )
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr }
+        return { ...farm, apr: xaloRewardsApr, lpRewardsApr }
       })
 
       const sortedByApr = orderBy(farmsWithApr, (farm) => farm.apr + farm.lpRewardsApr, 'desc')
@@ -64,7 +64,7 @@ const useGetTopFarmsByApr = (isIntersecting: boolean) => {
     if (fetchStatus === FetchStatus.Fetched && !topFarms[0]) {
       getTopFarmsByApr(farms)
     }
-  }, [setTopFarms, farms, fetchStatus, xaloPriceBusd, topFarms, regularCakePerBlock])
+  }, [setTopFarms, farms, fetchStatus, xaloPriceBusd, topFarms, regularXaloPerBlock])
 
   return { topFarms }
 }

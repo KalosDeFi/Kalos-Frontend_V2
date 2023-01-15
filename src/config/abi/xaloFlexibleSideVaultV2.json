@@ -7,8 +7,8 @@
         "type": "address"
       },
       {
-        "internalType": "contract ICakePool",
-        "name": "_cakePool",
+        "internalType": "contract IXaloPool",
+        "name": "_xaloPool",
         "type": "address"
       },
       {
@@ -97,7 +97,7 @@
         "type": "uint256"
       }
     ],
-    "name": "DepositCake",
+    "name": "DepositXalo",
     "type": "event"
   },
   {
@@ -392,10 +392,10 @@
   },
   {
     "inputs": [],
-    "name": "cakePool",
+    "name": "xaloPool",
     "outputs": [
       {
-        "internalType": "contract ICakePool",
+        "internalType": "contract IXaloPool",
         "name": "",
         "type": "address"
       }
@@ -674,7 +674,7 @@
       },
       {
         "internalType": "uint256",
-        "name": "cakeAtLastUserAction",
+        "name": "xaloAtLastUserAction",
         "type": "uint256"
       },
       {

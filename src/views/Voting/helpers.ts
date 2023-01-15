@@ -97,7 +97,7 @@ export const getVotingPower = async (account: string, poolAddresses: string[], b
       [
         strategies.xaloBalanceStrategy('v1'),
         strategies.cakeBnbLpBalanceStrategy('v1'),
-        strategies.cakePoolBalanceStrategy('v1'),
+        strategies.xaloPoolBalanceStrategy('v1'),
         strategies.creatPoolsBalanceStrategy(poolAddresses, 'v1'),
         strategies.createTotalStrategy(poolAddresses, 'v1'),
       ],
@@ -117,14 +117,14 @@ export const getVotingPower = async (account: string, poolAddresses: string[], b
   }
 
   if (blockNumber && blockNumber >= VOTING_POWER_BLOCK.v0) {
-    const [xaloBalance, cakeBnbLpBalance, cakePoolBalance, cakeVaultBalance, ifoPoolBalance, poolsBalance, total] =
+    const [xaloBalance, cakeBnbLpBalance, xaloPoolBalance, xaloVaultBalance, ifoPoolBalance, poolsBalance, total] =
       await getScores(
         PANCAKE_SPACE,
         [
           strategies.xaloBalanceStrategy('v0'),
           strategies.cakeBnbLpBalanceStrategy('v0'),
-          strategies.cakePoolBalanceStrategy('v0'),
-          strategies.cakeVaultBalanceStrategy,
+          strategies.xaloPoolBalanceStrategy('v0'),
+          strategies.xaloVaultBalanceStrategy,
           strategies.ifoPoolBalanceStrategy,
           strategies.creatPoolsBalanceStrategy(poolAddresses, 'v0'),
           strategies.createTotalStrategy(poolAddresses, 'v0'),
@@ -138,9 +138,9 @@ export const getVotingPower = async (account: string, poolAddresses: string[], b
       poolsBalance: poolsBalance[account] ? poolsBalance[account] : 0,
       total: total[account] ? total[account] : 0,
       xaloBalance: xaloBalance[account] ? xaloBalance[account] : 0,
-      cakeVaultBalance: cakeVaultBalance[account] ? cakeVaultBalance[account] : 0,
+      xaloVaultBalance: xaloVaultBalance[account] ? xaloVaultBalance[account] : 0,
       ifoPoolBalance: ifoPoolBalance[account] ? ifoPoolBalance[account] : 0,
-      cakePoolBalance: cakePoolBalance[account] ? cakePoolBalance[account] : 0,
+      xaloPoolBalance: xaloPoolBalance[account] ? xaloPoolBalance[account] : 0,
       cakeBnbLpBalance: cakeBnbLpBalance[account] ? cakeBnbLpBalance[account] : 0,
       voter: account,
     }

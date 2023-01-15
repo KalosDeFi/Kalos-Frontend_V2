@@ -1,5 +1,5 @@
 import BigNumber from 'bignumber.js'
-import { convertSharesToCake } from 'views/Pools/helpers'
+import { convertSharesToXalo } from 'views/Pools/helpers'
 import { multicallv2 } from 'utils/multicall'
 import ifoPoolAbi from 'config/abi/ifoPool.json'
 import { BIG_ZERO } from 'utils/bigNumber'
@@ -15,11 +15,11 @@ export const fetchPublicIfoPoolData = async (ifoPoolAddress: string) => {
 
     const totalSharesAsBigNumber = shares ? new BigNumber(shares.toString()) : BIG_ZERO
     const sharePriceAsBigNumber = sharePrice ? new BigNumber(sharePrice.toString()) : BIG_ZERO
-    const totalCakeInVaultEstimate = convertSharesToCake(totalSharesAsBigNumber, sharePriceAsBigNumber)
+    const totalXaloInVaultEstimate = convertSharesToXalo(totalSharesAsBigNumber, sharePriceAsBigNumber)
     return {
       totalShares: totalSharesAsBigNumber.toJSON(),
       pricePerFullShare: sharePriceAsBigNumber.toJSON(),
-      totalCakeInVault: totalCakeInVaultEstimate.cakeAsBigNumber.toJSON(),
+      totalXaloInVault: totalXaloInVaultEstimate.xaloAsBigNumber.toJSON(),
       creditStartBlock: startBlock.toNumber(),
       creditEndBlock: endBlock.toNumber(),
     }
@@ -27,7 +27,7 @@ export const fetchPublicIfoPoolData = async (ifoPoolAddress: string) => {
     return {
       totalShares: null,
       pricePerFullShare: null,
-      totalCakeInVault: null,
+      totalXaloInVault: null,
     }
   }
 }

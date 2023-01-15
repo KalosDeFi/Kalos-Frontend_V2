@@ -23,14 +23,14 @@ export const currentRoundSelector = createSelector([selectCurrentRound], (curren
   const {
     priceTicketInXalo: priceTicketInXaloAsString,
     discountDivisor: discountDivisorAsString,
-    amountCollectedInCake: amountCollectedInCakeAsString,
+    amountCollectedInXalo: amountCollectedInXaloAsString,
   } = currentRound
 
   return {
     ...currentRound,
     priceTicketInXalo: new BigNumber(priceTicketInXaloAsString),
     discountDivisor: new BigNumber(discountDivisorAsString),
-    amountCollectedInCake: new BigNumber(amountCollectedInCakeAsString),
+    amountCollectedInXalo: new BigNumber(amountCollectedInXaloAsString),
   }
 })
 

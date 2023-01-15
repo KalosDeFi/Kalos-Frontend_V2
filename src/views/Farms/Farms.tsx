@@ -118,7 +118,7 @@ const NUMBER_OF_FARMS_VISIBLE = 12
 const Farms: React.FC = ({ children }) => {
   const { pathname } = useRouter()
   const { t } = useTranslation()
-  const { data: farmsLP, userDataLoaded, poolLength, regularCakePerBlock } = useFarms()
+  const { data: farmsLP, userDataLoaded, poolLength, regularXaloPerBlock } = useFarms()
   const xaloPrice = usePriceCakeBusd()
   const [query, setQuery] = useState('')
   const [viewMode, setViewMode] = useUserFarmsViewMode()
@@ -164,17 +164,17 @@ const Farms: React.FC = ({ children }) => {
           return farm
         }
         const totalLiquidity = new BigNumber(farm.lpTotalInQuoteToken).times(farm.quoteTokenPriceBusd)
-        const { cakeRewardsApr, lpRewardsApr } = isActive
+        const { xaloRewardsApr, lpRewardsApr } = isActive
           ? getFarmApr(
               new BigNumber(farm.poolWeight),
               xaloPrice,
               totalLiquidity,
               farm.lpAddresses[ChainId.MAINNET],
-              regularCakePerBlock,
+              regularXaloPerBlock,
             )
-          : { cakeRewardsApr: 0, lpRewardsApr: 0 }
+          : { xaloRewardsApr: 0, lpRewardsApr: 0 }
 
-        return { ...farm, apr: cakeRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
+        return { ...farm, apr: xaloRewardsApr, lpRewardsApr, liquidity: totalLiquidity }
       })
 
       if (query) {
@@ -185,7 +185,7 @@ const Farms: React.FC = ({ children }) => {
       }
       return farmsToDisplayWithAPR
     },
-    [xaloPrice, query, isActive, regularCakePerBlock],
+    [xaloPrice, query, isActive, regularXaloPerBlock],
   )
 
   const handleChangeQuery = (event: React.ChangeEvent<HTMLInputElement>) => {

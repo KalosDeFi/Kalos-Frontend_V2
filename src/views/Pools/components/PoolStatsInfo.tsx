@@ -48,7 +48,7 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
   const stakedBalance = poolUserData?.stakedBalance ? poolUserData.stakedBalance : BIG_ZERO
 
   const {
-    totalCakeInVault,
+    totalXaloInVault,
     totalLockedAmount,
     fees: { performanceFeeAsDecimal },
     userData,
@@ -56,7 +56,7 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
 
   const tokenAddress = earningToken.address || ''
   const poolContractAddress = getAddress(contractAddress)
-  const cakeVaultContractAddress = getVaultPoolAddress(vaultKey)
+  const xaloVaultContractAddress = getVaultPoolAddress(vaultKey)
   const isMetaMaskInScope = !!window.ethereum?.isMetaMask
 
   const { shouldShowBlockCountdown, blocksUntilStart, blocksRemaining, hasPoolStarted, blocksToDisplay } =
@@ -79,10 +79,10 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
       )}
       {!vaultKey && <AprInfo pool={pool} stakedBalance={stakedBalance} />}
       {showTotalStaked && (
-        <TotalStaked totalStaked={vaultKey ? totalCakeInVault : totalStaked} stakingToken={stakingToken} />
+        <TotalStaked totalStaked={vaultKey ? totalXaloInVault : totalStaked} stakingToken={stakingToken} />
       )}
-      {vaultKey === VaultKey.CakeVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
-      {vaultKey === VaultKey.CakeVault && <DurationAvg />}
+      {vaultKey === VaultKey.XaloVault && <TotalLocked totalLocked={totalLockedAmount} lockedToken={stakingToken} />}
+      {vaultKey === VaultKey.XaloVault && <DurationAvg />}
       {!isFinished && stakingLimit && stakingLimit.gt(0) && (
         <MaxStakeRow
           small
@@ -134,7 +134,7 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
       {poolContractAddress && (
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
           <LinkExternal
-            href={`${BASE_BSC_SCAN_URL}/address/${vaultKey ? cakeVaultContractAddress : poolContractAddress}`}
+            href={`${BASE_BSC_SCAN_URL}/address/${vaultKey ? xaloVaultContractAddress : poolContractAddress}`}
             bold={false}
             small
           >

@@ -8,8 +8,8 @@ import { getVotingPower } from '../helpers'
 
 interface State {
   xaloBalance?: number
-  cakeVaultBalance?: number
-  cakePoolBalance?: number
+  xaloVaultBalance?: number
+  xaloPoolBalance?: number
   poolsBalance?: number
   cakeBnbLpBalance?: number
   ifoPoolBalance?: number
@@ -24,14 +24,14 @@ const useGetVotingPower = (block?: number, isActive = true): State & { isLoading
       const blockNumber = block || (await simpleRpcProvider.getBlockNumber())
       const eligiblePools = await getActivePools(blockNumber)
       const poolAddresses = eligiblePools.map(({ contractAddress }) => getAddress(contractAddress))
-      const { xaloBalance, cakeBnbLpBalance, cakePoolBalance, total, poolsBalance, cakeVaultBalance, ifoPoolBalance } =
+      const { xaloBalance, cakeBnbLpBalance, xaloPoolBalance, total, poolsBalance, xaloVaultBalance, ifoPoolBalance } =
         await getVotingPower(account, poolAddresses, blockNumber)
       return {
         xaloBalance,
         cakeBnbLpBalance,
-        cakePoolBalance,
+        xaloPoolBalance,
         poolsBalance,
-        cakeVaultBalance,
+        xaloVaultBalance,
         ifoPoolBalance,
         total,
       }

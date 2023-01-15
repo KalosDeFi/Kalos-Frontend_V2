@@ -27,8 +27,8 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
     isError,
     total,
     xaloBalance,
-    cakeVaultBalance,
-    cakePoolBalance,
+    xaloVaultBalance,
+    xaloPoolBalance,
     poolsBalance,
     cakeBnbLpBalance,
     ifoPoolBalance,
@@ -103,8 +103,8 @@ const CastVoteModal: React.FC<CastVoteModalProps> = ({ onSuccess, proposalId, vo
             total={total}
             xaloBalance={xaloBalance}
             ifoPoolBalance={ifoPoolBalance}
-            cakeVaultBalance={cakeVaultBalance}
-            xaloPoolBalance={cakePoolBalance}
+            xaloVaultBalance={xaloVaultBalance}
+            xaloPoolBalance={xaloPoolBalance}
             poolsBalance={poolsBalance}
             cakeBnbLpBalance={cakeBnbLpBalance}
             block={block}

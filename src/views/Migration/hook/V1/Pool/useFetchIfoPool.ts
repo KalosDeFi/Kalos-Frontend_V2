@@ -9,21 +9,21 @@ import type { Signer } from '@ethersproject/abstract-signer'
 import type { Provider } from '@ethersproject/providers'
 import { Contract } from '@ethersproject/contracts'
 import { simpleRpcProvider } from 'utils/providers'
-import cakeVaultAbi from 'config/abi/cakeVault.json'
+import xaloVaultAbi from 'config/abi/xaloVault.json'
 import { FAST_INTERVAL } from 'config/constants'
 import { VaultKey } from 'state/types'
 import { fetchPublicVaultData } from './fetchPublicVaultData'
 
 export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
-export const cakeVaultAddress = '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC'
+export const xaloVaultAddress = '0x394D2aD99ba0173184DEC82877eeFAaC36c9663a'
 
-const getCakeVaultContract = (signer?: Signer | Provider) => {
+const getXaloVaultContract = (signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
-  return new Contract(cakeVaultAddress, cakeVaultAbi, signerOrProvider) as any
+  return new Contract(xaloVaultAddress, xaloVaultAbi, signerOrProvider) as any
 }
 
 const fetchVaultUserV1 = async (account: string) => {
-  const contract = getCakeVaultContract()
+  const contract = getXaloVaultContract()
   try {
     const userContractResponse = await contract.userInfo(account)
     return {
@@ -31,7 +31,7 @@ const fetchVaultUserV1 = async (account: string) => {
       userShares: new BigNumber(userContractResponse.shares.toString()).toJSON(),
       lastDepositedTime: userContractResponse.lastDepositedTime.toString(),
       lastUserActionTime: userContractResponse.lastUserActionTime.toString(),
-      cakeAtLastUserAction: new BigNumber(userContractResponse.cakeAtLastUserAction.toString()).toJSON(),
+      xaloAtLastUserAction: new BigNumber(userContractResponse.xaloAtLastUserAction.toString()).toJSON(),
     }
   } catch (error) {
     return {
@@ -39,7 +39,7 @@ const fetchVaultUserV1 = async (account: string) => {
       userShares: null,
       lastDepositedTime: null,
       lastUserActionTime: null,
-      cakeAtLastUserAction: null,
+      xaloAtLastUserAction: null,
     }
   }
 }
@@ -58,31 +58,31 @@ const getIfoPoolData = async (account) => {
   return transformData(ifoPoolData)
 }
 
-const getCakePoolData = async (account) => {
+const getXaloPoolData = async (account) => {
   const [vaultData, userData, feesData] = await Promise.all([
-    fetchPublicVaultData(cakeVaultAddress),
+    fetchPublicVaultData(xaloVaultAddress),
     fetchVaultUserV1(account),
-    fetchVaultFees(cakeVaultAddress),
+    fetchVaultFees(xaloVaultAddress),
   ])
-  const cakeData = {
+  const xaloData = {
     ...vaultData,
     fees: { ...feesData },
     userData: { ...userData, isLoading: false },
   }
-  return transformData(cakeData)
+  return transformData(xaloData)
 }
 
 const transformData = ({
   totalShares,
   pricePerFullShare,
-  totalCakeInVault,
+  totalXaloInVault,
   fees: { performanceFee, withdrawalFee, withdrawalFeePeriod },
-  userData: { isLoading, userShares, cakeAtLastUserAction, lastDepositedTime, lastUserActionTime },
+  userData: { isLoading, userShares, xaloAtLastUserAction, lastDepositedTime, lastUserActionTime },
 }) => {
   return {
     totalShares: new BigNumber(totalShares),
     pricePerFullShare: new BigNumber(pricePerFullShare),
-    totalCakeInVault: new BigNumber(totalCakeInVault),
+    totalXaloInVault: new BigNumber(totalXaloInVault),
     fees: {
       performanceFeeAsDecimal: performanceFee && performanceFee / 100,
       performanceFee,
@@ -92,7 +92,7 @@ const transformData = ({
     userData: {
       isLoading,
       userShares: new BigNumber(userShares),
-      cakeAtLastUserAction: new BigNumber(cakeAtLastUserAction),
+      xaloAtLastUserAction: new BigNumber(xaloAtLastUserAction),
       lastDepositedTime,
       lastUserActionTime,
     },
@@ -107,7 +107,7 @@ export const useVaultPoolByKeyV1 = (key: VaultKey) => {
       if (key === VaultKey.IfoPool) {
         return getIfoPoolData(account)
       }
-      return getCakePoolData(account)
+      return getXaloPoolData(account)
     },
     {
       revalidateOnFocus: false,

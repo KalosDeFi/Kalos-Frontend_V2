@@ -5,7 +5,7 @@ import { FlexGap } from 'components/Layout/Flex'
 import { vaultPoolConfig } from 'config/constants/pools'
 import { useTranslation } from 'contexts/Localization'
 import { useVaultPoolByKey } from 'state/pools/hooks'
-import { DeserializedPool, VaultKey, DeserializedLockedCakeVault, DeserializedCakeVault } from 'state/types'
+import { DeserializedPool, VaultKey, DeserializedLockedXaloVault, DeserializedXaloVault } from 'state/types'
 import styled from 'styled-components'
 
 import CardFooter from '../PoolCard/CardFooter'
@@ -13,7 +13,7 @@ import PoolCardHeader, { PoolCardHeaderTitle } from '../PoolCard/PoolCardHeader'
 import { StyledCard } from '../PoolCard/StyledCard'
 import { VaultPositionTagWithLabel } from '../Vault/VaultPositionTag'
 import UnstakingFeeCountdownRow from './UnstakingFeeCountdownRow'
-import RecentCakeProfitRow from './RecentCakeProfitRow'
+import RecentXaloProfitRow from './RecentXaloProfitRow'
 import { StakingApy } from './StakingApy'
 import VaultCardActions from './VaultCardActions'
 import LockedStakingApy from '../LockedPool/LockedStakingApy'
@@ -22,25 +22,25 @@ const StyledCardBody = styled(CardBody)<{ isLoading: boolean }>`
   min-height: ${({ isLoading }) => (isLoading ? '0' : '254px')};
 `
 
-interface CakeVaultProps extends CardProps {
+interface XaloVaultProps extends CardProps {
   pool: DeserializedPool
   showStakedOnly: boolean
   defaultFooterExpanded?: boolean
   showICake?: boolean
 }
 
-interface CakeVaultDetailProps {
+interface XaloVaultDetailProps {
   isLoading?: boolean
   account: string
   pool: DeserializedPool
-  vaultPool: DeserializedCakeVault
+  vaultPool: DeserializedXaloVault
   accountHasSharesStaked: boolean
   defaultFooterExpanded?: boolean
   showICake?: boolean
   performanceFeeAsDecimal: number
 }
 
-export const CakeVaultDetail: React.FC<CakeVaultDetailProps> = ({
+export const XaloVaultDetail: React.FC<XaloVaultDetailProps> = ({
   isLoading = false,
   account,
   pool,
@@ -55,14 +55,14 @@ export const CakeVaultDetail: React.FC<CakeVaultDetailProps> = ({
   return (
     <>
       <StyledCardBody isLoading={isLoading}>
-        {account && pool.vaultKey === VaultKey.CakeVault && (
-          <VaultPositionTagWithLabel userData={(vaultPool as DeserializedLockedCakeVault).userData} />
+        {account && pool.vaultKey === VaultKey.XaloVault && (
+          <VaultPositionTagWithLabel userData={(vaultPool as DeserializedLockedXaloVault).userData} />
         )}
         {account &&
-        pool.vaultKey === VaultKey.CakeVault &&
-        (vaultPool as DeserializedLockedCakeVault).userData.locked ? (
+        pool.vaultKey === VaultKey.XaloVault &&
+        (vaultPool as DeserializedLockedXaloVault).userData.locked ? (
           <LockedStakingApy
-            userData={(vaultPool as DeserializedLockedCakeVault).userData}
+            userData={(vaultPool as DeserializedLockedXaloVault).userData}
             stakingToken={pool?.stakingToken}
             stakingTokenBalance={pool?.userData?.stakingTokenBalance}
             showICake={showICake}
@@ -77,7 +77,7 @@ export const CakeVaultDetail: React.FC<CakeVaultDetailProps> = ({
                     <UnstakingFeeCountdownRow vaultKey={pool.vaultKey} />
                   </Box>
                 )}
-                <RecentCakeProfitRow pool={pool} />
+                <RecentXaloProfitRow pool={pool} />
               </Box>
               <Flex flexDirection="column">
                 {account ? (
@@ -105,7 +105,7 @@ export const CakeVaultDetail: React.FC<CakeVaultDetailProps> = ({
   )
 }
 
-const CakeVaultCard: React.FC<CakeVaultProps> = ({
+const XaloVaultCard: React.FC<XaloVaultProps> = ({
   pool,
   showStakedOnly,
   defaultFooterExpanded,
@@ -137,7 +137,7 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({
         />
         <TokenPairImage {...vaultPoolConfig[pool.vaultKey].tokenImage} width={64} height={64} />
       </PoolCardHeader>
-      <CakeVaultDetail
+      <XaloVaultDetail
         isLoading={isLoading}
         account={account}
         pool={pool}
@@ -151,4 +151,4 @@ const CakeVaultCard: React.FC<CakeVaultProps> = ({
   )
 }
 
-export default CakeVaultCard
+export default XaloVaultCard

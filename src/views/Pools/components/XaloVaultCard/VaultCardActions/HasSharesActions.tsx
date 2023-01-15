@@ -18,7 +18,7 @@ interface HasStakeActionProps {
 const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBalance, performanceFee }) => {
   const {
     userData: {
-      balance: { cakeAsBigNumber, cakeAsNumberBalance },
+      balance: { xaloAsBigNumber, xaloAsNumberBalance },
     },
   } = useVaultPoolByKey(pool.vaultKey)
 
@@ -26,7 +26,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBal
 
   const xaloPriceBusd = usePriceCakeBusd()
   const stakedDollarValue = xaloPriceBusd.gt(0)
-    ? getBalanceNumber(cakeAsBigNumber.multipliedBy(xaloPriceBusd), stakingToken.decimals)
+    ? getBalanceNumber(xaloAsBigNumber.multipliedBy(xaloPriceBusd), stakingToken.decimals)
     : 0
 
   const [onPresentTokenRequired] = useModal(<NotEnoughTokensModal tokenSymbol={stakingToken.symbol} />)
@@ -34,7 +34,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBal
     <VaultStakeModal stakingMax={stakingTokenBalance} performanceFee={performanceFee} pool={pool} />,
   )
   const [onPresentUnstake] = useModal(
-    <VaultStakeModal stakingMax={cakeAsBigNumber} pool={pool} isRemovingStake />,
+    <VaultStakeModal stakingMax={xaloAsBigNumber} pool={pool} isRemovingStake />,
     true,
     true,
     'withdraw-vault',
@@ -44,7 +44,7 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBal
     <>
       <Flex mb="16px" justifyContent="space-between" alignItems="center">
         <Flex flexDirection="column">
-          <Balance fontSize="20px" bold value={cakeAsNumberBalance} decimals={5} />
+          <Balance fontSize="20px" bold value={xaloAsNumberBalance} decimals={5} />
           <Text as={Flex} fontSize="12px" color="textSubtle" flexWrap="wrap">
             {xaloPriceBusd.gt(0) ? (
               <Balance
@@ -69,9 +69,9 @@ const HasSharesActions: React.FC<HasStakeActionProps> = ({ pool, stakingTokenBal
           </IconButton>
         </Flex>
       </Flex>
-      {pool.vaultKey === VaultKey.CakeVault && (
+      {pool.vaultKey === VaultKey.XaloVault && (
         <Box mb="16px">
-          <ConvertToLock stakingToken={stakingToken} currentStakedAmount={cakeAsNumberBalance} />
+          <ConvertToLock stakingToken={stakingToken} currentStakedAmount={xaloAsNumberBalance} />
         </Box>
       )}
     </>

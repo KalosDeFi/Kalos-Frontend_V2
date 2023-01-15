@@ -65,14 +65,14 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
     ]
     const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls)
-    const regularCakePerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
+    const regularXaloPerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
     const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
     const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
 
     const farms = await fetchFarms(farmsCanFetch)
     const farmsWithPrices = getFarmsPrices(farms)
 
-    return [farmsWithPrices, poolLength.toNumber(), regularCakePerBlock.toNumber()]
+    return [farmsWithPrices, poolLength.toNumber(), regularXaloPerBlock.toNumber()]
   },
   {
     condition: (arg, { getState }) => {
@@ -173,13 +173,13 @@ export const farmsSlice = createSlice({
     })
     // Update farms with live data
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
-      const [farmPayload, poolLength, regularCakePerBlock] = action.payload
+      const [farmPayload, poolLength, regularXaloPerBlock] = action.payload
       state.data = state.data.map((farm) => {
         const liveFarmData = farmPayload.find((farmData) => farmData.pid === farm.pid)
         return { ...farm, ...liveFarmData }
       })
       state.poolLength = poolLength
-      state.regularCakePerBlock = regularCakePerBlock
+      state.regularXaloPerBlock = regularXaloPerBlock
     })
 
     // Update farms with user data

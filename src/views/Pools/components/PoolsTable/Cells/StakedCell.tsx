@@ -26,7 +26,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
   const {
     userData: {
       userShares,
-      balance: { cakeAsBigNumber, cakeAsNumberBalance },
+      balance: { xaloAsBigNumber, xaloAsNumberBalance },
       isLoading,
     },
   } = vaultData
@@ -35,7 +35,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
 
   // pool
   const { stakingTokenPrice, stakingToken, userData } = pool
-  const stakedAutoDollarValue = getBalanceNumber(cakeAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
+  const stakedAutoDollarValue = getBalanceNumber(xaloAsBigNumber.multipliedBy(stakingTokenPrice), stakingToken.decimals)
   const stakedBalance = userData?.stakedBalance ? new BigNumber(userData.stakedBalance) : BIG_ZERO
   const stakedTokenBalance = getBalanceNumber(stakedBalance, stakingToken.decimals)
   const stakedTokenDollarBalance = getBalanceNumber(
@@ -44,7 +44,7 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
   )
 
   const labelText = `${pool.stakingToken.symbol} ${
-    pool.vaultKey === VaultKey.CakeVault && (vaultData as DeserializedPoolLockedVault).userData.locked
+    pool.vaultKey === VaultKey.XaloVault && (vaultData as DeserializedPoolLockedVault).userData.locked
       ? t('Locked')
       : t('Staked')
   }`
@@ -57,9 +57,9 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
     <StyledCell
       role="cell"
       flex={
-        pool.vaultKey === VaultKey.CakeFlexibleSideVault
+        pool.vaultKey === VaultKey.XaloFlexibleSideVault
           ? '1 0 162px'
-          : pool.vaultKey === VaultKey.CakeVault && !hasStaked
+          : pool.vaultKey === VaultKey.XaloVault && !hasStaked
           ? '1 0 120px'
           : '2 0 100px'
       }
@@ -83,9 +83,9 @@ const StakedCell: React.FC<StakedCellProps> = ({ pool, account }) => {
                   value={
                     hasStaked
                       ? pool.vaultKey
-                        ? Number.isNaN(cakeAsNumberBalance)
+                        ? Number.isNaN(xaloAsNumberBalance)
                           ? 0
-                          : cakeAsNumberBalance
+                          : xaloAsNumberBalance
                         : stakedTokenBalance
                       : 0
                   }

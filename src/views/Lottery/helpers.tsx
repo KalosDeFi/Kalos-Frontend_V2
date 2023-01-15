@@ -39,12 +39,12 @@ export const processLotteryResponse = (
   const {
     priceTicketInXalo: priceTicketInXaloAsString,
     discountDivisor: discountDivisorAsString,
-    amountCollectedInCake: amountCollectedInCakeAsString,
+    amountCollectedInXalo: amountCollectedInXaloAsString,
   } = lotteryData
 
   const discountDivisor = new BigNumber(discountDivisorAsString)
   const priceTicketInXalo = new BigNumber(priceTicketInXaloAsString)
-  const amountCollectedInCake = new BigNumber(amountCollectedInCakeAsString)
+  const amountCollectedInXalo = new BigNumber(amountCollectedInXaloAsString)
 
   return {
     isLoading: lotteryData.isLoading,
@@ -58,9 +58,9 @@ export const processLotteryResponse = (
     treasuryFee: lotteryData.treasuryFee,
     firstTicketId: lotteryData.firstTicketId,
     lastTicketId: lotteryData.lastTicketId,
-    amountCollectedInCake,
+    amountCollectedInXalo,
     finalNumber: lotteryData.finalNumber,
-    cakePerBracket: lotteryData.cakePerBracket,
+    xaloPerBracket: lotteryData.xaloPerBracket,
     countWinnersPerBracket: lotteryData.countWinnersPerBracket,
     rewardsBreakdown: lotteryData.rewardsBreakdown,
   }
