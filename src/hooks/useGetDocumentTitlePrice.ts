@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useCakeBusdPrice } from 'hooks/useBUSDPrice'
+import { useXaloBusdPrice } from 'hooks/useBUSDPrice'
 
 const useGetDocumentTitlePrice = () => {
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
   useEffect(() => {
     const xaloPriceBusdString = xaloPriceBusd ? xaloPriceBusd.toFixed(2) : ''
     document.title = `Pancake Swap - ${xaloPriceBusdString}`

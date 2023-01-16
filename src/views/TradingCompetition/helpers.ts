@@ -2,7 +2,7 @@ import { ReactText } from 'react'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { easterPrizes, PrizesConfig } from 'config/constants/trading-competition/prizes'
 import BigNumber from 'bignumber.js'
-import useBUSDPrice, { useCakeBusdPrice } from 'hooks/useBUSDPrice'
+import useBUSDPrice, { useXaloBusdPrice } from 'hooks/useBUSDPrice'
 import tokens from 'config/constants/tokens'
 import { multiplyPriceByAmount } from 'utils/prices'
 
@@ -13,7 +13,7 @@ export const localiseTradingVolume = (value: number, decimals = 0) => {
 export const useCompetitionCakeRewards = (userCakeReward: ReactText) => {
   const xaloAsBigNumber = new BigNumber(userCakeReward as string)
   const xaloBalance = getBalanceNumber(xaloAsBigNumber)
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
   return {
     cakeReward: xaloBalance,
     dollarValueOfCakeReward: multiplyPriceByAmount(xaloPriceBusd, xaloBalance),
@@ -42,7 +42,7 @@ export const useFanTokenCompetitionRewards = ({
   const lazioBalance = getBalanceNumber(lazioAsBigNumber, 8)
   const portoBalance = getBalanceNumber(portoAsBigNumber, 8)
   const santosBalance = getBalanceNumber(santosAsBigNumber, 8)
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
 
   const dollarValueOfTokensReward =
     xaloPriceBusd && lazioPriceBUSD && portoPriceBUSD && santosPriceBUSD
@@ -73,7 +73,7 @@ export const useMoboxCompetitionRewards = ({
   const moboxAsBigNumber = new BigNumber(userMoboxRewards as string)
   const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const moboxBalance = getBalanceNumber(moboxAsBigNumber)
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
 
   const dollarValueOfTokensReward =
     xaloPriceBusd && moboxPriceBUSD
@@ -99,7 +99,7 @@ export const useModCompetitionRewards = ({
   const darAsBigNumber = new BigNumber(userDarRewards as string)
   const xaloBalance = getBalanceNumber(xaloAsBigNumber)
   const darBalance = getBalanceNumber(darAsBigNumber, tokens.dar.decimals)
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
 
   const dollarValueOfTokensReward =
     xaloPriceBusd && darPriceBUSD

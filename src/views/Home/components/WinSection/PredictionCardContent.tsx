@@ -6,7 +6,7 @@ import { useTranslation } from 'contexts/Localization'
 import { formatLocalisedCompactNumber } from 'utils/formatBalance'
 import useIntersectionObserver from 'hooks/useIntersectionObserver'
 import { getTotalWon } from 'state/predictions/helpers'
-import { useBNBBusdPrice, useCakeBusdPrice } from 'hooks/useBUSDPrice'
+import { useBNBBusdPrice, useXaloBusdPrice } from 'hooks/useBUSDPrice'
 import { multiplyPriceByAmount } from 'utils/prices'
 import useSWR from 'swr'
 import { SLOW_INTERVAL } from 'config/constants'
@@ -34,7 +34,7 @@ const PredictionCardContent = () => {
   const { observerRef, isIntersecting } = useIntersectionObserver()
   const [loadData, setLoadData] = useState(false)
   const bnbBusdPrice = useBNBBusdPrice()
-  const xaloPriceBusd = useCakeBusdPrice()
+  const xaloPriceBusd = useXaloBusdPrice()
 
   const { data } = useSWR(loadData ? ['prediction', 'tokenWon'] : null, getTotalWon, {
     refreshInterval: SLOW_INTERVAL,
