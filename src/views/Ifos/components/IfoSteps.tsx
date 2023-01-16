@@ -30,7 +30,7 @@ import { nftsBaseUrl } from 'views/Nft/market/constants'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { FlexGap } from 'components/Layout/Flex'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useBUSDCakeAmount } from 'hooks/useBUSDPrice'
+import { useBUSDXaloAmount } from 'hooks/useBUSDPrice'
 import { useIfoCredit, useIfoCeiling } from 'state/pools/hooks'
 import { getICakeWeekDisplay } from 'views/Pools/helpers'
 
@@ -67,7 +67,7 @@ const Step1 = ({ hasProfile }: { hasProfile: boolean }) => {
   const { t } = useTranslation()
   const credit = useIfoCredit()
   const ceiling = useIfoCeiling()
-  const creditDollarValue = useBUSDCakeAmount(getBalanceNumber(credit))
+  const creditDollarValue = useBUSDXaloAmount(getBalanceNumber(credit))
   const weeksDisplay = getICakeWeekDisplay(ceiling)
 
   const { targetRef, tooltip, tooltipVisible } = useTooltip(

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Modal, Box } from '@pancakeswap/uikit'
 import useTheme from 'hooks/useTheme'
-import { useBUSDCakeAmount } from 'hooks/useBUSDPrice'
+import { useBUSDXaloAmount } from 'hooks/useBUSDPrice'
 import { useTranslation } from 'contexts/Localization'
 import _toNumber from 'lodash/toNumber'
 import BigNumber from 'bignumber.js'
@@ -20,7 +20,7 @@ const LockedStakeModal: React.FC<GenericModalProps> = ({
   const [lockedAmount, setLockedAmount] = useState('')
   const { t } = useTranslation()
 
-  const usdValueStaked = useBUSDCakeAmount(_toNumber(lockedAmount))
+  const usdValueStaked = useBUSDXaloAmount(_toNumber(lockedAmount))
 
   return (
     <RoiCalculatorModalProvider lockedAmount={lockedAmount}>
