@@ -1,6 +1,6 @@
-const PANCAKE_EXTENDED = 'https://tokens.kalosdefi.finance/pancakeswap-extended.json'
-const COINGECKO = 'https://tokens.kalosdefi.finance/coingecko.json'
-const CMC = 'https://tokens.kalosdefi.finance/cmc.json'
+const PANCAKE_EXTENDED = 'https://tokens.pancakeswap.finance/pancakeswap-extended.json'
+const COINGECKO = 'https://tokens.pancakeswap.finance/coingecko.json'
+const CMC = 'https://tokens.pancakeswap.finance/cmc.json'
 
 // List of official tokens list
 export const OFFICIAL_LISTS = [PANCAKE_EXTENDED]
