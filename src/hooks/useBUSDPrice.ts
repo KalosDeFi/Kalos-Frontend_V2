@@ -65,9 +65,9 @@ export default function useBUSDPrice(currency?: Currency): Price | undefined {
   }, [chainId, currency, bnbPair, bnbPairState, busdBnbPair, busdBnbPairState, busdPair, busdPairState, wrapped])
 }
 
-export const useCakeBusdPrice = (): Price | undefined => {
-  const cakeBusdPrice = useBUSDPrice(tokens.cake)
-  return cakeBusdPrice
+export const useXaloBusdPrice = (): Price | undefined => {
+  const xaloBusdPrice = useBUSDPrice(tokens.xalo)
+  return xaloBusdPrice
 }
 
 export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): number | undefined => {
@@ -81,10 +81,10 @@ export const useBUSDCurrencyAmount = (currency?: Currency, amount?: number): num
   return undefined
 }
 
-export const useBUSDCakeAmount = (amount: number): number | undefined => {
-  const cakeBusdPrice = useCakeBusdPrice()
-  if (cakeBusdPrice) {
-    return multiplyPriceByAmount(cakeBusdPrice, amount)
+export const useBUSDXaloAmount = (amount: number): number | undefined => {
+  const xaloBusdPrice = useXaloBusdPrice()
+  if (xaloBusdPrice) {
+    return multiplyPriceByAmount(xaloBusdPrice, amount)
   }
   return undefined
 }
