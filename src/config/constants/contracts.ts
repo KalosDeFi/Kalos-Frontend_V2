@@ -1,3 +1,7 @@
+import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+
+const KalosMasterChef = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef')[0]
+const KalosAult = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosAult/Automatic Pool')[0]
 export default {
   masterChef: {
     97: '',
@@ -5,7 +9,7 @@ export default {
   },
   masterChefV1: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-    56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
+    56: KalosMasterChef.address,
   },
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -64,7 +68,7 @@ export default {
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
   xaloVault: {
-    56: '0x394D2aD99ba0173184DEC82877eeFAaC36c9663a',
+    56: KalosAult.address,
     97: '',
   },
   xaloFlexibleSideVault: {

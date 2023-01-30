@@ -1,0 +1,17 @@
+[
+    {
+        "name": "KalosRouter",
+        "address": "0xdf83b40f905e9BF467F224c910D06dAda96E07bc",
+        "chainId": 56
+    },
+    {
+        "name": "MasterChef",
+        "address": "0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D",
+        "chainId": 56
+    },
+    {
+        "name": "KalosAult/Automatic Pool ",
+        "address": "0x394D2aD99ba0173184DEC82877eeFAaC36c9663a",
+        "chainId": 56
+    }
+]

@@ -9,6 +9,10 @@ import { PoolCategory } from 'config/constants/types'
 import { serializeTokens } from 'config/constants/tokens'
 import { fetchUserStakeBalances, fetchUserPendingRewards } from './fetchPoolsUser'
 
+import KALOS_CONTRACT_LIST from '../../../../../config/constants/kalos-default.contracts.json';
+
+const KalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef')[0]
+
 export interface PoolsState {
   data: SerializedPool
   userDataLoaded: boolean
@@ -24,7 +28,7 @@ const initialData = {
     earningToken: serializedTokens.xalo,
     contractAddress: {
       97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-      56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
+      56: KalosRouter.address,
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',

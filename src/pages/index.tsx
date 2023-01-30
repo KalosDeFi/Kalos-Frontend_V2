@@ -9,6 +9,7 @@ import { getXaloContract } from 'utils/contractHelpers'
 import { getBlocksFromTimestamps } from 'utils/getBlocksFromTimestamps'
 import { formatEther } from '@ethersproject/units'
 import Home from '../views/Home'
+import DEFAULT_TOKEN_LIST from '../config/constants/tokenLists/pancake-default.tokenlist.json'
 
 const IndexPage = ({ totalTx30Days, addressCount30Days, tvl }) => {
   return (
@@ -107,14 +108,15 @@ export const getStaticProps: GetStaticProps = async () => {
       }
     }
   }
-
+  
   try {
+    const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
     const result = await infoServerClient.request(gql`
       query tvl {
         pancakeFactories(first: 1) {
           totalLiquidityUSD
         }
-        token(id: "0xE9E9b8001d86C36F971d046D64983738599C7385") {
+        token(id: ` + kalosToken['address'] + `) {
           derivedUSD
         }
       }
