@@ -113,7 +113,7 @@ export const getStaticProps: GetStaticProps = async () => {
     const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token.name === 'Kalosdefi Token')[0]
     const result = await infoServerClient.request(gql`
       query tvl {
-        pancakeFactories(first: 1) {
+        kalosFactories(first: 1) {
           totalLiquidityUSD
         }
         token(id: kalosToken.address) {
@@ -121,7 +121,7 @@ export const getStaticProps: GetStaticProps = async () => {
         }
       }
     `)
-    const { totalLiquidityUSD } = result.pancakeFactories[0]
+    const { totalLiquidityUSD } = result.kalosFactories[0]
     const xaloVaultV2 = getXaloVaultAddress()
     const xaloContract = getXaloContract()
     const totalXaloInVault = await xaloContract.balanceOf(xaloVaultV2)
