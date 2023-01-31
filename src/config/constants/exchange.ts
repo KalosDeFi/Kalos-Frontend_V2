@@ -3,8 +3,14 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { mainnetTokens, testnetTokens } from './tokens'
 import { ChainTokenList } from './types'
 
+import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
+
+import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+
+const KalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter')[0]
+
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: '0xdf83b40f905e9BF467F224c910D06dAda96E07bc',
+  [ChainId.MAINNET]: KalosRouter.name,
   [ChainId.TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
 }
 
@@ -89,7 +95,8 @@ export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 // BNB
 export const DEFAULT_INPUT_CURRENCY = 'BNB'
 // CAKE
-export const DEFAULT_OUTPUT_CURRENCY = '0xE9E9b8001d86C36F971d046D64983738599C7385'
+const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+export const DEFAULT_OUTPUT_CURRENCY = kalosToken.address
 
 // Handler string is passed to Gelato to use PCS router
 export const GELATO_HANDLER = 'pancakeswap'

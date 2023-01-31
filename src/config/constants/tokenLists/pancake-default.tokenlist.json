@@ -59,14 +59,6 @@
       "logoURI": "https://pancakeswap.finance/images/tokens/0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82.png"
     },
     {
-      "name": "Kalosdefi Token",
-      "symbol": "XALO",
-      "address": "0xE9E9b8001d86C36F971d046D64983738599C7385",
-      "chainId": 56,
-      "decimals": 18,
-      "logoURI": "https://pancakeswap.finance/images/tokens/0xE9E9b8001d86C36F971d046D64983738599C7385.png"
-    },
-    {
       "name": "Venus",
       "symbol": "XVS",
       "address": "0xcF6BB5389c92Bdda8a3747Ddb454cB7a64626C63",
@@ -145,6 +137,14 @@
       "chainId": 97,
       "decimals": 18,
       "logoURI": "https://pancakeswap.finance/images/tokens/0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56.png"
+    },
+    {
+      "name": "Kalosdefi Token",
+      "symbol": "XALO",
+      "address": "0xE9E9b8001d86C36F971d046D64983738599C7385",
+      "chainId": 56,
+      "decimals": 18,
+      "logoURI": "https://pancakeswap.finance/images/tokens/0xE9E9b8001d86C36F971d046D64983738599C7385.png"
     }
   ]
 }

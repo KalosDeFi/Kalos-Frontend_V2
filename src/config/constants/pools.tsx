@@ -5,6 +5,10 @@ import { CHAIN_ID } from './networks'
 import tokens, { serializeTokens } from './tokens'
 import { SerializedPoolConfig, PoolCategory } from './types'
 
+import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+
+const KalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef')[0]
+
 const serializedTokens = serializeTokens()
 
 export const MAX_LOCK_DURATION = 31536000
@@ -63,7 +67,7 @@ export const livePools: SerializedPoolConfig[] = [
     earningToken: serializedTokens.xalo,
     contractAddress: {
       97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
-      56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
+      56: KalosRouter.address,
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',

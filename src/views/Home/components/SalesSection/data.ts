@@ -1,5 +1,6 @@
 import { TranslateFunction } from 'contexts/Localization/types'
 import { SalesSectionProps } from '.'
+import DEFAULT_TOKEN_LIST from '../../../../../src/config/constants/tokenLists/pancake-default.tokenlist.json';
 
 export const swapSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('Trade anything. No registration no KYC no hassle.'),
@@ -50,6 +51,8 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
   },
 })
 
+const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('KALOS DEFI.'),
   bodyText: t(
@@ -57,7 +60,7 @@ export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   ),
   reverse: false,
   primaryButton: {
-    to: '/swap?outputCurrency=0xE9E9b8001d86C36F971d046D64983738599C7385',
+    to: '/swap?outputCurrency=' + kalosToken,
     text: t('Buy XALO'),
     external: false,
   },
