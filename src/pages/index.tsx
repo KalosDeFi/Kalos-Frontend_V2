@@ -116,7 +116,7 @@ export const getStaticProps: GetStaticProps = async () => {
         kalosFactories(first: 1) {
           totalLiquidityUSD
         }
-        token(id: ` + kalosToken['address'] + `) {
+        token(id: ` + kalosToken.address + `) {
           derivedUSD
         }
       }
