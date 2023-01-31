@@ -110,13 +110,13 @@ export const getStaticProps: GetStaticProps = async () => {
   }
   
   try {
-    const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+    const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token.name === 'Kalosdefi Token')[0]
     const result = await infoServerClient.request(gql`
       query tvl {
         pancakeFactories(first: 1) {
           totalLiquidityUSD
         }
-        token(id: ` + kalosToken['address'] + `) {
+        token(id: kalosToken.address) {
           derivedUSD
         }
       }
