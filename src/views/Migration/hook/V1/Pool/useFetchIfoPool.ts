@@ -15,10 +15,10 @@ import { VaultKey } from 'state/types'
 import { fetchPublicVaultData } from './fetchPublicVaultData'
 
 import KALOS_CONTRACT_LIST from '../../../../../config/constants/kalos-default.contracts.json'
-const KalosAult = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosAult/Automatic Pool')[0]
+const KalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosVault/Automatic Pool')[0]
 
 export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
-export const xaloVaultAddress = KalosAult.address
+export const xaloVaultAddress = KalosVault.address
 
 const getXaloVaultContract = (signer?: Signer | Provider) => {
   const signerOrProvider = signer ?? simpleRpcProvider
