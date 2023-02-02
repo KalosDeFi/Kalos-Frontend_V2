@@ -6,12 +6,13 @@ import { ChainTokenList } from './types'
 import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
 
 import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+import { CHAIN_ID } from './networks';
 
-const KalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter')[0]
-
+const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter' && contract.chainId == ChainId.MAINNET)[0]
+const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter' && contract.chainId == ChainId.TESTNET)[0]
 export const ROUTER_ADDRESS = {
-  [ChainId.MAINNET]: KalosRouter.name,
-  [ChainId.TESTNET]: '0xD99D1c33F9fC3444f8101754aBC46c52416550D1',
+  [ChainId.MAINNET]: mainnetKalosRouter.address,
+  [ChainId.TESTNET]: testnetKalosRouter.address,
 }
 
 // used to construct intermediary pairs for trading
@@ -71,7 +72,7 @@ export const BIG_INT_ZERO = JSBI.BigInt(0)
 export const BIG_INT_TEN = JSBI.BigInt(10)
 
 // one basis point
-export const BIPS_BASE = JSBI.BigInt(1000)
+export const BIPS_BASE = JSBI.BigInt(10000)
 export const ONE_BIPS = new Percent(JSBI.BigInt(1), BIPS_BASE)
 // used for warning states
 export const ALLOWED_PRICE_IMPACT_LOW: Percent = new Percent(JSBI.BigInt(100), BIPS_BASE) // 1%
@@ -95,7 +96,8 @@ export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 // BNB
 export const DEFAULT_INPUT_CURRENCY = 'BNB'
 // CAKE
-const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+
+const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == parseInt(CHAIN_ID))[0]
 export const DEFAULT_OUTPUT_CURRENCY = kalosToken.address
 
 // Handler string is passed to Gelato to use PCS router

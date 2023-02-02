@@ -10,8 +10,23 @@
         "chainId": 56
     },
     {
-        "name": "KalosAult/Automatic Pool ",
+        "name": "KalosVault/Automatic Pool",
         "address": "0x394D2aD99ba0173184DEC82877eeFAaC36c9663a",
         "chainId": 56
+    },
+    {
+        "name": "KalosRouter",
+        "address": "0xb5437FE96CddDC9721C9E8899cc68d26850B536c",
+        "chainId": 97
+    },
+    {
+        "name": "MasterChef",
+        "address": "0x95Ce897Fcb6F34c0455fa1Cb61CfeED7F90b9830",
+        "chainId": 97
+    },
+    {
+        "name": "KalosVault/Automatic Pool",
+        "address": "0xfbAE69DDe694561548E9a370F2b28ad8fa882dd5",
+        "chainId": 97
     }
 ]

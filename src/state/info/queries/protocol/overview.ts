@@ -14,7 +14,7 @@ interface KalosFactory {
 }
 
 interface OverviewResponse {
-  pancakeFactories: KalosFactory[]
+  kalosFactories: KalosFactory[]
 }
 
 /**
@@ -23,7 +23,7 @@ interface OverviewResponse {
 const getOverviewData = async (block?: number): Promise<{ data?: OverviewResponse; error: boolean }> => {
   try {
     const query = gql`query overview {
-      pancakeFactories(
+      kalosFactories(
         ${block ? `block: { number: ${block}}` : ``}
         first: 1) {
         totalTransactions
@@ -71,9 +71,9 @@ const useFetchProtocolData = (): ProtocolFetchState => {
         getOverviewData(block48?.number ?? undefined),
       ])
       const anyError = error || error24 || error48
-      const overviewData = formatKalosFactoryResponse(data?.pancakeFactories?.[0])
-      const overviewData24 = formatKalosFactoryResponse(data24?.pancakeFactories?.[0])
-      const overviewData48 = formatKalosFactoryResponse(data48?.pancakeFactories?.[0])
+      const overviewData = formatKalosFactoryResponse(data?.kalosFactories?.[0])
+      const overviewData24 = formatKalosFactoryResponse(data24?.kalosFactories?.[0])
+      const overviewData48 = formatKalosFactoryResponse(data48?.kalosFactories?.[0])
       const allDataAvailable = overviewData && overviewData24 && overviewData48
       if (anyError || !allDataAvailable) {
         setFetchState({

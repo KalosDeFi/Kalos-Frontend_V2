@@ -217,7 +217,7 @@ export default function Updater(): null {
               console.debug('Cancelled fetch for blockNumber', currentBlock)
               return
             }
-            console.error('Failed to fetch multicall chunk', chunk, chainId, error)
+            console.error('Failed to fetch multicall chunk', chunk, chainId, currentBlock, error)
             dispatch(
               errorFetchingMulticallResults({
                 calls: chunk,

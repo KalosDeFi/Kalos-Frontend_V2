@@ -165,8 +165,9 @@ export default function RemoveLiquidity() {
       { name: 'chainId', type: 'uint256' },
       { name: 'verifyingContract', type: 'address' },
     ]
+    console.log(pair)
     const domain = {
-      name: 'Pancake LPs',
+      name: 'Kalos LPs',
       version: '1',
       chainId,
       verifyingContract: pair.liquidityToken.address,
@@ -402,7 +403,6 @@ export default function RemoveLiquidity() {
       toastError(t('Error'), t('Attempting to confirm without approval or a signature'))
       throw new Error('Attempting to confirm without approval or a signature')
     }
-
     const safeGasEstimates: (BigNumber | undefined)[] = await Promise.all(
       methodNames.map((methodName) =>
         routerContract.estimateGas[methodName](...args)
@@ -413,7 +413,6 @@ export default function RemoveLiquidity() {
           }),
       ),
     )
-
     const indexOfSuccessfulEstimation = safeGasEstimates.findIndex((safeGasEstimate) =>
       BigNumber.isBigNumber(safeGasEstimate),
     )
