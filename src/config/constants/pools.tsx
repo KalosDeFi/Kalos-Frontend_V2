@@ -6,8 +6,10 @@ import tokens, { serializeTokens } from './tokens'
 import { SerializedPoolConfig, PoolCategory } from './types'
 
 import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+import { ChainId } from '@kalosdefi/sdk'
 
-const KalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef')[0]
+const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.MAINNET)[0]
+const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.TESTNET)[0]
 
 const serializedTokens = serializeTokens()
 
@@ -66,8 +68,8 @@ export const livePools: SerializedPoolConfig[] = [
     stakingToken: serializedTokens.xalo,
     earningToken: serializedTokens.xalo,
     contractAddress: {
-      97: '0xB4A466911556e39210a6bB2FaECBB59E4eB7E43d',
-      56: KalosRouter.address,
+      97: testnetKalosRouter.address,
+      56: mainnetKalosRouter.address,
     },
     poolCategory: PoolCategory.CORE,
     tokenPerBlock: '10',

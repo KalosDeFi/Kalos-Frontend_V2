@@ -1,3 +1,4 @@
+import { CHAIN_ID } from 'config/constants/networks';
 import { TranslateFunction } from 'contexts/Localization/types'
 import { SalesSectionProps } from '.'
 import DEFAULT_TOKEN_LIST from '../../../../../src/config/constants/tokenLists/pancake-default.tokenlist.json';
@@ -51,7 +52,7 @@ export const earnSectionData = (t: TranslateFunction): SalesSectionProps => ({
   },
 })
 
-const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == parseInt(CHAIN_ID))[0]
 
 export const cakeSectionData = (t: TranslateFunction): SalesSectionProps => ({
   headingText: t('KALOS DEFI.'),

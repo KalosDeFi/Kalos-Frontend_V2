@@ -4,7 +4,8 @@ import { CHAIN_ID } from './networks'
 import { SerializedToken } from './types'
 
 import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
-const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+const mainnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
+const testnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
 
 const { MAINNET, TESTNET } = ChainId
 
@@ -35,7 +36,7 @@ export const mainnetTokens = defineTokens({
   ),
   xalo: new Token(
     MAINNET,
-    kalosToken.address,
+    mainnetkalosToken.address,
     18,
     'XALO',
     'Kalosdefi Token',
@@ -2166,6 +2167,14 @@ export const mainnetTokens = defineTokens({
 } as const)
 
 export const testnetTokens = defineTokens({
+  xalo: new Token(
+    TESTNET,
+    testnetkalosToken.address,
+    18,
+    'XALO',
+    'Kalosdefi Token',
+    'https://kalosdefi.com/',
+  ),
   wbnb: new Token(
     TESTNET,
     '0xae13d989daC2f0dEbFf460aC112a837C89BAa7cd',

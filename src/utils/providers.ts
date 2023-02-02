@@ -3,6 +3,8 @@ import getRpcUrl from 'utils/getRpcUrl'
 
 const RPC_URL = getRpcUrl()
 
-export const simpleRpcProvider = new StaticJsonRpcProvider(RPC_URL)
+console.log(RPC_URL)
+
+export const simpleRpcProvider = new StaticJsonRpcProvider('https://data-seed-prebsc-2-s3.binance.org:8545')
 
 export default null

@@ -3,7 +3,9 @@ import { SerializedFarmConfig } from './types'
 import { CHAIN_ID } from './networks'
 
 import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
-const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token')[0]
+import { ChainId } from '@kalosdefi/sdk';
+const mainnetKalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
+const testnetKalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
 
 const serializedTokens = serializeTokens()
 
@@ -16,8 +18,8 @@ const farms: SerializedFarmConfig[] = [
     v1pid: 0,
     lpSymbol: 'XALO',
     lpAddresses: {
-      97: '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82',
-      56: kalosToken.address,
+      97: testnetKalosToken.address,
+      56: mainnetKalosToken.address,
     },
     token: serializedTokens.xkalo,
     quoteToken: serializedTokens.wbnb,
