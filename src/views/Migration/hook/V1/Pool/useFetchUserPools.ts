@@ -29,7 +29,7 @@ const initialData = {
     stakingToken: serializedTokens.xalo,
     earningToken: serializedTokens.xalo,
     contractAddress: {
-      97: testnetKalosRouter,
+      97: testnetKalosRouter.address,
       56: mainnetKalosRouter.address,
     },
     poolCategory: PoolCategory.CORE,
