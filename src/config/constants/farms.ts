@@ -60,29 +60,6 @@ const farms: SerializedFarmConfig[] = [
     quoteToken: serializedTokens.busd,
   },
   {
-    pid: 99,
-    lpSymbol: 'XCN-BNB LP',
-    lpAddresses: {
-      97: '',
-      56: '0xF01eD80d46759c0cf6A3e9c66856017d81284962',
-    },
-    token: serializedTokens.xcn,
-    quoteToken: serializedTokens.wbnb,
-    isCommunity: true,
-  },
-
-  {
-    pid: 23,
-    v1pid: 293,
-    lpSymbol: 'UST-BUSD LP',
-    lpAddresses: {
-      97: '',
-      56: '0x05faf555522Fa3F93959F86B41A3808666093210',
-    },
-    token: serializedTokens.ust,
-    quoteToken: serializedTokens.busd,
-  },
-  {
     pid: 22,
     v1pid: 285,
     lpSymbol: 'BTCST-BNB LP',
