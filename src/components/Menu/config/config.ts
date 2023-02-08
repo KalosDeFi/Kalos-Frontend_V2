@@ -126,10 +126,10 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         label: t('Info'),
         href: '/info',
       },
-      {
+      /* {
         label: t('IFO'),
         href: '/ifo',
-      },
+      }, */
       /* {
         label: t('Voting'),
         href: '/voting',
