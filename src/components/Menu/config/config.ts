@@ -75,17 +75,17 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       },
     ],
   },
-  {
+  /* {
     label: t('Win'),
     href: '/prediction',
     icon: TrophyIcon,
     fillIcon: TrophyFillIcon,
     items: [
-      /* {
+      {
         label: t('Trading Competition'),
         href: '/competition',
         hideSubNav: true,
-      }, */
+      }, 
       {
         label: t('Prediction (BETA)'),
         href: '/prediction',
@@ -95,8 +95,8 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         href: '/lottery',
       },
     ],
-  },
-  {
+  }, */
+  /* {
     label: t('NFT'),
     href: `${nftsBaseUrl}`,
     icon: NftIcon,
@@ -115,7 +115,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
         href: `${nftsBaseUrl}/activity`,
       },
     ],
-  },
+  }, */
   {
     label: '',
     href: '/info',
@@ -151,7 +151,7 @@ const config: (t: ContextApi['t'], isDark: boolean, languageCode?: string) => Co
       },
       {
         label: t('Docs'),
-        href: '*',
+        href: 'https://kalos-protocol.gitbook.io/kazien-protocol-documentations/',
         type: DropdownMenuItemType.EXTERNAL_LINK,
       },
     ],
