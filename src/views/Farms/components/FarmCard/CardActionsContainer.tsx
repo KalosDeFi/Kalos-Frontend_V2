@@ -35,10 +35,10 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, account, addLiquidi
   const { allowance, earnings } = farm.userData || {}
   const lpAddress = getAddress(lpAddresses)
   const isApproved = account && allowance && allowance.isGreaterThan(0)
+  // console.log(account, allowance, allowance.isGreaterThan(0), farm)
   const dispatch = useAppDispatch()
 
   const lpContract = useERC20(lpAddress)
-
   const { onApprove } = useApproveFarm(lpContract)
 
   const handleApprove = useCallback(async () => {

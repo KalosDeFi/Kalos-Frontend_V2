@@ -12,11 +12,12 @@ import { simpleRpcProvider } from 'utils/providers'
 import xaloVaultAbi from 'config/abi/xaloVault.json'
 import { FAST_INTERVAL } from 'config/constants'
 import { VaultKey } from 'state/types'
+import { CHAIN_ID } from 'config/constants/networks'
 import { fetchPublicVaultData } from './fetchPublicVaultData'
 
 import KALOS_CONTRACT_LIST from '../../../../../config/constants/kalos-default.contracts.json'
-import { CHAIN_ID } from 'config/constants/networks'
-const KalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosVault/Automatic Pool' && contract.chainId == parseInt(CHAIN_ID))[0]
+
+const KalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosVault/Automatic Pool' && contract.chainId === parseInt(CHAIN_ID))[0]
 
 export const ifoPoolV1Contract = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8'
 export const xaloVaultAddress = KalosVault.address

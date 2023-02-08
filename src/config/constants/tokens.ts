@@ -4,8 +4,9 @@ import { CHAIN_ID } from './networks'
 import { SerializedToken } from './types'
 
 import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
-const mainnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
-const testnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
+
+const mainnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token.name === 'Kalosdefi Token' && token.chainId === ChainId.MAINNET)[0]
+const testnetkalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token.name === 'Kalosdefi Token' && token.chainId === ChainId.TESTNET)[0]
 
 const { MAINNET, TESTNET } = ChainId
 

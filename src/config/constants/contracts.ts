@@ -1,14 +1,14 @@
 import { ChainId } from '@kalosdefi/sdk';
 import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
 
-const mainnetKalosMasterChef = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.MAINNET)[0]
-const testnetKalosMasterChef = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.TESTNET)[0]
-const mainnetKalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosVault/Automatic Pool' && contract.chainId == ChainId.MAINNET)[0]
-const testnetKalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosVault/Automatic Pool' && contract.chainId == ChainId.TESTNET)[0]
+const mainnetKalosMasterChef = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosMasterChef = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.TESTNET)[0]
+const mainnetKalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosVault/Automatic Pool' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosVault = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosVault/Automatic Pool' && contract.chainId === ChainId.TESTNET)[0]
 export default {
   masterChef: {
-    97: '',
-    56: '0x8a24C3c9Ec17AB0b7977fc4a4ab72b91621F751F',
+    97: testnetKalosMasterChef.address,
+    56: mainnetKalosMasterChef.address,
   },
   masterChefV1: {
     97: testnetKalosMasterChef.address,
