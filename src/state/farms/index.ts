@@ -60,10 +60,10 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
       {
         address: masterChefAddress,
-        name: 'cakePerBlock',
-        params: [true],
+        name: 'xaloPerBlock',
       },
     ]
+    
     const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls)
     const regularXaloPerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
     const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))

@@ -1,11 +1,12 @@
+import { ChainId } from '@kalosdefi/sdk';
 import { serializeTokens } from './tokens'
 import { SerializedFarmConfig } from './types'
 import { CHAIN_ID } from './networks'
 
-import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
-import { ChainId } from '@kalosdefi/sdk';
-const mainnetKalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
-const testnetKalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == ChainId.MAINNET)[0]
+import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
+
+const mainnetKalosPair = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosPair' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosPair = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosPair' && contract.chainId === ChainId.TESTNET)[0]
 
 const serializedTokens = serializeTokens()
 
@@ -16,10 +17,10 @@ const farms: SerializedFarmConfig[] = [
   {
     pid: 0,
     v1pid: 0,
-    lpSymbol: 'XALO',
+    lpSymbol: 'XALO-BNB LP',
     lpAddresses: {
-      97: testnetKalosToken.address,
-      56: mainnetKalosToken.address,
+      97: testnetKalosPair.address,
+      56: mainnetKalosPair.address,
     },
     token: serializedTokens.xkalo,
     quoteToken: serializedTokens.wbnb,
@@ -49,7 +50,7 @@ const farms: SerializedFarmConfig[] = [
   //    * V3 by order of release (some may be out of PID order due to multiplier boost)
 
   {
-    pid: 3,
+    pid: 4,
     v1pid: 3,
     lpSymbol: 'USDT-BUSD LP',
     lpAddresses: {

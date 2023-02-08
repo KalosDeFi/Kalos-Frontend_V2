@@ -15,6 +15,11 @@
         "chainId": 56
     },
     {
+        "name": "KalosPair",
+        "address": "0xE9E9b8001d86C36F971d046D64983738599C7385",
+        "chainId": 56
+    },
+    {
         "name": "KalosRouter",
         "address": "0xb5437FE96CddDC9721C9E8899cc68d26850B536c",
         "chainId": 97
@@ -28,5 +33,11 @@
         "name": "KalosVault/Automatic Pool",
         "address": "0xfbAE69DDe694561548E9a370F2b28ad8fa882dd5",
         "chainId": 97
+    },
+    {
+        "name": "KalosPair",
+        "address": "0x57c4794029ed4710155a1b949ab90e6769b35BEc",
+        "chainId": 97
     }
+    
 ]

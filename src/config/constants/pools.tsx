@@ -1,15 +1,15 @@
 import { BigNumber } from '@ethersproject/bignumber'
 import Trans from 'components/Trans'
 import { VaultKey } from 'state/types'
+import { ChainId } from '@kalosdefi/sdk'
 import { CHAIN_ID } from './networks'
 import tokens, { serializeTokens } from './tokens'
 import { SerializedPoolConfig, PoolCategory } from './types'
 
 import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
-import { ChainId } from '@kalosdefi/sdk'
 
-const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.MAINNET)[0]
-const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.TESTNET)[0]
+const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.TESTNET)[0]
 
 const serializedTokens = serializeTokens()
 

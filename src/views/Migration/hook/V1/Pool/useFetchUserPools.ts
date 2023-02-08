@@ -6,14 +6,14 @@ import { transformPool } from 'state/pools/helpers'
 import { getXaloContract } from 'utils/contractHelpers'
 import { PoolCategory } from 'config/constants/types'
 import { serializeTokens } from 'config/constants/tokens'
+import { ChainId } from '@pancakeswap/sdk'
+import { CHAIN_ID } from 'config/constants/networks'
 import { fetchUserStakeBalances, fetchUserPendingRewards } from './fetchPoolsUser'
 
 import KALOS_CONTRACT_LIST from '../../../../../config/constants/kalos-default.contracts.json';
-import { ChainId } from '@pancakeswap/sdk'
-import { CHAIN_ID } from 'config/constants/networks'
 
-const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.MAINNET)[0]
-const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'MasterChef' && contract.chainId == ChainId.TESTNET)[0]
+const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'MasterChef' && contract.chainId === ChainId.TESTNET)[0]
 
 export interface PoolsState {
   data: SerializedPool

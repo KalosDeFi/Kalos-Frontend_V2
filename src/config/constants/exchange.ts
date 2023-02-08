@@ -8,8 +8,8 @@ import DEFAULT_TOKEN_LIST from './tokenLists/pancake-default.tokenlist.json';
 import KALOS_CONTRACT_LIST from './kalos-default.contracts.json';
 import { CHAIN_ID } from './networks';
 
-const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter' && contract.chainId == ChainId.MAINNET)[0]
-const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract['name'] === 'KalosRouter' && contract.chainId == ChainId.TESTNET)[0]
+const mainnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosRouter' && contract.chainId === ChainId.MAINNET)[0]
+const testnetKalosRouter = KALOS_CONTRACT_LIST.filter((contract) => contract.name === 'KalosRouter' && contract.chainId === ChainId.TESTNET)[0]
 export const ROUTER_ADDRESS = {
   [ChainId.MAINNET]: mainnetKalosRouter.address,
   [ChainId.TESTNET]: testnetKalosRouter.address,
@@ -28,6 +28,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     mainnetTokens.usdc,
   ],
   [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.busd],
+  [ChainId.LOCALNET]: []
 }
 
 /**
@@ -51,12 +52,14 @@ export const CUSTOM_BASES: { [chainId in ChainId]?: { [tokenAddress: string]: To
 export const SUGGESTED_BASES: ChainTokenList = {
   [ChainId.MAINNET]: [mainnetTokens.busd, mainnetTokens.xalo, mainnetTokens.cake],
   [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.busd],
+  [ChainId.LOCALNET]: []
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
   [ChainId.MAINNET]: [mainnetTokens.wbnb, mainnetTokens.dai, mainnetTokens.busd, mainnetTokens.usdt],
   [ChainId.TESTNET]: [testnetTokens.wbnb, testnetTokens.cake, testnetTokens.busd],
+  [ChainId.LOCALNET]: []
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
@@ -97,7 +100,7 @@ export const INPUT_FRACTION_AFTER_FEE = ONE_HUNDRED_PERCENT.subtract(BASE_FEE)
 export const DEFAULT_INPUT_CURRENCY = 'BNB'
 // CAKE
 
-const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token['name'] === 'Kalosdefi Token' && token.chainId == parseInt(CHAIN_ID))[0]
+const kalosToken = DEFAULT_TOKEN_LIST.tokens.filter((token) => token.name === 'Kalosdefi Token' && token.chainId === parseInt(CHAIN_ID))[0]
 export const DEFAULT_OUTPUT_CURRENCY = kalosToken.address
 
 // Handler string is passed to Gelato to use PCS router
