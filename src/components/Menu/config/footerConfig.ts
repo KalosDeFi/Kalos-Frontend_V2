@@ -53,7 +53,7 @@ export const footerLinks: (t: ContextApi['t']) => FooterLinkType[] = (t) => [
     items: [
       {
         label: 'Github',
-        href: '"https://github.com/KalosProtocol"',
+        href: 'https://github.com/KalosProtocol',
       },
       {
         label: t('Documentation'),
