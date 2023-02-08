@@ -7,7 +7,7 @@ import { usePhishingBannerManager } from 'state/user/hooks'
 const Container = styled(Flex)`
   overflow: hidden;
   height: 100%;
-  padding: 12px;
+  padding: 5px;
   align-items: center;
   background: linear-gradient(0deg, rgba(39, 38, 44, 0.4), rgba(39, 38, 44, 0.4)),
     linear-gradient(180deg, #db7114 0%, #222986 100%);
