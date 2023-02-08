@@ -10,7 +10,7 @@ const Container = styled(Flex)`
   padding: 5px;
   align-items: center;
   background: linear-gradient(0deg, rgba(39, 38, 44, 0.4), rgba(39, 38, 44, 0.4)),
-    linear-gradient(180deg, #db7114 0%, #222986 100%);
+    linear-gradient(180deg, #db7114 0%, #b8a01a 100%);
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 0px;
     background: linear-gradient(180deg, #c4a31d 0%, #b8a01a 100%);
@@ -26,7 +26,7 @@ const InnerContainer = styled(Flex)`
 
 const SpeechBubble = styled.div`
   background: rgba(39, 38, 44, 0.4);
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 8px;
   width: 60%;
   height: 80%;
