@@ -126,7 +126,7 @@ const PoolStatsInfo: React.FC<ExpandedFooterProps> = ({
       )}
       {vaultKey && (
         <Flex mb="2px" justifyContent={alignLinksToRight ? 'flex-end' : 'flex-start'}>
-          <LinkExternal href="https://docs.kalosdefi.finance/products/syrup-pool/new-cake-pool" bold={false} small>
+          <LinkExternal href="https://kalos-protocol.gitbook.io/kazien-protocol-documentations/kalos-pools" bold={false} small>
             {t('View Tutorial')}
           </LinkExternal>
         </Flex>

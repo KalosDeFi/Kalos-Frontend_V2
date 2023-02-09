@@ -7,13 +7,13 @@ import { usePhishingBannerManager } from 'state/user/hooks'
 const Container = styled(Flex)`
   overflow: hidden;
   height: 100%;
-  padding: 12px;
+  padding: 5px;
   align-items: center;
   background: linear-gradient(0deg, rgba(39, 38, 44, 0.4), rgba(39, 38, 44, 0.4)),
-    linear-gradient(180deg, #8051d6 0%, #222986 100%);
+    linear-gradient(180deg, #e07e0d 0%, #cc8108 100%);
   ${({ theme }) => theme.mediaQueries.md} {
     padding: 0px;
-    background: linear-gradient(180deg, #8051d6 0%, #492286 100%);
+    background: linear-gradient(180deg, #e07e0d 0%, #cc8108 100%);
   }
 `
 
@@ -26,7 +26,7 @@ const InnerContainer = styled(Flex)`
 
 const SpeechBubble = styled.div`
   background: rgba(39, 38, 44, 0.4);
-  border-radius: 16px;
+  border-radius: 6px;
   padding: 8px;
   width: 60%;
   height: 80%;
