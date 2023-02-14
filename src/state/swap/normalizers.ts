@@ -18,13 +18,15 @@ export const normalizeChartData = (
       }))
     case PairDataTimeWindowEnum.MONTH:
     case PairDataTimeWindowEnum.YEAR:
-      return (data as PairDayDatasResponse)?.pairDayDatas?.map((fetchPairEntry) => ({
-        time: fetchPairEntry.date,
-        token0Id: fetchPairEntry.pairAddress.token0.id,
-        token1Id: fetchPairEntry.pairAddress.token1.id,
-        reserve0: parseFloat(fetchPairEntry.reserve0),
-        reserve1: parseFloat(fetchPairEntry.reserve1),
-      }))
+      return (data as PairDayDatasResponse)?.pairDayDatas?.map((fetchPairEntry) => {
+        return {
+          time: fetchPairEntry.date,
+          token0Id: fetchPairEntry?.pairAddress?.token0?.id,
+          token1Id: fetchPairEntry?.pairAddress?.token1?.id,
+          reserve0: parseFloat(fetchPairEntry?.reserve0),
+          reserve1: parseFloat(fetchPairEntry?.reserve1),
+        }
+      })
     default:
       return null
   }
