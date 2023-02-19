@@ -66,8 +66,8 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
     ]
     const [[poolLength], [cakePerBlockRaw]] = await multicall(masterchefABI, calls)
     const regularXaloPerBlock = getBalanceAmount(ethersToBigNumber(cakePerBlockRaw))
-    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
-    const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.v1pid))
+    const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.v1pid))
 
     const farms = await fetchFarms(farmsCanFetch)
     const farmsWithPrices = getFarmsPrices(farms)
@@ -104,8 +104,8 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
   'farms/fetchFarmUserDataAsync',
   async ({ account, pids }) => {
     const poolLength = await fetchMasterChefFarmPoolLength()
-    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.pid))
-    const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.pid))
+    const farmsToFetch = farmsConfig.filter((farmConfig) => pids.includes(farmConfig.v1pid))
+    const farmsCanFetch = farmsToFetch.filter((f) => poolLength.gt(f.v1pid))
     const [userFarmAllowances, userFarmTokenBalances, userStakedBalances, userFarmEarnings] = await Promise.all([
       fetchFarmUserAllowances(account, farmsCanFetch),
       fetchFarmUserTokenBalances(account, farmsCanFetch),
@@ -115,7 +115,7 @@ export const fetchFarmUserDataAsync = createAsyncThunk<
 
     return userFarmAllowances.map((farmAllowance, index) => {
       return {
-        pid: farmsCanFetch[index].pid,
+        pid: farmsCanFetch[index].v1pid,
         allowance: userFarmAllowances[index],
         tokenBalance: userFarmTokenBalances[index],
         stakedBalance: userStakedBalances[index],
@@ -175,7 +175,7 @@ export const farmsSlice = createSlice({
     builder.addCase(fetchFarmsPublicDataAsync.fulfilled, (state, action) => {
       const [farmPayload, poolLength, regularXaloPerBlock] = action.payload
       state.data = state.data.map((farm) => {
-        const liveFarmData = farmPayload.find((farmData) => farmData.pid === farm.pid)
+        const liveFarmData = farmPayload.find((farmData) => farmData.v1pid === farm.v1pid)
         return { ...farm, ...liveFarmData }
       })
       state.poolLength = poolLength
@@ -186,7 +186,7 @@ export const farmsSlice = createSlice({
     builder.addCase(fetchFarmUserDataAsync.fulfilled, (state, action) => {
       action.payload.forEach((userDataEl) => {
         const { pid } = userDataEl
-        const index = state.data.findIndex((farm) => farm.pid === pid)
+        const index = state.data.findIndex((farm) => farm.v1pid === pid)
         state.data[index] = { ...state.data[index], userData: userDataEl }
       })
       state.userDataLoaded = true
