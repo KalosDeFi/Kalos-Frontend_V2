@@ -27,7 +27,7 @@ export const usePollFarmsWithUserData = () => {
   useSWRImmutable(
     ['publicFarmData'],
     () => {
-      const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
+      const pids = farmsConfig.map((farmToFetch) => farmToFetch.v1pid)
       dispatch(fetchFarmsPublicDataAsync(pids))
     },
     {
@@ -38,7 +38,7 @@ export const usePollFarmsWithUserData = () => {
   useSWRImmutable(
     account ? ['farmsWithUserData', account] : null,
     () => {
-      const pids = farmsConfig.map((farmToFetch) => farmToFetch.pid)
+      const pids = farmsConfig.map((farmToFetch) => farmToFetch.v1pid)
       dispatch(fetchFarmUserDataAsync({ account, pids }))
     },
     {
