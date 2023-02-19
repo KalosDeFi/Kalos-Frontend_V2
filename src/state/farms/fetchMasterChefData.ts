@@ -15,13 +15,13 @@ export const fetchMasterChefFarmPoolLength = async () => {
 }
 
 const masterChefFarmCalls = (farm: SerializedFarm) => {
-  const { pid } = farm
-  return pid || pid === 0
+  const { v1pid } = farm
+  return v1pid || v1pid === 0
     ? [
         {
           address: masterChefAddress,
           name: 'poolInfo',
-          params: [pid],
+          params: [v1pid],
         },
         {
           address: masterChefAddress,
