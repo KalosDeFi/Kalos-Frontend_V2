@@ -8,7 +8,7 @@ import { createAsyncThunk, createSlice, isAnyOf } from '@reduxjs/toolkit'
 import stringify from 'fast-json-stable-stringify'
 import farmsConfig from 'config/constants/farms'
 import multicall from 'utils/multicall'
-import masterchefABI from 'config/abi/masterchef.json'
+import masterchefABI from 'config/abi/masterchefV1.json'
 import { getMasterChefAddress } from 'utils/addressHelpers'
 import { getBalanceAmount } from 'utils/formatBalance'
 import { ethersToBigNumber } from 'utils/bigNumber'
@@ -60,7 +60,7 @@ export const fetchFarmsPublicDataAsync = createAsyncThunk<
       },
       {
         address: masterChefAddress,
-        name: 'cakePerBlock',
+        name: 'xaloPerBlock',
         params: [true],
       },
     ]

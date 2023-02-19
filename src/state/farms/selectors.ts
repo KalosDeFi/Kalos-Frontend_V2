@@ -21,7 +21,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
   const {
     lpAddresses,
     lpSymbol,
-    v1pid,
+    pid,
     dual,
     multiplier,
     isCommunity,
@@ -49,7 +49,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
   return {
     lpAddresses,
     lpSymbol,
-    v1pid,
+    pid,
     dual,
     multiplier,
     isCommunity: isFarmCommunity,
@@ -68,7 +68,7 @@ const deserializeFarm = (farm: SerializedFarm): DeserializedFarm => {
   }
 }
 
-const selectCakeFarm = (state: State) => state.farms.data.find((f) => f.v1pid === 2)
+const selectCakeFarm = (state: State) => state.farms.data.find((f) => f.pid === 2)
 const selectFarmByKey = (key: string, value: string | number) => (state: State) =>
   state.farms.data.find((f) => f[key] === value)
 

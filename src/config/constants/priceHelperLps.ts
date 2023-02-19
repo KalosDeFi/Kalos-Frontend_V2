@@ -10,7 +10,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
    * Before storing to redux, farms without a PID are filtered out.
    */
   {
-    v1pid: null,
+    pid: null,
     lpSymbol: 'ANKR-BNB LP',
     lpAddresses: {
       97: '',
@@ -20,7 +20,7 @@ const priceHelperLps: SerializedFarmConfig[] = [
     quoteToken: tokens.wbnb,
   },
   {
-    v1pid: null,
+    pid: null,
     lpSymbol: 'ANTEX-BUSD LP',
     lpAddresses: {
       97: '',
