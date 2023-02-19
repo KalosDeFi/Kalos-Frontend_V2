@@ -21,7 +21,7 @@ const farms: SerializedFarmConfig[] = [
   },
   {
     pid: 2,
-    v1pid: 5,
+    v1pid: 1,
     lpSymbol: 'CAKE-BNB LP',
     lpAddresses: {
       97: '0x3ed8936cAFDF85cfDBa29Fbe5940A5b0524824F4',
