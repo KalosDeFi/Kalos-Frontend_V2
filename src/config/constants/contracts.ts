@@ -1,11 +1,11 @@
 export default {
   masterChef: {
     97: '',
-    56: '0x8a24C3c9Ec17AB0b7977fc4a4ab72b91621F751F',
+    56: '0x0990d38f26E6b0E9afb4c20d455CD5d69881Bd42',
   },
   masterChefV1: {
     97: '0x1d32c2945C8FDCBc7156c553B7cEa4325a17f4f9',
-    56: '0xeD3593fEE42ECe382e2D7D327F26234c82d9Ff2D',
+    56: '0xEdb8f52137C09066D58B45e2B9782d8Bb2900398',
   },
   sousChef: {
     97: '0xd3af5fe61dbaf8f73149bfcfa9fb653ff096029a',
@@ -64,7 +64,7 @@ export default {
     97: '0x24ec6962dbe874F6B67B5C50857565667fA0854F',
   },
   xaloVault: {
-    56: '0x394D2aD99ba0173184DEC82877eeFAaC36c9663a',
+    56: '0x73Cb79497de03FEc50E673373c01f6151fe82bb9',
     97: '',
   },
   xaloFlexibleSideVault: {
